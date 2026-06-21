@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --foreground: #0b1124;
+  --muted: #64748b;
+  --brand: #0891b2;
+  --brand-2: #4f46e5;
+  --brand-3: #9333ea;
+  --shadow-color: 99 102 241;
+}
+
+.dark {
+  --background: #060912;
+  --surface: #0b1124;
+  --surface-2: #111934;
+  --border: #1c2647;
+  --foreground: #f5f7ff;
+  --muted: #94a3c8;
+  --brand: #22d3ee;
+  --brand-2: #6366f1;
+  --brand-3: #a855f7;
+  --shadow-color: 99 102 241;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-3: var(--brand-3);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-geist-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: color-mix(in oklab, var(--brand) 35%, transparent);
+  color: var(--foreground);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-radial-fade {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in oklab, var(--brand-2) 18%, transparent), transparent 70%);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--brand) 0%, var(--brand-2) 50%, var(--brand-3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: color-mix(in oklab, var(--surface) 60%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+.brand-shadow {
+  box-shadow: 0 50px 120px -30px rgb(var(--shadow-color) / 0.25);
+}
+.dark .brand-shadow {
+  box-shadow: 0 60px 140px -30px rgb(var(--shadow-color) / 0.45);
+}
+
+/* Logo marks in marquee — auto invert based on theme, purple-pink tint on hover */
+.logo-mono {
+  filter: brightness(0);
+  opacity: 0.55;
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+.dark .logo-mono {
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+.logo-mono:hover {
+  /* Tints to a vivid purple-pink (~#d946ef, fuchsia-500) */
+  filter: brightness(0) saturate(100%) invert(45%) sepia(88%) saturate(3500%) hue-rotate(268deg) brightness(100%) contrast(95%);
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0 }
+  100% { background-position: 200% 0 }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand) 22%, transparent), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(-10%, -8%) scale(1); }
+  50% { transform: translate(8%, 6%) scale(1.15); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(12%, -4%) scale(1.1); }
+  50% { transform: translate(-6%, 10%) scale(0.95); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translate(-6%, 8%) scale(0.95); }
+  50% { transform: translate(10%, -10%) scale(1.1); }
+}
+.aurora-1 { animation: aurora-1 14s ease-in-out infinite; }
+.aurora-2 { animation: aurora-2 18s ease-in-out infinite; }
+.aurora-3 { animation: aurora-3 22s ease-in-out infinite; }
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 24s linear infinite; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-8px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+.animate-scroll-cue { animation: scroll-cue 2s ease-in-out infinite; }

@@ -1,0 +1,740 @@
+{
+  "loom": {
+    "meta": {
+      "title": "Loom Commerce — Shopify için AI katmanı",
+      "description": "Shopify mağazanıza tek script ile kurulan, 5 AI modülüyle satış, analiz, pazarlama, içerik ve güvenliği tek çatı altında toplayan yapay zekâ platformu."
+    },
+    "hero": {
+      "eyebrow": "Enterbird × Loom · Bir ürünümüz",
+      "brand": "Loom Commerce",
+      "tagline": "Ticarete zekâ dokuyoruz.",
+      "description": "Shopify mağazanızın üstüne tek script ile kurulan, marka sesinizde konuşan ve kataloğunuzu gerçekten anlayan yapay zekâ katmanı. Satıştan analize, içerikten güvenliğe — aynı panelden yönettiğiniz <strong>beş modül</strong>.",
+      "primaryCta": "Pilot talep edin",
+      "secondaryCta": "5 modülü inceleyin",
+      "badge": "İlk pilot süreci aktif"
+    },
+    "problem": {
+      "eyebrow": "Sorun",
+      "title": "Bugün markalar",
+      "titleHighlight": "neyle boğuşuyor",
+      "titleSuffix": "?",
+      "items": [
+        {
+          "title": "İçerik ekibi yetişemiyor",
+          "text": "Sezona üç hafta kala 500 yeni ürünü tarife etmesi gereken bir içerik ekibi; gecikmiş lansmanlar ve yayımlanmayı bekleyen kataloglar."
+        },
+        {
+          "title": "Sepet bırakanlar dönmüyor",
+          "text": "Hâlâ jenerik \"seni özledik\" e-postaları gidiyor; şablondan çıkmayan mesajlar kimseyi geri getirmiyor, oranlar düşüyor."
+        },
+        {
+          "title": "Bot ve dolandırıcılık günü yiyor",
+          "text": "Müşteri hizmetleri ekibinin yarı günü sahte siparişlerle uğraşıyor; kalan yarısı manuel rapor çıkarmakla geçiyor."
+        }
+      ],
+      "closing": "Üç farklı sorun gibi görünse de ortak noktaları var: markanın verisi elinin altında, ama kimse onu yeterince hızlı değere çeviremiyor."
+    },
+    "modules": {
+      "eyebrow": "Çözüm · 5 modül",
+      "title": "Loom'un",
+      "titleHighlight": "beş modülü",
+      "titleSuffix": ".",
+      "description": "Tek script ile kurulur. Aynı platformdan yönetilir. Tek panelden izlenir.",
+      "items": [
+        {
+          "code": "01",
+          "name": "Loom Weave",
+          "subtitle": "Vitrinde konuşan satış danışmanı",
+          "description": "Müşteri mağazayı gezerken Weave ile sohbet eder. \"Annem için rahat pamuklu pijama\" gibi doğal bir cümleyi gerçek kataloğunuzda arar; stok, beden ve fiyatı kontrol eder, sepete yönlendirir.",
+          "example": "7/24 açık · akıcı yanıt · konuştuğu müşteriyi hatırlar"
+        },
+        {
+          "code": "02",
+          "name": "Loom Pattern",
+          "subtitle": "Yöneticinin veri analisti",
+          "description": "E-ticaret müdürü WhatsApp'tan \"bu hafta satışlar neden düştü?\" diye sorar. Pattern sipariş veritabanını canlı sorgular, birkaç boyutta keser, hipotez kurar, aksiyon önerir.",
+          "example": "10 saniyede yönetim toplantısı seviyesinde özet"
+        },
+        {
+          "code": "03",
+          "name": "Loom Thread",
+          "subtitle": "Marka sesinde pazarlama otomasyonu",
+          "description": "Terk edilen sepet, hoş geldin, sipariş teşekkürü ve geri kazanım; hepsi markanızın tonuyla yazılır. Shopify olayları tetikler, Resend gönderir.",
+          "example": "Şablon yok · uydurma ürün yok · \"sevgili müşterimiz\" yok"
+        },
+        {
+          "code": "04",
+          "name": "Loom Craft",
+          "subtitle": "25 saniyede ürün açıklaması",
+          "description": "Başlık, uzun açıklama, SEO meta'sı, URL, anahtar kelimeler ve dört dile çeviri (İngilizce, Arapça, Rusça, Almanca) tek seferde üretilir.",
+          "example": "1 ürün = 25 saniye, 50 kuruş · 500 ürünlük katalog = 2 iş günü"
+        },
+        {
+          "code": "05",
+          "name": "Loom Guard",
+          "subtitle": "Dolandırıcılık ve bot kalkanı",
+          "description": "Her sipariş ödeme ekranında sekiz kurallı bir filtreden geçer. Skor kritik aralıkta kaldığında karar veren yapay zekâ devreye girer, bütünsel bir inceleme yapar, kararını gerekçesiyle birlikte verir.",
+          "example": "Tek kullanımlık e-posta · Tor · coğrafi tutarsızlık · velocity · bot"
+        }
+      ]
+    },
+    "comparison": {
+      "eyebrow": "Fark",
+      "title": "Klasik ajanstan",
+      "titleHighlight": "ne farkımız var",
+      "titleSuffix": "?",
+      "description": "Klasik e-ticaret ajansları haftalarca kurar, saat bazlı faturalandırır, raporu elle gönderir. Biz farklı çalışıyoruz.",
+      "headers": {
+        "dim": "Boyut",
+        "agency": "Klasik ajans",
+        "loom": "Loom"
+      },
+      "rows": [
+        { "label": "Kurulum", "agency": "Haftalar", "loom": "1 gün" },
+        { "label": "Fiyatlandırma", "agency": "Saat × adam", "loom": "Sonuç bazlı: 90 günde iyileşme yoksa ücret yok" },
+        { "label": "Destek", "agency": "09:00 – 18:00, insan", "loom": "7 gün 24 saat, yapay zekâ" },
+        { "label": "Maliyet şeffaflığı", "agency": "Görünmez", "loom": "Her çağrı, her kullanım, her kuruş raporlanır" },
+        { "label": "Ölçeklenme", "agency": "Her marka için sıfırdan proje", "loom": "Tek platform, istediğiniz kadar marka" }
+      ]
+    },
+    "tech": {
+      "eyebrow": "Altyapı",
+      "title": "Modern, hızlı,",
+      "titleHighlight": "KVKK uyumlu",
+      "titleSuffix": ".",
+      "description": "Her parçası bir amaç için seçildi; gereksiz katman yok.",
+      "items": [
+        { "name": "Claude Sonnet 4.5", "desc": "Beş modülün yapay zekâ motoru (Anthropic)" },
+        { "name": "Voyage AI", "desc": "Anlam tabanlı ürün arama ve kataloğu anlama" },
+        { "name": "Shopify Plus", "desc": "OAuth + canlı olaylarla doğrudan entegrasyon" },
+        { "name": "Bun + Fastify + SQLite/Drizzle", "desc": "Modern, hızlı, kolay yayınlanır çekirdek" },
+        { "name": "AES-256-GCM + JWT", "desc": "Kurumsal seviyede güvenlik, KVKK uyumlu" }
+      ]
+    },
+    "target": {
+      "eyebrow": "Kimlere uygun",
+      "title": "Loom",
+      "titleHighlight": "size uygun mu",
+      "titleSuffix": "?",
+      "items": [
+        "Shopify'da satan orta ölçekli ve kurumsal markalar",
+        "Aylık 10.000+ ziyaretçi, 500+ ürünlük katalog",
+        "Hızlı içerik üretimi gereksinimi olan moda, iç giyim ve kozmetik",
+        "Bot trafiği ve dolandırıcılıkla boğuşan e-ticaret ekipleri",
+        "Yurt dışına açılıp çoklu dil desteğine ihtiyacı olan markalar"
+      ],
+      "closing": "Bu tanımın en az ikisi sizde varsa, Loom'u 30 dakikalık bir pilot görüşmeyle anlatalım."
+    },
+    "cta": {
+      "title": "Markanızı",
+      "titleHighlight": "konuşturun",
+      "titleSuffix": ".",
+      "description": "Pilot süreci ücretsizdir. Kurulum bir gün sürer; 90 gün içinde ölçülebilir bir iyileşme göremezsek hiçbir ücret almıyoruz.",
+      "primary": "Pilot talep edin",
+      "email": "hello@loom.co",
+      "web": "loom.co",
+      "guarantee": "90 günde iyileşme yoksa ücret yok"
+    }
+  },
+  "meta": {
+    "siteName": "Enterbird",
+    "title": "Enterbird — AI Destekli Dijital Ajans",
+    "description": "Markaların online dünyasını büyüten, AI destekli bir dijital ajans. E-ticaret, performans pazarlama, sosyal medya ve web çözümleri.",
+    "ogDescription": "E-ticaret, performans pazarlama ve içerik üretiminde markanı bir üst lige taşıyan ekip."
+  },
+  "nav": {
+    "services": "Hizmetler",
+    "work": "Referanslar",
+    "loom": "Loom",
+    "about": "Hakkımızda",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "cta": "Teklif Al",
+    "toggleMenu": "Menüyü aç/kapat"
+  },
+  "hero": {
+    "eyebrow": "AI destekli dijital ajans · Yeni projelere açığız",
+    "socialProof": "<strong>120+ marka</strong> büyümesini bize emanet etti",
+    "title1": "Markanı online dünyada",
+    "title2": "öne çıkaralım.",
+    "titleWords1": ["Markanı", "online", "dünyada"],
+    "titleWords2": ["öne", "çıkaralım."],
+    "description": "Enterbird; e-ticaret kurulumundan performans pazarlamaya, içerik üretiminden AI otomasyonuna kadar markanı büyütmek için ihtiyacın olan <strong>her şeyi tek çatı altında</strong> sunar.",
+    "primaryCta": "Ücretsiz Strateji Görüşmesi",
+    "secondaryCta": "İşlerimize Göz At",
+    "scrollHint": "aşağı kaydır",
+    "stats": {
+      "revenue": "Ortalama ciro artışı",
+      "roas": "Reklam ROAS",
+      "brands": "Mutlu marka"
+    },
+    "chips": {
+      "shopify": "Shopify",
+      "metaAds": "Meta Ads",
+      "tiktok": "TikTok",
+      "ai": "AI Otomasyon"
+    }
+  },
+  "marquee": {
+    "eyebrow": "Birlikte çalıştığımız platformlar"
+  },
+  "stats": {
+    "projects": "Tamamlanan Proje",
+    "experience": "Sektörde Deneyim",
+    "satisfaction": "Müşteri Memnuniyeti",
+    "budget": "Yönetilen Reklam Bütçesi (₺)"
+  },
+  "testimonials": [
+    {
+      "quote": "Enterbird ile çalışmaya başladığımız ilk çeyrekte e-ticaret cirosumuz neredeyse 4'e katlandı. Sadece reklamlar değil; markamızın online sesi tamamen değişti.",
+      "name": "Selin Aksoy",
+      "role": "Kurucu, Northwind Coffee"
+    },
+    {
+      "quote": "Müşteri hizmetlerimize entegre ettikleri AI asistan, sorulara cevap verme süremizi 2 dakikanın altına çekti. Geri bildirimler harika.",
+      "name": "Mert Çelik",
+      "role": "Operasyon Müdürü, Halo Jewelry"
+    },
+    {
+      "quote": "Sıfırdan bir marka kurarken hem kreatif hem de teknik tarafta ihtiyacımız olan her şey tek elden geldi. Bu kadar dert ortağı bir ekip beklemiyordum.",
+      "name": "Deniz Yıldız",
+      "role": "CMO, Voca Events"
+    }
+  ],
+  "home": {
+    "services": {
+      "eyebrow": "Hizmetlerimiz",
+      "title1": "Markanı büyütmek için ihtiyacın olan her şey",
+      "titleHighlight": "her şey",
+      "titleFull": "Markanı büyütmek için ihtiyacın olan her şey",
+      "description": "Tek bir uzmanlığa değil; e-ticaretten reklamlara, içerikten yapay zekâ otomasyonuna kadar uçtan uca bir ekibe ihtiyacın var. Biz tam olarak buyuz."
+    },
+    "projects": {
+      "eyebrow": "Seçili İşler",
+      "title": "Marka hikâyelerini sayılara dönüştürdük.",
+      "titleHighlight": "sayılara dönüştürdük",
+      "description": "Farklı sektörlerden, farklı boyutlardan markalarla çalıştık — ortak nokta hepsinde gerçek bir büyüme.",
+      "cta": "Tümünü Gör"
+    },
+    "process": {
+      "eyebrow": "Süreç",
+      "title": "Sade, şeffaf ve test edilmiş bir çalışma şekli.",
+      "titleHighlight": "test edilmiş",
+      "description": "Her projeyi 4 adımda kuruyoruz. Her adımda neyi neden yaptığımızı biliyorsun."
+    },
+    "testimonials": {
+      "eyebrow": "Müşterilerimiz",
+      "title": "Birlikte çalıştığımız markaların söyledikleri.",
+      "titleHighlight": "söyledikleri"
+    },
+    "loom": {
+      "eyebrow": "Bir ürünümüz",
+      "title": "Loom Commerce ile",
+      "titleHighlight": "ticarete zekâ dokuyoruz",
+      "titleSuffix": ".",
+      "description": "Shopify mağazanıza tek script ile kurulan, satıştan güvenliğe beş modülü tek panelde yöneten yapay zekâ katmanı.",
+      "modulesLabel": "Beş modül",
+      "learnMore": "Loom'u keşfedin",
+      "pilotBadge": "İlk pilot süreci başladı",
+      "chips": ["Tek script", "Tek panel", "1 gün kurulum", "90 gün garanti"],
+      "modules": [
+        { "name": "Loom Weave", "subtitle": "Vitrinde satış danışmanı", "hint": "Annem için rahat pamuklu pijama…" },
+        { "name": "Loom Pattern", "subtitle": "Yöneticinin veri analisti", "hint": "Satışlar bu hafta neden düştü?" },
+        { "name": "Loom Thread", "subtitle": "Marka sesinde otomasyon", "hint": "Sepetini hatırlattık, geri dönüyor." },
+        { "name": "Loom Craft", "subtitle": "25 saniyede açıklama", "hint": "1 ürün → 25 sn · 50 kr" },
+        { "name": "Loom Guard", "subtitle": "Dolandırıcılık kalkanı", "hint": "Tor · geo mismatch · bot" }
+      ]
+    }
+  },
+  "process": {
+    "step1": {
+      "title": "Keşif",
+      "text": "Markanı, hedeflerini ve rakiplerini analiz ederek nereye gideceğimize karar veriyoruz."
+    },
+    "step2": {
+      "title": "Strateji & Tasarım",
+      "text": "Ölçülebilir hedeflerle bir yol haritası ve markaya özel kreatif bir dünya kuruyoruz."
+    },
+    "step3": {
+      "title": "Uygulama",
+      "text": "Geliştirme, kurulum, içerik üretimi ve kampanya yayını — hızlı ve güvenli teslim."
+    },
+    "step4": {
+      "title": "Optimizasyon",
+      "text": "Veriyi okuyup haftalık iterasyonlarla performansı sürekli yukarı taşıyoruz."
+    }
+  },
+  "services": {
+    "pageTitle": "Markanı büyütecek",
+    "pageTitleHighlight": "tüm uzmanlıklar",
+    "pageTitleSuffix": "tek çatı altında.",
+    "pageDescription": "Aşağıdaki hizmetlerin hepsi birbiriyle konuşur. Bir tanesini de alabilirsin, hepsini paket olarak da. Sana doğru gelen yere ekibini buraya kuruyoruz.",
+    "bullets": "İçeriği",
+    "items": {
+      "ecommerce": {
+        "title": "E-Ticaret Altyapısı",
+        "short": "Shopify, Ticimax, İkas, T-Soft ve WordPress üzerinde dönüşüm odaklı mağaza kurulumu.",
+        "description": "Platform seçiminden canlı yayına, ilk satıştan ölçeklenmeye kadar e-ticaret altyapınızı tek elden kuruyoruz. UX/UI iyileştirmeleri, checkout optimizasyonu, ürün girişi standartları ve teknik SEO altyapısı — satışa hazır bir mağaza.",
+        "bullets": [
+          "Platform seçimi ve kurulumu (Shopify, Ticimax, İkas, T-Soft, WooCommerce)",
+          "UX/UI iyileştirmeleri, mobil uyum, hız optimizasyonu",
+          "Checkout (ödeme) ve kargo entegrasyonları",
+          "Ürün giriş standartları ve kategori ağacı mimarisi",
+          "SEO uyumlu, satış odaklı ürün açıklamaları",
+          "Görsel & video içerik stratejisi ve varyant kurgusu",
+          "Stok yönetimi ve dönüşüm takip altyapısı",
+          "Teknik SEO altyapısı (site haritası, indexleme, hız)"
+        ]
+      },
+      "performance": {
+        "title": "Performans Pazarlama",
+        "short": "Google, Meta ve TikTok'ta veriye dayalı, ROAS'ı kovalayan kampanyalar.",
+        "description": "Bütçeni harcamak değil, çoğaltmak için kuruyoruz. Funnel tasarımı, creative testleri, hedef kitle segmentasyonu ve haftalık raporlama ile her kuruşun nereye gittiğini biliyorsun. GA4 + server-side tracking, ROAS / CAC / LTV metrikleri ve A/B test döngüsü ile sürekli iyileştirme.",
+        "bullets": [
+          "Google Ads (arama, alışveriş, display, YouTube)",
+          "Meta Ads (Instagram, Facebook, Advantage+)",
+          "TikTok Ads ve Spark Ads stratejisi",
+          "Retargeting ve remarketing (RTB, Criteo)",
+          "GA4 kurulumu ve sunucu taraflı tracking",
+          "ROAS, CAC, LTV, POAS metrik takibi",
+          "A/B test ve creative iterasyon döngüsü",
+          "Haftalık / aylık şeffaf raporlama"
+        ]
+      },
+      "seo": {
+        "title": "SEO & Organik Büyüme",
+        "short": "Teknik altyapıdan blog stratejisine, aramada markanı görünür kılıyoruz.",
+        "description": "SEO'yu teknik ve içerik tarafıyla paralel yürütüyoruz. Anahtar kelime ve rakip analizinden kategori/ürün bazlı optimizasyona, teknik SEO düzeltmelerinden uzun vadeli blog içerik stratejisine kadar — organik trafiği sürdürülebilir bir satış kanalına çeviriyoruz.",
+        "bullets": [
+          "Anahtar kelime araştırması ve kümeleme",
+          "Kategori ve ürün sayfası SEO optimizasyonu",
+          "Teknik SEO: site haritası, indexleme, Core Web Vitals",
+          "Schema markup ve rich snippet kurgusu",
+          "Blog içerik stratejisi ve editöryal takvim",
+          "Rakip SEO analizi ve boşluk haritası",
+          "İç linkleme mimarisi ve URL stratejisi",
+          "Aylık SEO sağlık raporu"
+        ]
+      },
+      "social": {
+        "title": "Sosyal Medya & CRM",
+        "short": "İçerik, topluluk ve e-posta otomasyonu — markanı hatırlanır kılan kanallar.",
+        "description": "İçerik takvimi, çekim, kurgu, copywriting ve topluluk yönetiminden e-posta / SMS otomasyonuna kadar. Terk edilen sepet, hoş geldin, geri kazanım akışları ile segmentasyon tabanlı kampanyalar — markanın müşteri ilişkisini sadece görünür değil, hatırlanır kılar.",
+        "bullets": [
+          "İçerik stratejisi ve editöryal takvim",
+          "Marka dili ve görsel bütünlük",
+          "Reels, TikTok, foto/video çekim kurgusu",
+          "Topluluk ve mesaj yönetimi",
+          "Influencer iş birlikleri ve kampanya yönetimi",
+          "E-mail otomasyonları (welcome, terk edilen sepet, geri kazanım)",
+          "Kampanya mailing ve SMS marketing",
+          "Segmentasyon (RFM, davranışsal) ve A/B test"
+        ]
+      },
+      "marketplace": {
+        "title": "Pazaryeri Yönetimi",
+        "short": "Trendyol, Hepsiburada, Amazon — pazaryerinde satışını büyüt.",
+        "description": "Türkiye e-ticaretinde pazaryerleri bazı sektörlerde %40–60 kanal payına sahip. Trendyol, Hepsiburada, Amazon, N11 ve ÇiçekSepeti mağazalarını uçtan uca yönetiyoruz: entegrasyondan sponsorlu reklama, yorum yönetiminden fiyat rekabet takibine kadar.",
+        "bullets": [
+          "Trendyol, Hepsiburada, Amazon, N11 entegrasyonu",
+          "Ürün listeleme optimizasyonu ve SEO",
+          "Sponsorlu reklam ve kampanya yönetimi",
+          "Fiyat rekabet takibi ve dinamik fiyatlandırma",
+          "Yorum ve puan yönetimi, müşteri deneyimi",
+          "Stok senkronizasyonu ve çoklu kanal yönetimi",
+          "Kampanya kurulumları (kupon, indirim, paket)",
+          "Pazaryeri bazlı aylık performans raporu"
+        ]
+      },
+      "ai": {
+        "title": "AI Otomasyon",
+        "short": "Operasyonel yükü hafifleten yapay zekâ destekli iş akışları.",
+        "description": "Müşteri hizmetleri botlarından otomatik içerik üretimine, e-posta akışlarından kişiselleştirilmiş öneri sistemlerine kadar AI'ı işine entegre ediyoruz. Kendi ürünümüz Loom Commerce üzerinden Shopify mağazalara özel 5 modüllü AI katmanı da dahil.",
+        "bullets": [
+          "Chatbot ve müşteri hizmetleri AI asistanı",
+          "Otomatik ürün açıklaması ve içerik üretimi",
+          "Kişiselleştirilmiş öneri sistemleri",
+          "CRM ve e-posta otomasyon akışları",
+          "Dolandırıcılık ve bot koruması (Loom Guard)",
+          "AI destekli veri analizi ve raporlama",
+          "Çoklu dil içerik çevirisi (EN, AR, RU, DE)",
+          "Marka sesinde AI — Loom Commerce entegrasyonu"
+        ]
+      },
+      "design": {
+        "title": "Web & UI Tasarım",
+        "short": "Markaya özel, hızlı ve dönüşüm odaklı web tasarımı.",
+        "description": "Wireframe'den canlı yayına — Figma'da prototip, koda dökümünde Next.js, Webflow veya WordPress. SEO, erişilebilirlik ve Core Web Vitals standartlarıyla. UX araştırmasından heatmap analizine kadar veriyle beslenen tasarım döngüsü.",
+        "bullets": [
+          "UX araştırması ve kullanıcı yolculuğu haritası",
+          "Wireframe ve düşük/yüksek kaliteli prototip",
+          "Figma'da pixel-perfect UI tasarımı",
+          "Next.js, Webflow, WordPress, Shopify tema",
+          "Core Web Vitals 90+ skor hedefi",
+          "Erişilebilirlik (WCAG AA) uyumu",
+          "Tasarım sistemi ve component kütüphanesi",
+          "Heatmap / session replay ile iterasyon"
+        ]
+      },
+      "operations": {
+        "title": "Operasyon & Lojistik",
+        "short": "Siparişten teslimata: kargo, depo, iade süreçleri tek elden.",
+        "description": "E-ticarette satın almadan sonrası en az satın alma kadar kritik. Sipariş yönetiminden kargo firma anlaşmalarına, depo (fulfillment) süreçlerinden iade / değişim altyapısına kadar operasyonel omurganı kuruyoruz. Müşteri memnuniyeti süreçleri ve SOP'larla sürdürülebilir hale getiriyoruz.",
+        "bullets": [
+          "Sipariş yönetim süreç kurgusu ve otomasyonu",
+          "Kargo firma anlaşmaları (Aras, MNG, Yurtiçi, Sürat)",
+          "Depo ve fulfillment süreçleri",
+          "İade ve değişim altyapısı, müşteri deneyimi",
+          "Müşteri hizmetleri SOP ve eğitimi",
+          "Çoklu depo ve stok senkronizasyonu",
+          "Lojistik maliyet optimizasyonu",
+          "Sipariş sonrası NPS ve memnuniyet takibi"
+        ]
+      },
+      "brand": {
+        "title": "Marka, Strateji & Büyüme",
+        "short": "İş modeli kurgusundan marka hikâyesine ve yeni pazar açılımına kadar bütünsel strateji.",
+        "description": "Markanın kim olduğunu, kime sattığını ve nasıl büyüyeceğini birlikte tasarlıyoruz. Konumlandırmadan hedef kitle analizine, fiyatlandırma stratejisinden sadakat programına, kampanya planlamasından ekip eğitimine kadar — bir markanın uzun vadeli omurgasını kuruyoruz.",
+        "bullets": [
+          "Marka konumlandırma (premium / ulaşılabilir / niş)",
+          "Hedef kitle ve persona analizi",
+          "Rakip analizi ve pozisyon haritası",
+          "Fiyatlandırma stratejisi (rekabetçi / kâr / kampanya)",
+          "Marka hikâyesi ve iletişim dili",
+          "Sadakat programları ve müşteri kulübü",
+          "Kampanya planlama (Black Friday, sezon)",
+          "Yurtiçi / yurtdışı pazar açılım planı",
+          "Ekip eğitimi ve SOP (standart operasyon prosedürleri)"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "pageTitle": "Kurduğumuz, lanse ettiğimiz,",
+    "pageTitleHighlight": "büyüttüğümüz markalar",
+    "pageTitleSuffix": ".",
+    "pageDescription": "Butik e-ticaret mağazalarından kurumsal sitelere, VC platformlarından üretim markalarına — birlikte çalıştığımız markalardan bir seçki.",
+    "visit": "Siteyi Ziyaret Et",
+    "ongoingBadge": "Devam Ediyor",
+    "items": {
+      "calypia": {
+        "title": "Calypia",
+        "category": "SaaS · AI-Native SOC & MDR",
+        "summary": "Türkiye'nin ilk AI-native SOC & MDR platformu — %90 alarm otomasyonu, <5dk tespit süresi, 25+ entegrasyon. Marka, ürün UI/UX ve pazarlama sitesi uçtan uca teslim edildi.",
+        "services": ["Marka ve kimlik", "Next.js pazarlama sitesi", "Ürün UI/UX", "SEO ve lansman"]
+      },
+      "sperra": {
+        "title": "Sperra Security",
+        "category": "Siber Güvenlik · Kurumsal",
+        "summary": "Türkiye'nin yenilikçi siber güvenlik danışmanlık firması — Pentest, MDR, CTEM ve 7/24 güvenlik hizmetleri. Kurumsal site, marka kimliği ve içerik uçtan uca.",
+        "services": ["Marka ve kimlik", "Kurumsal site", "SEO içerik", "Sürekli destek"]
+      },
+      "sperra-app": {
+        "title": "Sperra Security App",
+        "category": "Mobil Uygulama · iOS + Android",
+        "summary": "Sperra güvenlik platformunun mobil eşdeğeri. Gerçek zamanlı alarm takibi, olay triage'ı ve nöbet yanıtı — React Native ile native hisli koyu arayüz.",
+        "services": ["Ürün tasarımı", "React Native", "Push bildirim", "CI/CD ve yayın"]
+      },
+      "aura-app": {
+        "title": "Aura",
+        "category": "Mobil Uygulama · iOS + Android",
+        "summary": "Mindfulness ve günlük tutma uygulaması — rehberli oturumlar, ruh hali takibi ve streak'ler. Uçtan uca tasarım ve React Native geliştirme.",
+        "services": ["Marka ve kimlik", "Ürün tasarımı", "React Native", "App Store yayını"]
+      },
+      "ladyfaith": {
+        "title": "Lady Faith",
+        "category": "E-Ticaret · Shopify",
+        "summary": "Nazlı Soylu'nun sanat, terapi ve mindfulness tekniklerini bir araya getiren giyilebilir sanat markası. Shopify mağazasını uçtan uca biz kurduk — tema entegrasyonu, konfigürasyon ve lansman.",
+        "services": ["Shopify kurulumu", "Tema entegrasyonu", "Konfigürasyon"]
+      },
+      "reyorganic": {
+        "title": "Reyorganic",
+        "category": "E-Ticaret · Shopify",
+        "summary": "Glütensiz, rafine şekersiz ve ketojenik opsiyonlu menü markası. Tam Shopify kurulumu, tema entegrasyonu ve katalog konfigürasyonu.",
+        "services": ["Shopify kurulumu", "Tema entegrasyonu", "Konfigürasyon"]
+      },
+      "brea": {
+        "title": "Brea",
+        "category": "E-Ticaret · Shopify",
+        "summary": "Soğuk sıkım zeytinyağı markası. Sıfırdan Shopify mağaza kurulumu ve tema entegrasyonu.",
+        "services": ["Shopify kurulumu", "Tema entegrasyonu", "Konfigürasyon"]
+      },
+      "startershub": {
+        "title": "StartersHub",
+        "category": "Kurumsal · WordPress",
+        "summary": "Türkiye ve CEE'nin girişimcilerine yatırım yapan erken aşama VC. Kurumsal WordPress site kurulumu, tema giydirmesi ve sunucu taşıma.",
+        "services": ["WordPress kurumsal site", "Tema özelleştirme", "Sunucu taşıma"]
+      },
+      "sirener-tan-istanbul": {
+        "title": "Sirener Tan Istanbul",
+        "category": "E-Ticaret · Ticimax + Reklam",
+        "summary": "Ticimax ile tam mağaza kurulumu ve uçtan uca yönetim — teknik entegrasyonlar, katalog operasyonu ve reklam yönetimi.",
+        "services": ["Ticimax kurulumu", "Tam site yönetimi", "Teknik entegrasyonlar", "Reklam yönetimi"]
+      },
+      "doseistanbul": {
+        "title": "Dose Istanbul",
+        "category": "E-Ticaret · T-Soft",
+        "summary": "T-Soft ile tam site yönetimi ve e-posta pazarlaması. Devam eden iş birliği.",
+        "services": ["T-Soft yönetimi", "Mailing gönderimleri"]
+      },
+      "overdosedetox": {
+        "title": "Overdose Detox",
+        "category": "Web · WordPress",
+        "summary": "Tam WordPress site yönetimi — içerik, hız ve entegrasyon tarafında devam eden iş birliği.",
+        "services": ["WordPress tam yönetim", "İçerik & SEO", "Sürekli destek"]
+      },
+      "pourlabonte": {
+        "title": "Pour La Bonté",
+        "category": "Web · Kobisi",
+        "summary": "Bilinçli yaşam odaklı bir lifestyle markası. Kobisi üzerinde site tasarımı ve editoryal düzenleme.",
+        "services": ["Kobisi tasarım", "Editoryal düzenleme"]
+      },
+      "canakkale-madencilik": {
+        "title": "Çanakkale Madencilik",
+        "category": "Kurumsal · WordPress",
+        "summary": "Çanakkale merkezli bir madencilik şirketi için kurumsal WordPress sitesi ve tüm teknik entegrasyonlar.",
+        "services": ["WordPress kurumsal site", "Teknik entegrasyonlar"]
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Enterbird Hakkında",
+    "pageTitle": "Markalara birinci sınıf",
+    "pageTitleHighlight": "bir ekip",
+    "pageTitleSuffix": ", İstanbul'dan dünyaya.",
+    "pageDescription": "2018'den beri farklı ölçeklerde markaların online dünyasını kuruyor, büyütüyor ve yeniden hayal ediyoruz.",
+    "heroStats": {
+      "founded": "Kuruluş",
+      "foundedValue": "2018",
+      "team": "Ekip",
+      "teamValue": "24 kişi",
+      "projects": "Teslim",
+      "projectsValue": "120+",
+      "cities": "Şehir",
+      "citiesValue": "12"
+    },
+    "manifesto": {
+      "eyebrow": "Manifesto",
+      "line1": "Bir markanın hikâyesi",
+      "line2": "sunum slide'larında veya",
+      "line3": "ödül duvarlarında yaşamıyor.",
+      "line4": "O hikâye, bir müşterinin",
+      "line5": "ilk kez \"evet\" dediği anda",
+      "line6": "— ve o anı tekrar tekrar",
+      "line7": "mümkün kılan binlerce sessiz kararda yaşıyor.",
+      "line8": "Biz tam da bunun için üretiyoruz."
+    },
+    "story": {
+      "eyebrow": "Hikâyemiz",
+      "title": "İstanbul'da bir kreatif stüdyo,",
+      "titleHighlight": "AI ile güçlenen",
+      "titleSuffix": ".",
+      "body1": "Enterbird, kreatif bir ajans ile bir teknoloji ekibinin kavşağında kurulmuş bir dijital ajans. Hikâyemiz, \"güzel görünen\" yerine <strong>\"sonuç getiren\"</strong> işleri merkeze almakla başladı.",
+      "body2": "Bugün İstanbul merkezli ekibimizle Türkiye'nin dört bir yanından, Avrupa'dan ve Körfez bölgesinden markalarla çalışıyoruz. Aramızda eski yazılımcılar, sanat yönetmenleri, performans uzmanları ve içerik üreticileri var. Ortak noktamız: işini iyi yapmaktan vazgeçmemek.",
+      "body3": "Yapay zekânın getirdiği değişimi bir tehdit olarak değil, müşterilerimizin yararına çevirebileceğimiz bir araç olarak görüyoruz. Bu yüzden adımızda <strong>AI Digital</strong> var.",
+      "caption": "Kadıköy, İstanbul'dan."
+    },
+    "timeline": {
+      "eyebrow": "Ekip yolumuz",
+      "title": "Küçük adımlarla,",
+      "titleHighlight": "bugüne",
+      "titleSuffix": ".",
+      "description": "Büyük laflara gerek yok — geldiğimiz yolu kısaca özetliyoruz.",
+      "items": [
+        {
+          "year": "2018",
+          "title": "Başlangıç",
+          "text": "Kadıköy'de iki kişi, bir laptop ve ilk Shopify projemiz."
+        },
+        {
+          "year": "2020",
+          "title": "Ekip büyüyor",
+          "text": "Bize ilk sanat yönetmeni ve performans uzmanı katılıyor."
+        },
+        {
+          "year": "2022",
+          "title": "İlk yurt dışı müşterimiz",
+          "text": "İki dilli çalışmayı öğreniyoruz; ekip birkaç kişi daha."
+        },
+        {
+          "year": "2024",
+          "title": "AI ile çalışma biçimimizi baştan yazdık",
+          "text": "Hızlı yapmak yerine doğru yapmayı önemsemeye başladık."
+        },
+        {
+          "year": "Bugün",
+          "title": "Yola devam",
+          "text": "Birkaç yeni ekip arkadaşı, birkaç yeni marka, aynı merak."
+        }
+      ]
+    },
+    "team": {
+      "eyebrow": "Ekip",
+      "title": "Detaylara",
+      "titleHighlight": "özen gösteren insanlar",
+      "titleSuffix": ".",
+      "description": "Kreatif direktörlerden performans uzmanlarına kadar her takım arkadaşı kendi uzmanlığını uçtan uca sahipleniyor.",
+      "members": [
+        { "name": "Cem Arslan", "role": "Kurucu Ortak, Kreatif Direktör" },
+        { "name": "Elif Demir", "role": "Kurucu Ortak, Yazılım Lideri" },
+        { "name": "Mert Yıldırım", "role": "Performans Pazarlama Başkanı" },
+        { "name": "Zeynep Kaya", "role": "Sanat Yönetmeni" },
+        { "name": "Can Ergün", "role": "Kıdemli Copywriter" },
+        { "name": "Selin Aydın", "role": "Müşteri Partneri" }
+      ]
+    },
+    "experience": "yıllık deneyim",
+    "values": {
+      "eyebrow": "Değerlerimiz",
+      "title": "Bizi biz yapan",
+      "titleHighlight": "dört temel",
+      "titleSuffix": ".",
+      "items": {
+        "care": {
+          "title": "Dert ortaklığı",
+          "text": "Müşterilerimizi proje değil, partner olarak görüyoruz. Onların sorunu bizim sorunumuz olur."
+        },
+        "transparency": {
+          "title": "Şeffaflık",
+          "text": "Hiçbir şeyi süslemeden, olduğu gibi konuşuyoruz. Raporlar dürüst, faturalar net."
+        },
+        "speed": {
+          "title": "Hız",
+          "text": "İyiyi ararken yavaşlamıyoruz. Hızlı denemek ve hızlı öğrenmek bizim için her şey."
+        },
+        "human": {
+          "title": "İnsan odaklılık",
+          "text": "Algoritmalar değişir, insanlar kalır. Önce insana, sonra kanala odaklanıyoruz."
+        }
+      }
+    },
+    "bigStats": {
+      "eyebrow": "Rakamlarla",
+      "title": "Sekiz yıl,",
+      "titleHighlight": "üç rakam",
+      "titleSuffix": ".",
+      "items": [
+        { "value": 120, "suffix": "+", "label": "Teslim edilen proje" },
+        { "value": 32, "suffix": "M+ ₺", "label": "Yönetilen reklam bütçesi" },
+        { "value": 4.9, "suffix": "/5", "decimals": 1, "label": "Müşteri memnuniyeti" }
+      ]
+    }
+  },
+  "blog": {
+    "pageTitle": "Pazarlamadan AI'a, kısa ve",
+    "pageTitleHighlight": "faydalı yazılar",
+    "pageTitleSuffix": ".",
+    "pageDescription": "Ekibimizin günlük işlerinden öğrendiklerini fluff'sız, doğrudan ve pratik şekilde paylaşıyoruz.",
+    "readMin": "dk okuma",
+    "readMore": "Yazıyı Oku",
+    "posts": {
+      "ai-satis-agentlari-shopify": {
+        "title": "Shopify'da AI satış agent'ı: 2026'nın yeni satış ekibi",
+        "category": "AI",
+        "excerpt": "Kataloğu anlayan, 7/24 soru cevaplayan ve sepete yönlendiren AI agent'ları gerçekten çalışıyor mu? Sahadan gelen ilk 6 ayın sayıları ve kurulumda dikkat edilmesi gereken 4 başlık."
+      },
+      "shopify-horizon-tema-degerlendirme": {
+        "title": "Shopify Horizon teması: lansmandan 3 hafta sonra dürüst değerlendirme",
+        "category": "E-Ticaret",
+        "excerpt": "Shopify'ın AI destekli yeni tema mimarisini iki müşterimizle test ettik. Hız, esneklik, custom blok desteği ve kimin için gerçekten anlamlı olduğu üzerine saha notları."
+      },
+      "meta-advantage-plus-rehber": {
+        "title": "Meta Advantage+ pratik rehberi: açmanın doğru ve yanlış zamanı",
+        "category": "Performans",
+        "excerpt": "Kampanyanın kontrolünü AI'a verirken ajans nerede devreye girmeli? Bütçe, creative ve hedef kitle kurgusunu iki ay boyunca 8 mağazada test ettik; öğrendiklerimiz."
+      },
+      "google-ai-overviews-seo": {
+        "title": "Google AI Overviews çağında SEO: değişenler, değişmeyenler",
+        "category": "SEO",
+        "excerpt": "Arama sonuçlarının üstünde özet cevaplar belirdiğinden beri tıklamalar mı düştü, dönüşümler mi arttı? Türkçe sorgularda son 3 ayda gözlemlediğimiz desenler ve içerik stratejisinde yapılması gereken 5 şey."
+      }
+    }
+  },
+  "contact": {
+    "pageTitle": "Konuşalım. Çay ya da kahve,",
+    "pageTitleHighlight": "ikram bizden",
+    "pageTitleSuffix": ".",
+    "pageDescription": "Aşağıdaki formu doldur, 24 saat içinde sana dönelim. Ücretsiz strateji görüşmesi planlayalım.",
+    "labels": {
+      "whatsapp": "WhatsApp",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "office": "Ofis",
+      "hours": "Çalışma saatleri",
+      "social": "Sosyal Medya"
+    },
+    "values": {
+      "office": "İstanbul, Türkiye",
+      "hours": "Pzt – Cum · 09:00 – 18:00"
+    },
+    "form": {
+      "name": "Ad Soyad",
+      "namePlaceholder": "Adınız",
+      "email": "E-posta",
+      "emailPlaceholder": "email@firmaniz.com",
+      "company": "Şirket",
+      "companyPlaceholder": "Şirket adı",
+      "phone": "Telefon",
+      "phonePlaceholder": "+90 555 000 00 00",
+      "service": "İlgilendiğin hizmet",
+      "message": "Mesajın",
+      "messagePlaceholder": "Projenden bahset…",
+      "submit": "Mesajı Gönder",
+      "privacy": "Bu form gönderildiğinde bilgilerin yalnızca seninle iletişime geçmek için kullanılır.",
+      "services": [
+        "E-Ticaret Altyapısı",
+        "Performans Pazarlama",
+        "SEO & Organik Büyüme",
+        "Sosyal Medya & CRM",
+        "Pazaryeri Yönetimi",
+        "AI Otomasyon",
+        "Web & UI Tasarım",
+        "Operasyon & Lojistik",
+        "Marka, Strateji & Büyüme",
+        "Bilmiyorum, konuşalım"
+      ],
+      "successTitle": "Teşekkürler!",
+      "successMessage": "Mesajını aldık. En geç 24 saat içinde sana dönüş yapacağız."
+    }
+  },
+  "cta": {
+    "title": "Bir sonraki büyük büyümeni",
+    "titleHighlight": "birlikte",
+    "titleSuffix": "yazalım.",
+    "description": "Ücretsiz 30 dakikalık strateji görüşmesinde markanı dinleyelim, sana özel bir yol haritası sunalım. Bağlayıcılığı yok.",
+    "primary": "Görüşme Talep Et",
+    "emailLabel": "hello@enterbird.com"
+  },
+  "footer": {
+    "tagline": "Markaların online dünyasını AI destekli stratejilerle büyüten yaratıcı bir ekip. İstanbul merkezli, dünyanın her yerinde çalışıyoruz.",
+    "location": "İstanbul, Türkiye",
+    "services": "Hizmetler",
+    "company": "Şirket",
+    "rights": "Tüm hakları saklıdır.",
+    "madeWith": "Made with care in İstanbul.",
+    "servicesLinks": {
+      "ecommerce": "E-Ticaret Altyapısı",
+      "performance": "Performans Pazarlama",
+      "seo": "SEO & Organik Büyüme",
+      "marketplace": "Pazaryeri Yönetimi",
+      "operations": "Operasyon & Lojistik",
+      "ai": "AI Otomasyon"
+    },
+    "companyLinks": {
+      "about": "Hakkımızda",
+      "work": "Referanslar",
+      "blog": "Blog",
+      "contact": "İletişim"
+    }
+  },
+  "whatsapp": {
+    "label": "WhatsApp ile yaz",
+    "ctaText": "WhatsApp'tan Yaz",
+    "defaultMessage": "Merhaba Enterbird, web sitenizden ulaşıyorum."
+  },
+  "language": {
+    "label": "Dil",
+    "en": "English",
+    "tr": "Türkçe"
+  }
+}

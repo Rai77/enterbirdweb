@@ -1,0 +1,1051 @@
+/* ──────────────────────────────────────────────────────────────
+   Enterbird CMS · admin panel custom styling
+   ────────────────────────────────────────────────────────────── */
+
+/* Enterbird brand palette */
+:root {
+  --eb-cyan: #0891b2;
+  --eb-indigo: #4f46e5;
+  --eb-purple: #9333ea;
+  --eb-cyan-light: #22d3ee;
+  --eb-indigo-light: #6366f1;
+  --eb-purple-light: #a855f7;
+  --eb-gradient: linear-gradient(135deg, var(--eb-cyan) 0%, var(--eb-indigo) 50%, var(--eb-purple) 100%);
+  --eb-gradient-soft: linear-gradient(
+    135deg,
+    rgba(8, 145, 178, 0.12) 0%,
+    rgba(79, 70, 229, 0.12) 50%,
+    rgba(147, 51, 234, 0.12) 100%
+  );
+}
+
+/* ── Override Payload's primary (success) color with Enterbird indigo */
+[data-theme="light"],
+:root {
+  --theme-success-500: #4f46e5;
+  --theme-success-600: #4338ca;
+  --theme-success-400: #6366f1;
+  --theme-success-300: #818cf8;
+  --theme-success-100: #e0e7ff;
+  --theme-success-50: #eef2ff;
+}
+
+[data-theme="dark"] {
+  --theme-success-500: #6366f1;
+  --theme-success-600: #4f46e5;
+  --theme-success-400: #818cf8;
+  --theme-success-300: #a5b4fc;
+}
+
+/* ── Global typography polish ────────────────────────────────── */
+body {
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* ── LOGIN PAGE ──────────────────────────────────────────────── */
+/* Scope to login route via unique class Payload applies (falls back to body:has) */
+body:has(.template-default.template-default--login),
+body:has([class*="login"]) {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(8, 145, 178, 0.10), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 85% 80%, rgba(147, 51, 234, 0.09), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 50% 50%, rgba(79, 70, 229, 0.06), transparent 70%),
+    var(--theme-bg);
+}
+
+[data-theme="dark"] body:has([class*="login"]) {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 85% 80%, rgba(168, 85, 247, 0.08), transparent 60%),
+    var(--theme-bg);
+}
+
+/* Login form card polish */
+.template-default--login {
+  & form,
+  & .render-fields {
+    /* give the form itself a subtle container feel */
+    border-radius: 20px;
+  }
+}
+
+.login__form-wrap,
+.login__brand {
+  max-width: 440px;
+  width: 100%;
+}
+
+.login__brand {
+  text-align: center;
+}
+
+/* ── CARD / PANEL polish (applies globally) ──────────────────── */
+.doc-controls__controls,
+.collection-list__list,
+.nav .nav__wrap,
+.render-fields {
+  border-radius: 12px;
+}
+
+/* ── PRIMARY BUTTONS (brand gradient on key actions) ─────────── */
+.btn--style-primary,
+.btn[class*="primary"] {
+  background: var(--eb-gradient);
+  border: none;
+  color: #ffffff !important;
+  font-weight: 600;
+  letter-spacing: 0;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+  box-shadow: 0 4px 14px -4px rgba(79, 70, 229, 0.45);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.55);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+  &:disabled {
+    background: var(--theme-elevation-200);
+    color: var(--theme-elevation-500) !important;
+    box-shadow: none;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR · pro treatment
+   Payload class map (from @payloadcms/next DefaultNav):
+     .nav                 — root wrapper
+     .nav__wrap           — <nav> containing groups + controls
+     .nav-group           — collapsible section (Content / Pages / ...)
+     .nav-group__toggle   — clickable group header
+     .nav-group__indicator — chevron
+     .nav__link           — individual link (anchor; or <div> when active)
+     .nav__link-indicator — brand accent bar rendered inside active link
+     .nav__link-label     — link text
+     .nav__controls       — bottom row: settings + logout
+     .nav__header         — mobile header strip
+   ─────────────────────────────────────────────────────────── */
+
+.nav {
+  /* Subtle ambient glow on the sidebar */
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(79, 70, 229, 0.035) 0%,
+      transparent 120px
+    ),
+    var(--theme-bg);
+
+  &::before {
+    /* Gradient hairline along the top of the sidebar */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(8, 145, 178, 0.45),
+      rgba(79, 70, 229, 0.55),
+      rgba(147, 51, 234, 0.45),
+      transparent
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Soft vertical separator vs. main content */
+  border-right: 1px solid var(--theme-elevation-100);
+
+  /* Thin branded scrollbar */
+  .nav__wrap,
+  & {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--theme-elevation-150);
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--eb-indigo-light);
+    }
+  }
+
+  /* ── Group headers (Content / Pages / Layout / Shared) ── */
+  .nav-group {
+    margin-bottom: 18px;
+  }
+
+  .nav-group__toggle {
+    color: var(--theme-elevation-500) !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.22em !important;
+    text-transform: uppercase !important;
+    padding: 4px 2px !important;
+    margin-bottom: 6px !important;
+    position: relative;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--eb-indigo) !important;
+
+      .stroke {
+        stroke: var(--eb-indigo) !important;
+      }
+    }
+
+    /* Left hairline marker */
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      margin-right: 10px;
+      background: currentColor;
+      opacity: 0.7;
+      vertical-align: middle;
+    }
+  }
+
+  .nav-group__indicator svg .stroke {
+    stroke: var(--theme-elevation-400);
+  }
+
+  /* ── Individual links ── */
+  .nav__link {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px 9px 16px !important;
+    margin: 2px 0 !important;
+    border-radius: 10px !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    color: var(--theme-elevation-700) !important;
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease,
+      box-shadow 160ms ease;
+
+    &:hover {
+      background: color-mix(in oklab, var(--eb-indigo) 6%, transparent);
+      color: var(--theme-text) !important;
+    }
+
+    &:focus-visible {
+      outline: none;
+      background: color-mix(in oklab, var(--eb-indigo) 8%, transparent);
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
+    }
+  }
+
+  /* Active link — rendered as <div class="nav__link"> with an indicator child */
+  .nav__link:has(.nav__link-indicator),
+  .nav__link[id]:not(a) {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--eb-indigo) 10%, transparent),
+      color-mix(in oklab, var(--eb-purple) 6%, transparent)
+    ) !important;
+    color: var(--theme-text) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 0 rgba(79, 70, 229, 0.05) inset;
+  }
+
+  /* The left accent bar — Payload's default renders at inset-inline-start:-20px
+     (outside the link). Reposition it INSIDE the link as a vertical brand bar. */
+  .nav__link-indicator {
+    position: absolute !important;
+    inset-inline-start: 4px !important;
+    left: 4px !important;
+    right: auto !important;
+    top: 8px !important;
+    bottom: 8px !important;
+    height: auto !important;
+    width: 3px !important;
+    border-radius: 2px !important;
+    background: var(--eb-gradient) !important;
+  }
+
+  .nav__link-label {
+    display: inline-block;
+    letter-spacing: 0;
+  }
+
+  /* ── Bottom controls (settings cog + logout) ── */
+  .nav__controls {
+    margin-top: auto;
+    padding-top: 16px !important;
+    border-top: 1px solid var(--theme-elevation-100);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    & > * {
+      border-radius: 10px !important;
+      transition: background-color 160ms ease, color 160ms ease;
+
+      &:hover {
+        background: color-mix(in oklab, var(--eb-indigo) 8%, transparent) !important;
+        color: var(--eb-indigo) !important;
+      }
+    }
+  }
+
+  /* ── Mobile header strip ── */
+  .nav__header {
+    border-bottom: 1px solid var(--theme-elevation-100);
+  }
+}
+
+/* Dark mode — slightly warmer blacks + stronger gradient top */
+[data-theme="dark"] .nav {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(99, 102, 241, 0.06) 0%,
+      transparent 140px
+    ),
+    var(--theme-bg);
+  border-right-color: var(--theme-elevation-100);
+
+  .nav__link {
+    color: var(--theme-elevation-600) !important;
+
+    &:hover {
+      background: color-mix(in oklab, var(--eb-indigo-light) 10%, transparent);
+      color: var(--theme-text) !important;
+    }
+  }
+
+  .nav__link:has(.nav__link-indicator),
+  .nav__link[id]:not(a) {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--eb-indigo-light) 14%, transparent),
+      color-mix(in oklab, var(--eb-purple-light) 9%, transparent)
+    ) !important;
+    color: var(--theme-pure-white, #f5f7ff) !important;
+  }
+
+  .nav__controls > *:hover {
+    background: color-mix(in oklab, var(--eb-indigo-light) 12%, transparent) !important;
+    color: var(--eb-indigo-light) !important;
+  }
+}
+
+/* NavHamburger toggle — rounded, brand hover */
+.hamburger,
+.nav-toggler {
+  border-radius: 10px !important;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  &:hover {
+    background: color-mix(in oklab, var(--eb-indigo) 8%, transparent) !important;
+    color: var(--eb-indigo) !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR · Lucide icons via CSS mask + micro-interactions
+   Each .nav__link has id="nav-<slug>" (collection) or
+   id="nav-global-<slug>" (global). We map each to an icon via
+   a --nav-icon CSS variable.
+   ─────────────────────────────────────────────────────────── */
+
+/* Force padding on ALL link variants: <a>, <div> (active), .active class */
+.nav a.nav__link,
+.nav div.nav__link,
+.nav .nav__link,
+.nav .nav__link.active,
+.nav .nav__link:has(.nav__link-indicator) {
+  padding-inline-start: 44px !important;
+  padding-inline-end: 16px !important;
+  padding-left: 44px !important;
+  padding-right: 16px !important;
+
+  .nav__link-label {
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Shared icon slot rendered inside the link (pseudo ::before) */
+.nav .nav__link::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 14px;
+  left: 14px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  background-color: currentColor;
+  opacity: 0.7;
+  mask-size: 16px 16px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-image: var(--nav-icon);
+  -webkit-mask-size: 16px 16px;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-image: var(--nav-icon);
+  transition:
+    opacity 160ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.nav .nav__link:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.nav .nav__link:hover .nav__link-label {
+  transform: translateX(2px);
+}
+
+/* Active link: full-opacity icon + branded glow */
+.nav__link:has(.nav__link-indicator),
+.nav__link[id]:not(a) {
+  box-shadow:
+    0 1px 0 rgba(79, 70, 229, 0.08) inset,
+    0 2px 12px -6px rgba(79, 70, 229, 0.35) !important;
+
+  &::before {
+    opacity: 1;
+    background-color: var(--eb-indigo);
+  }
+}
+
+/* ── Per-entity icons ── */
+
+/* Collections */
+.nav__link[id="nav-users"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M10 15H6a4 4 0 0 0-4 4v2'/><circle cx='18' cy='15' r='3'/><circle cx='9' cy='7' r='4'/><path d='M16 8v2'/><path d='M16 14v2'/><path d='M22 14h-2'/><path d='M20 20v2'/></svg>");
+}
+.nav__link[id="nav-media"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><circle cx='9' cy='9' r='2'/><path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21'/></svg>");
+}
+.nav__link[id="nav-services"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='14' x='2' y='6' rx='2'/><path d='M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2'/><path d='M6 12h.01M18 12h.01'/></svg>");
+}
+.nav__link[id="nav-projects"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h20'/><path d='M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3'/><path d='m7 21 5-5 5 5'/></svg>");
+}
+.nav__link[id="nav-testimonials"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/><path d='M8 12a2 2 0 0 0 2-2V8H8'/><path d='M14 12a2 2 0 0 0 2-2V8h-2'/></svg>");
+}
+.nav__link[id="nav-team-members"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>");
+}
+.nav__link[id="nav-blog-posts"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/><path d='M18 14h-8'/><path d='M15 18h-5'/><path d='M10 6h8v4h-8V6Z'/></svg>");
+}
+
+/* Globals */
+.nav__link[id="nav-global-header"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><path d='M3 9h18'/></svg>");
+}
+.nav__link[id="nav-global-footer"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><path d='M3 15h18'/></svg>");
+}
+.nav__link[id="nav-global-home-page"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/><polyline points='9 22 9 12 15 12 15 22'/></svg>");
+}
+.nav__link[id="nav-global-services-page"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='7' height='7' x='3' y='3' rx='1'/><rect width='7' height='7' x='14' y='3' rx='1'/><rect width='7' height='7' x='14' y='14' rx='1'/><rect width='7' height='7' x='3' y='14' rx='1'/></svg>");
+}
+.nav__link[id="nav-global-about-page"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M12 16v-4'/><path d='M12 8h.01'/></svg>");
+}
+.nav__link[id="nav-global-loom-page"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z'/><path d='M20 3v4'/><path d='M22 5h-4'/><path d='M4 17v2'/><path d='M5 18H3'/></svg>");
+}
+.nav__link[id="nav-global-contact-page"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='16' x='2' y='4' rx='2'/><path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/></svg>");
+}
+.nav__link[id="nav-global-cta-block"] {
+  --nav-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m3 11 18-5v12L3 14v-3z'/><path d='M11.6 16.8a3 3 0 1 1-5.8-1.6'/></svg>");
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR · brand "app card" at the top
+   We append a pseudo-block before the first nav-group via ::before
+   on the nav__wrap. Shows "ENTERBIRD CMS" wordmark + mono eyebrow.
+   ─────────────────────────────────────────────────────────── */
+.nav .nav__wrap::before {
+  content: "Enterbird CMS";
+  display: block;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  background: var(--eb-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 4px 0 2px;
+  padding-left: 2px;
+}
+.nav .nav__wrap::after {
+  /* Mini eyebrow under the wordmark — via nav__wrap's sibling? can't — use a third solution */
+}
+/* Second-line mono eyebrow using a box-shadow trick isn't pretty; instead
+   set a small pseudo element on the first nav-group as a label row */
+.nav .nav__wrap .nav-group:first-of-type {
+  position: relative;
+
+  &::before {
+    content: "İçerik Yönetim Paneli";
+    display: block;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--theme-elevation-500);
+    font-weight: 600;
+    margin: -6px 0 18px;
+    padding-bottom: 14px;
+    padding-left: 2px;
+    border-bottom: 1px solid var(--theme-elevation-100);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR · command-K footer hint (pure cosmetic for now)
+   ─────────────────────────────────────────────────────────── */
+.nav .nav__controls {
+  flex-wrap: wrap;
+
+  &::before {
+    content: "";
+    flex-basis: 100%;
+    height: 0;
+  }
+}
+
+.nav .nav__controls::after {
+  content: "v1.0 · İstanbul";
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--theme-elevation-100);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-elevation-400);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DASHBOARD · group sections + cards (Collections / Content /
+   Layout / Pages / Shared) — branded icons + hover lift.
+   Payload classes (from CollectionCards widget):
+     .collections                 — root
+     .collections__wrap           — inner column
+     .collections__group          — each group section
+     .collections__label          — h2 heading ("Collections" etc.)
+     .collections__card-list      — card grid (ul)
+     .card                        — each entity card
+     .card__title                 — entity name
+     .card__actions               — + button wrapper
+   ══════════════════════════════════════════════════════════ */
+
+.collections {
+  --gap: 20px;
+}
+
+.collections__wrap {
+  gap: 56px !important;
+}
+
+.collections__group {
+  position: relative;
+  gap: 20px !important;
+}
+
+/* Section headings: editorial eyebrow with gradient hairline */
+.collections__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.24em !important;
+  text-transform: uppercase !important;
+  color: var(--theme-elevation-600) !important;
+  margin: 0 !important;
+  padding: 0 0 14px 0 !important;
+  border-bottom: 1px solid var(--theme-elevation-100);
+
+  /* Leading mini brand bar */
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--eb-gradient);
+    flex-shrink: 0;
+  }
+}
+
+/* Card grid tuning */
+.collections__card-list {
+  --cols: 3;
+  gap: 16px !important;
+}
+@media (min-width: 1100px) {
+  .collections__card-list {
+    --cols: 4;
+  }
+}
+@media (min-width: 1400px) {
+  .collections__card-list {
+    --cols: 5;
+  }
+}
+
+/* ── Card base overhaul ─────────────────────────────────────── */
+.collections__card-list .card {
+  min-height: 130px !important;
+  padding: 78px 20px 20px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(
+      circle at top right,
+      color-mix(in oklab, var(--eb-indigo) 10%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--eb-indigo) 2%, var(--theme-elevation-0)) 0%,
+      var(--theme-elevation-0) 60%
+    ) !important;
+  border: 1px solid var(--theme-elevation-100) !important;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.015);
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 200ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms ease !important;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--eb-indigo) 40%, transparent) !important;
+    background:
+      radial-gradient(
+        circle at top right,
+        color-mix(in oklab, var(--eb-indigo) 16%, transparent),
+        transparent 55%
+      ),
+      linear-gradient(
+        135deg,
+        color-mix(in oklab, var(--eb-indigo) 4%, var(--theme-elevation-0)) 0%,
+        var(--theme-elevation-0) 60%
+      ) !important;
+    box-shadow:
+      0 14px 32px -14px rgba(79, 70, 229, 0.45),
+      0 2px 8px -2px rgba(15, 23, 42, 0.06) !important;
+  }
+}
+
+/* Entity icon TILE — tinted rounded-square with brand gradient ring on hover */
+.collections__card-list .card::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  inset-inline-start: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--eb-indigo) 14%, var(--theme-elevation-50)) 0%,
+      color-mix(in oklab, var(--eb-purple) 10%, var(--theme-elevation-50)) 100%
+    );
+  border: 1px solid color-mix(in oklab, var(--eb-indigo) 18%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 3px rgba(79, 70, 229, 0.12);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Icon glyph rendered on top of the tile */
+.collections__card-list .card::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  inset-inline-start: 20px;
+  width: 44px;
+  height: 44px;
+  background-color: var(--eb-indigo);
+  mask-image: var(--card-icon);
+  -webkit-mask-image: var(--card-icon);
+  mask-size: 22px 22px;
+  -webkit-mask-size: 22px 22px;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hover: tile becomes full brand gradient, icon flips to white */
+.collections__card-list .card:hover::before {
+  background: var(--eb-gradient);
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 6px 18px -4px rgba(79, 70, 229, 0.45);
+  transform: scale(1.04);
+}
+
+.collections__card-list .card:hover::after {
+  background-color: #ffffff;
+  transform: scale(1.04);
+}
+
+/* Dark mode card surface */
+[data-theme="dark"] .collections__card-list .card {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--eb-indigo-light) 4%, var(--theme-elevation-50)) 0%,
+      var(--theme-elevation-50) 60%
+    ) !important;
+}
+
+/* ── Card title + + button ─────────────────────────────────── */
+.collections__card-list .card__title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--theme-text) !important;
+  margin: 0 !important;
+  line-height: 1.2;
+}
+
+.collections__card-list .card__actions {
+  position: absolute !important;
+  top: 14px !important;
+  inset-inline-end: 14px !important;
+  z-index: 3;
+
+  & .btn {
+    transition: transform 200ms ease, background 200ms ease;
+  }
+
+  & .btn__icon {
+    background: var(--theme-elevation-0) !important;
+    border: 1px solid var(--theme-elevation-150) !important;
+    color: var(--theme-elevation-600) !important;
+
+    &:hover {
+      background: var(--eb-gradient) !important;
+      border-color: transparent !important;
+      color: #fff !important;
+      box-shadow: 0 6px 16px -6px rgba(79, 70, 229, 0.55) !important;
+    }
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Per-entity card icons via :has() + href matching
+   ══════════════════════════════════════════════════════════ */
+
+/* Collections */
+.collections__card-list .card:has(a[href$="/collections/users"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M10 15H6a4 4 0 0 0-4 4v2'/><circle cx='18' cy='15' r='3'/><circle cx='9' cy='7' r='4'/><path d='M16 8v2'/><path d='M16 14v2'/><path d='M22 14h-2'/><path d='M20 20v2'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/media"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><circle cx='9' cy='9' r='2'/><path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/services"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='14' x='2' y='6' rx='2'/><path d='M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2'/><path d='M6 12h.01M18 12h.01'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/projects"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M2 3h20'/><path d='M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3'/><path d='m7 21 5-5 5 5'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/testimonials"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/><path d='M8 12a2 2 0 0 0 2-2V8H8'/><path d='M14 12a2 2 0 0 0 2-2V8h-2'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/team-members"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/collections/blog-posts"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/><path d='M18 14h-8'/><path d='M15 18h-5'/><path d='M10 6h8v4h-8V6Z'/></svg>");
+}
+
+/* Globals */
+.collections__card-list .card:has(a[href$="/globals/header"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><path d='M3 9h18'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/footer"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><path d='M3 15h18'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/home-page"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/><polyline points='9 22 9 12 15 12 15 22'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/services-page"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='7' height='7' x='3' y='3' rx='1'/><rect width='7' height='7' x='14' y='3' rx='1'/><rect width='7' height='7' x='14' y='14' rx='1'/><rect width='7' height='7' x='3' y='14' rx='1'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/about-page"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M12 16v-4'/><path d='M12 8h.01'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/loom-page"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z'/><path d='M20 3v4'/><path d='M22 5h-4'/><path d='M4 17v2'/><path d='M5 18H3'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/contact-page"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='16' x='2' y='4' rx='2'/><path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/></svg>");
+}
+.collections__card-list .card:has(a[href$="/globals/cta-block"]) {
+  --card-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m3 11 18-5v12L3 14v-3z'/><path d='M11.6 16.8a3 3 0 1 1-5.8-1.6'/></svg>");
+}
+
+/* ── DASHBOARD welcome card headings ────────────────────────── */
+.dashboard__label,
+.dashboard h1 {
+  letter-spacing: -0.02em;
+}
+
+/* ── FIELD labels + inputs subtle refinement ────────────────── */
+.field-label,
+label[class*="Label"] {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Input focus: use Enterbird indigo */
+input:focus,
+textarea:focus,
+select:focus,
+.rs__control--is-focused,
+[class*="rs__control--is-focused"] {
+  outline: none;
+  border-color: var(--eb-indigo) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+}
+
+/* ── PILL / Status badges: gradient on "published" ────────── */
+.pill[class*="success"],
+.pill--success {
+  background: var(--eb-gradient-soft);
+  color: var(--eb-indigo);
+  border-color: rgba(79, 70, 229, 0.25);
+}
+
+/* ── BEFORE-LOGIN component styling hook ────────────────────── */
+.eb-before-login {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__eyebrow {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--theme-elevation-500);
+    font-weight: 600;
+  }
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--theme-text);
+    margin: 0;
+  }
+  &__subtitle {
+    font-size: 14px;
+    color: var(--theme-elevation-650);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 360px;
+  }
+}
+
+/* ── BEFORE-DASHBOARD component styling hook ────────────────── */
+.eb-before-dashboard {
+  position: relative;
+  margin: 0 0 32px;
+  padding: 28px 32px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--theme-elevation-0);
+  border: 1px solid var(--theme-elevation-100);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -40% -10% auto auto;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(79, 70, 229, 0.22),
+      rgba(147, 51, 234, 0.14) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+    filter: blur(40px);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -50% -5%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(8, 145, 178, 0.18),
+      transparent 70%
+    );
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  &__eyebrow {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--eb-indigo);
+    font-weight: 700;
+  }
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--theme-text);
+    margin: 0;
+    line-height: 1.15;
+  }
+  &__subtitle {
+    font-size: 15px;
+    color: var(--theme-elevation-650);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 640px;
+  }
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--theme-elevation-150);
+    background: var(--theme-elevation-50);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--theme-text);
+    text-decoration: none;
+    transition: border-color 160ms ease, transform 160ms ease;
+
+    &:hover {
+      border-color: var(--eb-indigo);
+      transform: translateY(-1px);
+    }
+    & svg {
+      width: 14px;
+      height: 14px;
+      color: var(--eb-indigo);
+    }
+  }
+}
+
+/* ── ADMIN LOGO wrapper (homepage of admin / login) ────────── */
+.eb-admin-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0 8px;
+
+  &__mark {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: var(--eb-gradient);
+    box-shadow: 0 12px 32px -8px rgba(79, 70, 229, 0.45);
+  }
+  &__mark img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+  }
+  &__wordmark {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    background: var(--eb-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  &__tag {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--theme-elevation-500);
+    font-weight: 600;
+  }
+}

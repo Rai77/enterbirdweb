@@ -1,0 +1,740 @@
+{
+  "loom": {
+    "meta": {
+      "title": "Loom Commerce — an AI layer for Shopify",
+      "description": "An AI layer that installs on your Shopify store with a single script — five modules for sales, analytics, marketing, content and security, all from one panel."
+    },
+    "hero": {
+      "eyebrow": "Enterbird × Loom · Our product",
+      "brand": "Loom Commerce",
+      "tagline": "We weave intelligence into commerce.",
+      "description": "An AI layer that installs on your Shopify store with a single script, speaks in your brand's voice, and actually understands your catalog. From sales to analytics, from content to security — <strong>five modules</strong> managed from the same panel.",
+      "primaryCta": "Request a pilot",
+      "secondaryCta": "Explore the 5 modules",
+      "badge": "First pilot in progress"
+    },
+    "problem": {
+      "eyebrow": "The problem",
+      "title": "What are brands",
+      "titleHighlight": "wrestling with",
+      "titleSuffix": "?",
+      "items": [
+        {
+          "title": "Content teams can't keep up",
+          "text": "A content team with 500 new products to describe three weeks before the season — late launches and catalogs sitting in draft."
+        },
+        {
+          "title": "Cart abandoners don't return",
+          "text": "Generic \"we miss you\" emails still going out; templated messages bring no one back and rates keep dropping."
+        },
+        {
+          "title": "Bots and fraud eat the day",
+          "text": "Half of customer support's day goes on fake orders; the other half on manual reporting."
+        }
+      ],
+      "closing": "They look like three different problems, but they share a root: the brand's data is right there — nobody is turning it into value fast enough."
+    },
+    "modules": {
+      "eyebrow": "The solution · 5 modules",
+      "title": "Loom's",
+      "titleHighlight": "five modules",
+      "titleSuffix": ".",
+      "description": "One script to install. One platform to manage. One panel to monitor.",
+      "items": [
+        {
+          "code": "01",
+          "name": "Loom Weave",
+          "subtitle": "A storefront sales assistant that actually talks",
+          "description": "As a shopper browses your store, Weave chats with them. It takes a natural phrase like \"comfy cotton pajamas for my mum,\" searches your real catalog, checks stock, size and price, and guides them to checkout.",
+          "example": "24/7 · fluid replies · remembers the visitor"
+        },
+        {
+          "code": "02",
+          "name": "Loom Pattern",
+          "subtitle": "A data analyst for your e-commerce manager",
+          "description": "Your manager asks on WhatsApp \"why did sales drop this week?\". Pattern queries the live order database, slices it across dimensions, forms hypotheses and suggests actions.",
+          "example": "A boardroom-level summary in 10 seconds"
+        },
+        {
+          "code": "03",
+          "name": "Loom Thread",
+          "subtitle": "Marketing automation in your brand voice",
+          "description": "Abandoned cart, welcome, thank-you and win-back — all written in your brand's tone. Shopify events trigger; Resend delivers.",
+          "example": "No templates · no made-up products · no \"dear valued customer\""
+        },
+        {
+          "code": "04",
+          "name": "Loom Craft",
+          "subtitle": "A product description in 25 seconds",
+          "description": "Title, long description, SEO meta, URL slug, keywords and translations into four languages (EN, AR, RU, DE) — produced in a single pass.",
+          "example": "1 product = 25 seconds, $0.02 · 500-product catalog = 2 business days"
+        },
+        {
+          "code": "05",
+          "name": "Loom Guard",
+          "subtitle": "A shield against fraud and bots",
+          "description": "Every order passes through an 8-rule filter at checkout. When the score is in the borderline zone, the reasoning AI steps in, runs a holistic review and delivers its verdict with the rationale.",
+          "example": "Disposable email · Tor · geo mismatch · velocity · bot UA"
+        }
+      ]
+    },
+    "comparison": {
+      "eyebrow": "The difference",
+      "title": "How we're different from",
+      "titleHighlight": "a classic agency",
+      "titleSuffix": ".",
+      "description": "Classic e-commerce agencies take weeks to set up, bill by the hour and hand over reports manually. We work differently.",
+      "headers": {
+        "dim": "Dimension",
+        "agency": "Classic agency",
+        "loom": "Loom"
+      },
+      "rows": [
+        { "label": "Setup", "agency": "Weeks", "loom": "1 day" },
+        { "label": "Pricing", "agency": "Hours × people", "loom": "Outcome-based: no fee if no measurable lift in 90 days" },
+        { "label": "Support", "agency": "9–6, humans", "loom": "24/7, AI" },
+        { "label": "Cost transparency", "agency": "Opaque", "loom": "Every call, every usage, every cent reported" },
+        { "label": "Scaling", "agency": "Ground-up project per brand", "loom": "One platform, any number of brands" }
+      ]
+    },
+    "tech": {
+      "eyebrow": "Stack",
+      "title": "Modern, fast,",
+      "titleHighlight": "compliance-ready",
+      "titleSuffix": ".",
+      "description": "Every piece chosen for a reason; no extra layers.",
+      "items": [
+        { "name": "Claude Sonnet 4.5", "desc": "The AI engine behind all five modules (Anthropic)" },
+        { "name": "Voyage AI", "desc": "Semantic product search and catalog understanding" },
+        { "name": "Shopify Plus", "desc": "Direct integration via OAuth + live webhooks" },
+        { "name": "Bun + Fastify + SQLite/Drizzle", "desc": "A modern, fast, easily deployable core" },
+        { "name": "AES-256-GCM + JWT", "desc": "Enterprise-grade security, GDPR / KVKK compliant" }
+      ]
+    },
+    "target": {
+      "eyebrow": "Fit",
+      "title": "Is Loom",
+      "titleHighlight": "right for you",
+      "titleSuffix": "?",
+      "items": [
+        "Mid-market and enterprise brands selling on Shopify",
+        "10,000+ monthly visitors and a 500+ SKU catalog",
+        "Fashion, lingerie or cosmetics brands that need faster content",
+        "E-commerce teams battling bots and fraud",
+        "Brands expanding internationally with multi-language needs"
+      ],
+      "closing": "If at least two of these describe you, let us walk you through Loom in a 30-minute pilot call."
+    },
+    "cta": {
+      "title": "Give your brand",
+      "titleHighlight": "a voice",
+      "titleSuffix": ".",
+      "description": "Pilot onboarding is free. Setup takes one day; if there's no measurable lift in 90 days, you pay nothing.",
+      "primary": "Request a pilot",
+      "email": "hello@loom.co",
+      "web": "loom.co",
+      "guarantee": "No lift in 90 days, no fee"
+    }
+  },
+  "meta": {
+    "siteName": "Enterbird",
+    "title": "Enterbird — AI-Powered Digital Agency",
+    "description": "An AI-powered digital agency that scales brands online. E-commerce, performance marketing, social media and web solutions.",
+    "ogDescription": "The team that takes your brand one league up in e-commerce, performance marketing and content."
+  },
+  "nav": {
+    "services": "Services",
+    "work": "Work",
+    "loom": "Loom",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cta": "Get a Quote",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "eyebrow": "AI-powered digital agency · Open to new projects",
+    "socialProof": "<strong>120+ brands</strong> trust us with their growth",
+    "title1": "Let us put your brand",
+    "title2": "in the spotlight.",
+    "titleWords1": ["Let", "us", "put", "your", "brand"],
+    "titleWords2": ["in", "the", "spotlight."],
+    "description": "From e-commerce setup to performance marketing, from content production to AI automation — Enterbird brings <strong>everything you need to grow your brand under one roof</strong>.",
+    "primaryCta": "Free Strategy Call",
+    "secondaryCta": "See Our Work",
+    "scrollHint": "scroll down",
+    "stats": {
+      "revenue": "Average revenue lift",
+      "roas": "Ad ROAS",
+      "brands": "Happy brands"
+    },
+    "chips": {
+      "shopify": "Shopify",
+      "metaAds": "Meta Ads",
+      "tiktok": "TikTok",
+      "ai": "AI Automation"
+    }
+  },
+  "marquee": {
+    "eyebrow": "Platforms we work with"
+  },
+  "stats": {
+    "projects": "Completed projects",
+    "experience": "Years in the industry",
+    "satisfaction": "Client satisfaction",
+    "budget": "Ad budget managed (₺)"
+  },
+  "testimonials": [
+    {
+      "quote": "In the first quarter working with Enterbird our e-commerce revenue almost 4x'd. It wasn't just the ads — our brand's voice online completely shifted.",
+      "name": "Selin Aksoy",
+      "role": "Founder, Northwind Coffee"
+    },
+    {
+      "quote": "The AI assistant they built into our customer support dropped our response time to under 2 minutes. The feedback has been amazing.",
+      "name": "Mert Çelik",
+      "role": "Operations Manager, Halo Jewelry"
+    },
+    {
+      "quote": "Building a brand from scratch, everything we needed creative and technical came from one team. I wasn't expecting partners who'd care this much.",
+      "name": "Deniz Yıldız",
+      "role": "CMO, Voca Events"
+    }
+  ],
+  "home": {
+    "services": {
+      "eyebrow": "Services",
+      "title1": "Everything you need to grow your brand",
+      "titleHighlight": "everything",
+      "titleFull": "Everything you need to grow your brand",
+      "description": "You don't need a single specialist — you need an end-to-end team covering e-commerce, ads, content and AI automation. That's exactly who we are."
+    },
+    "projects": {
+      "eyebrow": "Selected Work",
+      "title": "We turned brand stories into numbers.",
+      "titleHighlight": "into numbers",
+      "description": "We've worked with brands of every size across sectors — the one thing they all share: real growth.",
+      "cta": "See All"
+    },
+    "process": {
+      "eyebrow": "Process",
+      "title": "A simple, transparent, battle-tested way of working.",
+      "titleHighlight": "battle-tested",
+      "description": "We run every project in 4 steps. At each step you know what we're doing and why."
+    },
+    "testimonials": {
+      "eyebrow": "Clients",
+      "title": "What the brands we work with say.",
+      "titleHighlight": "say"
+    },
+    "loom": {
+      "eyebrow": "Our product",
+      "title": "With Loom Commerce, we",
+      "titleHighlight": "weave intelligence into commerce",
+      "titleSuffix": ".",
+      "description": "An AI layer that installs on your Shopify store with a single script and manages five modules — from sales to security — in one panel.",
+      "modulesLabel": "Five modules",
+      "learnMore": "Explore Loom",
+      "pilotBadge": "First pilot in progress",
+      "chips": ["One script", "One panel", "1-day setup", "90-day guarantee"],
+      "modules": [
+        { "name": "Loom Weave", "subtitle": "Storefront sales assistant", "hint": "Comfy cotton pajamas for my mum…" },
+        { "name": "Loom Pattern", "subtitle": "Data analyst for managers", "hint": "Why did sales drop this week?" },
+        { "name": "Loom Thread", "subtitle": "Automation in brand voice", "hint": "Nudged the cart, they came back." },
+        { "name": "Loom Craft", "subtitle": "A description in 25 seconds", "hint": "1 product → 25 s · $0.02" },
+        { "name": "Loom Guard", "subtitle": "Fraud & bot shield", "hint": "Tor · geo mismatch · bot UA" }
+      ]
+    }
+  },
+  "process": {
+    "step1": {
+      "title": "Discovery",
+      "text": "We analyse your brand, goals and competitors to decide where we're heading."
+    },
+    "step2": {
+      "title": "Strategy & Design",
+      "text": "We build a measurable roadmap and a tailor-made creative world for your brand."
+    },
+    "step3": {
+      "title": "Execution",
+      "text": "Development, setup, content production and campaign launch — fast and safe delivery."
+    },
+    "step4": {
+      "title": "Optimisation",
+      "text": "We read the data and push performance up with weekly iterations."
+    }
+  },
+  "services": {
+    "pageTitle": "All the expertise",
+    "pageTitleHighlight": "your brand needs",
+    "pageTitleSuffix": "under one roof.",
+    "pageDescription": "Every service below talks to the others. You can pick one or take them all as a bundle — we'll place the right team exactly where you need it.",
+    "bullets": "What's included",
+    "items": {
+      "ecommerce": {
+        "title": "E-Commerce Infrastructure",
+        "short": "Conversion-focused stores on Shopify, Ticimax, İkas, T-Soft and WordPress.",
+        "description": "From platform selection to go-live, first sale to scaling — we build your e-commerce backbone end-to-end. UX/UI improvements, checkout optimisation, product-entry standards and technical SEO foundation — a store that is ready to sell.",
+        "bullets": [
+          "Platform selection & setup (Shopify, Ticimax, İkas, T-Soft, WooCommerce)",
+          "UX/UI improvements, mobile fit, speed optimisation",
+          "Checkout (payment) and shipping integrations",
+          "Product-entry standards and category tree architecture",
+          "SEO-friendly, sales-driven product descriptions",
+          "Visual & video content strategy and variant setup",
+          "Inventory management and conversion tracking",
+          "Technical SEO foundation (sitemap, indexing, speed)"
+        ]
+      },
+      "performance": {
+        "title": "Performance Marketing",
+        "short": "Data-driven campaigns on Google, Meta and TikTok, chasing ROAS.",
+        "description": "We don't just spend your budget — we compound it. Funnel design, creative testing, audience segmentation and weekly reporting so you always know where every cent is going. GA4 + server-side tracking, ROAS / CAC / LTV metrics and an A/B test loop for continuous improvement.",
+        "bullets": [
+          "Google Ads (search, shopping, display, YouTube)",
+          "Meta Ads (Instagram, Facebook, Advantage+)",
+          "TikTok Ads and Spark Ads strategy",
+          "Retargeting and remarketing (RTB, Criteo)",
+          "GA4 setup and server-side tracking",
+          "ROAS, CAC, LTV, POAS metric tracking",
+          "A/B testing and creative iteration loop",
+          "Weekly / monthly transparent reporting"
+        ]
+      },
+      "seo": {
+        "title": "SEO & Organic Growth",
+        "short": "From technical foundation to blog strategy — we make your brand visible in search.",
+        "description": "We run SEO on the technical and content sides in parallel. Keyword and competitor research, category/product-level optimisation, technical SEO fixes and a long-horizon blog content strategy — turning organic traffic into a sustainable sales channel.",
+        "bullets": [
+          "Keyword research and clustering",
+          "Category and product page SEO optimisation",
+          "Technical SEO: sitemap, indexing, Core Web Vitals",
+          "Schema markup and rich snippet setup",
+          "Blog content strategy and editorial calendar",
+          "Competitor SEO analysis and gap mapping",
+          "Internal linking architecture and URL strategy",
+          "Monthly SEO health report"
+        ]
+      },
+      "social": {
+        "title": "Social Media & CRM",
+        "short": "Content, community and email automation — channels that make your brand memorable.",
+        "description": "From content calendars, shooting, editing, copywriting and community management to email / SMS automation. Abandoned cart, welcome, win-back flows and segmentation-based campaigns — making the customer relationship not just visible, but memorable.",
+        "bullets": [
+          "Content strategy and editorial calendar",
+          "Brand voice and visual consistency",
+          "Reels, TikTok, photo/video production",
+          "Community and message handling",
+          "Influencer collaborations and campaign management",
+          "Email automation (welcome, abandoned cart, win-back)",
+          "Campaign mailing and SMS marketing",
+          "Segmentation (RFM, behavioural) and A/B tests"
+        ]
+      },
+      "marketplace": {
+        "title": "Marketplace Management",
+        "short": "Trendyol, Hepsiburada, Amazon — scale your sales on marketplaces.",
+        "description": "In Turkish e-commerce, marketplaces can account for 40–60% of the channel mix in some categories. We run Trendyol, Hepsiburada, Amazon, N11 and ÇiçekSepeti stores end-to-end: from integration to sponsored ads, review management to price-competition tracking.",
+        "bullets": [
+          "Trendyol, Hepsiburada, Amazon, N11 integration",
+          "Product listing optimisation and SEO",
+          "Sponsored ads and campaign management",
+          "Price competition tracking and dynamic pricing",
+          "Review and rating management, customer experience",
+          "Inventory sync and multi-channel management",
+          "Campaign setup (coupons, discounts, bundles)",
+          "Marketplace-level monthly performance report"
+        ]
+      },
+      "ai": {
+        "title": "AI Automation",
+        "short": "AI-powered workflows that lift the operational load off your team.",
+        "description": "From customer service bots to automated content generation, email flows to personalised recommendation systems — we weave AI into your business. This includes Loom Commerce, our own 5-module AI layer purpose-built for Shopify.",
+        "bullets": [
+          "Chatbots and customer service AI",
+          "Automated product copy and content generation",
+          "Personalised recommendation systems",
+          "CRM and email automation flows",
+          "Fraud and bot protection (Loom Guard)",
+          "AI-assisted data analysis and reporting",
+          "Multi-language content translation (EN, AR, RU, DE)",
+          "Brand-voice AI — Loom Commerce integration"
+        ]
+      },
+      "design": {
+        "title": "Web & UI Design",
+        "short": "Fast, on-brand, conversion-focused web design.",
+        "description": "From wireframe to live deployment — Figma prototypes, Next.js, Webflow or WordPress implementations. Built to SEO, accessibility and Core Web Vitals standards. A design loop fed by UX research and heatmap analysis.",
+        "bullets": [
+          "UX research and user journey mapping",
+          "Low / high-fidelity wireframes and prototypes",
+          "Pixel-perfect UI design in Figma",
+          "Next.js, Webflow, WordPress, Shopify themes",
+          "Core Web Vitals 90+ target",
+          "Accessibility (WCAG AA) compliance",
+          "Design system and component library",
+          "Heatmap / session replay iteration"
+        ]
+      },
+      "operations": {
+        "title": "Operations & Logistics",
+        "short": "From order to delivery: shipping, warehousing, returns — handled by one team.",
+        "description": "In e-commerce, what happens after the purchase is as critical as the purchase itself. From order management to shipping agreements, warehouse (fulfilment) processes to returns / exchange infrastructure — we build your operational spine. Made sustainable with SOPs and customer satisfaction flows.",
+        "bullets": [
+          "Order management process design and automation",
+          "Shipping agreements (Aras, MNG, Yurtiçi, Sürat)",
+          "Warehouse and fulfilment processes",
+          "Returns and exchange flow, customer experience",
+          "Customer service SOPs and training",
+          "Multi-warehouse and inventory sync",
+          "Logistics cost optimisation",
+          "Post-order NPS and satisfaction tracking"
+        ]
+      },
+      "brand": {
+        "title": "Brand, Strategy & Growth",
+        "short": "From business-model design to brand story and new-market expansion — end-to-end strategy.",
+        "description": "We design who your brand is, who you sell to and how you will grow. Positioning, audience analysis, pricing strategy, loyalty programmes, campaign planning and team training — we build the long-term spine of a brand.",
+        "bullets": [
+          "Brand positioning (premium / accessible / niche)",
+          "Target audience and persona analysis",
+          "Competitor analysis and positioning map",
+          "Pricing strategy (competitive / margin / campaign)",
+          "Brand story and tone of voice",
+          "Loyalty programmes and customer clubs",
+          "Campaign planning (Black Friday, seasonal)",
+          "Domestic / international market expansion plan",
+          "Team training and SOP (standard operating procedures)"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "pageTitle": "Brands we've built,",
+    "pageTitleHighlight": "launched and scaled",
+    "pageTitleSuffix": ".",
+    "pageDescription": "From boutique e-commerce stores to corporate sites and VC platforms — a selection of the brands we've partnered with.",
+    "visit": "Visit Site",
+    "ongoingBadge": "Ongoing",
+    "items": {
+      "calypia": {
+        "title": "Calypia",
+        "category": "SaaS · AI-Native SOC & MDR",
+        "summary": "Turkey's first AI-native SOC & MDR platform — 90% alert automation, <5 min detection time, 25+ integrations. Brand, product UI/UX and marketing site delivered end-to-end.",
+        "services": ["Brand & identity", "Next.js marketing site", "Product UI/UX", "SEO & launch"]
+      },
+      "sperra": {
+        "title": "Sperra Security",
+        "category": "Cybersecurity · Corporate",
+        "summary": "An innovative cybersecurity consultancy in Turkey — Pentest, MDR, CTEM and 24/7 security services. Full corporate site, identity and content rollout.",
+        "services": ["Brand & identity", "Corporate site", "SEO content", "Ongoing support"]
+      },
+      "sperra-app": {
+        "title": "Sperra Security App",
+        "category": "Mobile App · iOS + Android",
+        "summary": "The mobile companion for Sperra's security platform. Real-time alert monitoring, incident triage and on-call response — built in React Native with a native-feeling dark UI.",
+        "services": ["Product design", "React Native", "Push notifications", "CI/CD & release"]
+      },
+      "aura-app": {
+        "title": "Aura",
+        "category": "Mobile App · iOS + Android",
+        "summary": "A mindfulness and journaling app — guided sessions, mood tracking and streaks. End-to-end design and React Native implementation.",
+        "services": ["Brand & identity", "Product design", "React Native", "App Store release"]
+      },
+      "ladyfaith": {
+        "title": "Lady Faith",
+        "category": "E-Commerce · Shopify",
+        "summary": "Nazlı Soylu's wearable-art brand blending art, therapy and mindfulness. We built the Shopify storefront end-to-end — theme integration, configuration and launch setup.",
+        "services": ["Shopify setup", "Theme integration", "Configuration"]
+      },
+      "reyorganic": {
+        "title": "Reyorganic",
+        "category": "E-Commerce · Shopify",
+        "summary": "Gluten-free, refined-sugar-free and keto-friendly menu brand. Shopify setup with full theme integration and catalog configuration.",
+        "services": ["Shopify setup", "Theme integration", "Configuration"]
+      },
+      "brea": {
+        "title": "Brea",
+        "category": "E-Commerce · Shopify",
+        "summary": "Cold-pressed olive oil brand focused on healthy, flavourful experience. Shopify storefront built from scratch.",
+        "services": ["Shopify setup", "Theme integration", "Configuration"]
+      },
+      "startershub": {
+        "title": "StartersHub",
+        "category": "Corporate · WordPress",
+        "summary": "Early-stage VC backing Turkey and CEE founders. Corporate WordPress site, theme build and server migration.",
+        "services": ["WordPress corporate site", "Theme customisation", "Server migration"]
+      },
+      "sirener-tan-istanbul": {
+        "title": "Sirener Tan Istanbul",
+        "category": "E-Commerce · Ticimax + Ads",
+        "summary": "Full Ticimax store setup and end-to-end management — technical integrations, catalog operations and paid media.",
+        "services": ["Ticimax setup", "Full site management", "Technical integrations", "Paid media"]
+      },
+      "doseistanbul": {
+        "title": "Dose Istanbul",
+        "category": "E-Commerce · T-Soft",
+        "summary": "Full T-Soft site management and email marketing. Ongoing partnership.",
+        "services": ["T-Soft management", "Email marketing"]
+      },
+      "overdosedetox": {
+        "title": "Overdose Detox",
+        "category": "Web · WordPress",
+        "summary": "Full WordPress site management — ongoing partnership with continuous content, speed and integration work.",
+        "services": ["WordPress full management", "Content & SEO", "Ongoing support"]
+      },
+      "pourlabonte": {
+        "title": "Pour La Bonté",
+        "category": "Web · Kobisi",
+        "summary": "A mindful lifestyle brand. Site design and editorial layout on Kobisi.",
+        "services": ["Kobisi design", "Editorial layout"]
+      },
+      "canakkale-madencilik": {
+        "title": "Çanakkale Madencilik",
+        "category": "Corporate · WordPress",
+        "summary": "Corporate WordPress site for a Çanakkale-based mining company, with full technical integrations.",
+        "services": ["WordPress corporate site", "Technical integrations"]
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "About Enterbird",
+    "pageTitle": "A first-class team",
+    "pageTitleHighlight": "for brands",
+    "pageTitleSuffix": ", from Istanbul to the world.",
+    "pageDescription": "Since 2018 we've been building, scaling and re-imagining brands online at every scale.",
+    "heroStats": {
+      "founded": "Est.",
+      "foundedValue": "2018",
+      "team": "Team",
+      "teamValue": "24 people",
+      "projects": "Shipped",
+      "projectsValue": "120+",
+      "cities": "Cities",
+      "citiesValue": "12"
+    },
+    "manifesto": {
+      "eyebrow": "Manifesto",
+      "line1": "We believe a brand's story",
+      "line2": "doesn't live in pitch decks",
+      "line3": "or award walls.",
+      "line4": "It lives in the moment a customer",
+      "line5": "first says yes",
+      "line6": "— and the thousand quiet decisions",
+      "line7": "that make that moment repeatable.",
+      "line8": "That is what we build for."
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "An Istanbul creative studio,",
+      "titleHighlight": "powered by AI",
+      "titleSuffix": ".",
+      "body1": "Enterbird sits at the intersection of a creative agency and a tech team. Our story began by putting <strong>work that delivers results</strong> at the centre — instead of work that just looks good.",
+      "body2": "Today our Istanbul-based team works with brands across Turkey, Europe and the Gulf. Among us are former engineers, art directors, performance specialists and content creators. What we share: we don't compromise on craft.",
+      "body3": "We see the change AI brings not as a threat but as a tool we can turn to our clients' advantage. That's why <strong>AI Digital</strong> sits in our name.",
+      "caption": "Based in Kadıköy, Istanbul."
+    },
+    "timeline": {
+      "eyebrow": "Our team's journey",
+      "title": "Small steps,",
+      "titleHighlight": "up to today",
+      "titleSuffix": ".",
+      "description": "No grand statements — just a short summary of where we've come from.",
+      "items": [
+        {
+          "year": "2018",
+          "title": "The beginning",
+          "text": "Two people in Kadıköy, one laptop, and our first Shopify project."
+        },
+        {
+          "year": "2020",
+          "title": "The team grows",
+          "text": "Our first art director and performance specialist join us."
+        },
+        {
+          "year": "2022",
+          "title": "First client abroad",
+          "text": "We learn to work in two languages; a couple more people join."
+        },
+        {
+          "year": "2024",
+          "title": "We rewrote how we work, with AI",
+          "text": "We started caring more about doing it right than doing it fast."
+        },
+        {
+          "year": "Now",
+          "title": "On the road",
+          "text": "A few new teammates, a few new brands — the same curiosity."
+        }
+      ]
+    },
+    "team": {
+      "eyebrow": "People",
+      "title": "The people who",
+      "titleHighlight": "care about the details",
+      "titleSuffix": ".",
+      "description": "From creative directors to performance marketers, every teammate owns their craft end-to-end.",
+      "members": [
+        { "name": "Cem Arslan", "role": "Co-founder, Creative Director" },
+        { "name": "Elif Demir", "role": "Co-founder, Engineering Lead" },
+        { "name": "Mert Yıldırım", "role": "Head of Performance" },
+        { "name": "Zeynep Kaya", "role": "Art Director" },
+        { "name": "Can Ergün", "role": "Senior Copywriter" },
+        { "name": "Selin Aydın", "role": "Client Partner" }
+      ]
+    },
+    "experience": "years of experience",
+    "values": {
+      "eyebrow": "Values",
+      "title": "The four pillars",
+      "titleHighlight": "that make us who we are",
+      "titleSuffix": ".",
+      "items": {
+        "care": {
+          "title": "Partnership",
+          "text": "We see our clients as partners, not projects. Their problem becomes ours."
+        },
+        "transparency": {
+          "title": "Transparency",
+          "text": "We speak straight, without dressing anything up. Honest reports, clear invoices."
+        },
+        "speed": {
+          "title": "Speed",
+          "text": "We don't slow down while chasing 'good'. Try fast, learn fast — that's everything."
+        },
+        "human": {
+          "title": "Human-first",
+          "text": "Algorithms change, people don't. We focus on the person first, the channel second."
+        }
+      }
+    },
+    "bigStats": {
+      "eyebrow": "By the numbers",
+      "title": "Eight years in",
+      "titleHighlight": "three metrics",
+      "titleSuffix": ".",
+      "items": [
+        { "value": 120, "suffix": "+", "label": "Shipped projects" },
+        { "value": 32, "suffix": "M+ ₺", "label": "Managed ad budget" },
+        { "value": 4.9, "suffix": "/5", "decimals": 1, "label": "Client satisfaction" }
+      ]
+    }
+  },
+  "blog": {
+    "pageTitle": "From marketing to AI —",
+    "pageTitleHighlight": "short, useful notes",
+    "pageTitleSuffix": ".",
+    "pageDescription": "We share what our team learns every day — no fluff, straight to the point and practical.",
+    "readMin": "min read",
+    "readMore": "Read the article",
+    "posts": {
+      "ai-satis-agentlari-shopify": {
+        "title": "AI sales agents on Shopify: the new sales team of 2026",
+        "category": "AI",
+        "excerpt": "Do AI agents that understand your catalog, answer questions 24/7 and guide shoppers to checkout actually work? Six months of field numbers and 4 things to get right during setup."
+      },
+      "shopify-horizon-tema-degerlendirme": {
+        "title": "Shopify's Horizon theme: an honest review three weeks after launch",
+        "category": "E-Commerce",
+        "excerpt": "We tested Shopify's new AI-powered theme framework with two clients. Notes on speed, flexibility, custom-block support, and who it actually makes sense for."
+      },
+      "meta-advantage-plus-rehber": {
+        "title": "A practical Meta Advantage+ guide: when to turn it on, when to step back",
+        "category": "Performance",
+        "excerpt": "When the AI takes the wheel, where should the agency step in? We tested budget, creative and audience strategy across 8 stores over two months — here's what we learned."
+      },
+      "google-ai-overviews-seo": {
+        "title": "SEO in the age of Google AI Overviews: what changed, what didn't",
+        "category": "SEO",
+        "excerpt": "Since AI summaries started appearing above the results, did clicks drop or conversions rise? Patterns we've observed on Turkish queries over the past 3 months, and 5 things to do in content strategy."
+      }
+    }
+  },
+  "contact": {
+    "pageTitle": "Let's talk. Tea or coffee,",
+    "pageTitleHighlight": "on us",
+    "pageTitleSuffix": ".",
+    "pageDescription": "Fill in the form below and we'll get back to you within 24 hours. Let's plan a free strategy call.",
+    "labels": {
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "phone": "Phone",
+      "office": "Office",
+      "hours": "Working hours",
+      "social": "Social Media"
+    },
+    "values": {
+      "office": "Istanbul, Turkey",
+      "hours": "Mon – Fri · 09:00 – 18:00"
+    },
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "email@yourcompany.com",
+      "company": "Company",
+      "companyPlaceholder": "Company name",
+      "phone": "Phone",
+      "phonePlaceholder": "+90 555 000 00 00",
+      "service": "Service you're interested in",
+      "message": "Your message",
+      "messagePlaceholder": "Tell us about your project…",
+      "submit": "Send Message",
+      "privacy": "When submitted, your info is only used to contact you back.",
+      "services": [
+        "E-Commerce Infrastructure",
+        "Performance Marketing",
+        "SEO & Organic Growth",
+        "Social Media & CRM",
+        "Marketplace Management",
+        "AI Automation",
+        "Web & UI Design",
+        "Operations & Logistics",
+        "Brand, Strategy & Growth",
+        "I don't know — let's talk"
+      ],
+      "successTitle": "Thank you!",
+      "successMessage": "We've received your message. We'll get back to you within 24 hours."
+    }
+  },
+  "cta": {
+    "title": "Let's write your next big growth",
+    "titleHighlight": "together",
+    "titleSuffix": ".",
+    "description": "In a free 30-minute strategy call we listen to your brand and give you a tailored roadmap. No strings attached.",
+    "primary": "Request a Call",
+    "emailLabel": "hello@enterbird.com"
+  },
+  "footer": {
+    "tagline": "A creative team that grows brands online with AI-powered strategies. Based in Istanbul, working worldwide.",
+    "location": "Istanbul, Turkey",
+    "services": "Services",
+    "company": "Company",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with care in Istanbul.",
+    "servicesLinks": {
+      "ecommerce": "E-Commerce Infrastructure",
+      "performance": "Performance Marketing",
+      "seo": "SEO & Organic Growth",
+      "marketplace": "Marketplace Management",
+      "operations": "Operations & Logistics",
+      "ai": "AI Automation"
+    },
+    "companyLinks": {
+      "about": "About",
+      "work": "Work",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  },
+  "whatsapp": {
+    "label": "Chat on WhatsApp",
+    "ctaText": "Chat on WhatsApp",
+    "defaultMessage": "Hi Enterbird, reaching out from your website."
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "tr": "Türkçe"
+  }
+}
