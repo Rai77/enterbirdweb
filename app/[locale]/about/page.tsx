@@ -62,7 +62,7 @@ const teamPortraits = [
 const officeImage = "/about/aqua-florya.jpg";
 
 const officeImageCredit = {
-  author: "Stomatoloq Fərid Zey…",
+  author: "Stomatoloq Fərid Zey",
   sourceUrl:
     "https://commons.wikimedia.org/wiki/File:AquaFlorya_-_panoramio.jpg",
   license: "CC BY-SA 3.0",
@@ -138,8 +138,10 @@ export default async function AboutPage({
   const storyCaption =
     about.story.caption?.trim() ||
     (locale === "tr"
-      ? "Aqua Florya E-Ofis · Bakırköy, İstanbul"
-      : "Aqua Florya E-Office · Bakırköy, Istanbul");
+      ? "Aqua Florya E-Ofis, Bakırköy/İstanbul"
+      : "Aqua Florya E-Office, Bakırköy, Istanbul");
+
+  const officeImageCreditLabel = locale === "tr" ? "Fotoğraf:" : "Photo:";
 
   const officeImageAlt =
     locale === "tr"
@@ -248,6 +250,7 @@ export default async function AboutPage({
                 </div>
                 <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-br from-brand/15 via-brand-2/15 to-brand-3/15 blur-2xl" />
                 <p className="mt-3 text-right text-[11px] text-muted/70">
+                  {officeImageCreditLabel}{" "}
                   <a
                     href={officeImageCredit.sourceUrl}
                     target="_blank"
@@ -256,7 +259,7 @@ export default async function AboutPage({
                   >
                     {officeImageCredit.author}
                   </a>
-                  {" · "}
+                  {", "}
                   <a
                     href={officeImageCredit.licenseUrl}
                     target="_blank"
