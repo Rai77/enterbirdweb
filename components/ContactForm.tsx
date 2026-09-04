@@ -32,6 +32,32 @@ function normaliseServices(services: ContactFormData["services"]): string[] {
   ).filter(Boolean);
 }
 
+/**
+ * Sunucudan gelen hata kodunu ziyaretçinin anlayacağı bir cümleye çevirir.
+ * Kod tarafı asla ham hata metnini göstermez — içinde yapılandırma detayı olabilir.
+ */
+function errorText(code: string, locale: string): string {
+  const tr = locale === "tr";
+  switch (code) {
+    case "TOO_MANY_REQUESTS":
+      return tr
+        ? "Çok fazla mesaj gönderdiniz. Lütfen bir dakika bekleyip tekrar deneyin."
+        : "Too many messages. Please wait a minute and try again.";
+    case "MISSING_FIELDS":
+      return tr
+        ? "Ad, e-posta ve mesaj alanları zorunludur."
+        : "Name, email and message are required.";
+    case "INVALID_EMAIL":
+      return tr
+        ? "E-posta adresi geçerli görünmüyor. Kontrol eder misiniz?"
+        : "That email address doesn't look valid. Could you check it?";
+    default:
+      return tr
+        ? "Mesaj gönderilemedi. Lütfen tekrar deneyin — sorun sürerse hello@enterbird.com adresine yazabilirsiniz."
+        : "We couldn't send your message. Please try again — if it keeps failing, email hello@enterbird.com.";
+  }
+}
+
 export function ContactForm({ data }: { data?: ContactFormData } = {}) {
   // Legacy fallback: read from i18n when the parent didn't provide CMS data.
   const t = useTranslations("contact.form");
@@ -75,6 +101,8 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
       phone: String(fd.get("phone") ?? ""),
       service: String(fd.get("service") ?? ""),
       message: String(fd.get("message") ?? ""),
+      // Honeypot — ekranda görünmez, yalnız botlar doldurur.
+      website: String(fd.get("website") ?? ""),
       locale,
     };
 
@@ -89,12 +117,15 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
         error?: string;
       };
       if (!res.ok || !json.ok) {
-        throw new Error(json.error ?? `HTTP ${res.status}`);
+        throw new Error(json.error ?? "SERVER_ERROR");
       }
       setStatus("success");
       form.reset();
     } catch (err) {
-      setErrorMessage(err instanceof Error ? err.message : String(err));
+      // Sunucu artık ham hata metni değil, sabit bir kod döndürüyor. Ziyaretçiye
+      // ne olduğunu ve ne yapabileceğini söyleyen kendi metnimizi gösteriyoruz.
+      const code = err instanceof Error ? err.message : "SERVER_ERROR";
+      setErrorMessage(errorText(code, locale));
       setStatus("error");
     }
   }
@@ -152,10 +183,14 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
         />
       </div>
       <div>
-        <label className="block text-xs font-medium uppercase tracking-wider text-muted">
+        <label
+          htmlFor="contact-service"
+          className="block text-xs font-medium uppercase tracking-wider text-muted"
+        >
           {labels.service}
         </label>
         <select
+          id="contact-service"
           name="service"
           disabled={submitting}
           className="mt-2 w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground focus:border-brand focus:outline-none disabled:opacity-60"
@@ -166,21 +201,48 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
         </select>
       </div>
       <div>
-        <label className="block text-xs font-medium uppercase tracking-wider text-muted">
+        <label
+          htmlFor="contact-message"
+          className="block text-xs font-medium uppercase tracking-wider text-muted"
+        >
           {labels.message}
         </label>
         <textarea
+          id="contact-message"
           name="message"
           rows={5}
           required
+          maxLength={5000}
           disabled={submitting}
           placeholder={labels.messagePlaceholder}
           className="mt-2 w-full resize-none rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted/80 focus:border-brand focus:outline-none disabled:opacity-60"
         />
       </div>
 
+      {/*
+        Honeypot: ekranda görünmez, klavye ile sekmelenmez, ekran okuyucuya
+        gizlidir. İnsan asla dolduramaz; formu otomatik dolduran botlar doldurur.
+        Dolu geldiğinde sunucu mesajı sessizce çöpe atar.
+      */}
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+      >
+        <label htmlFor="contact-website">Web sitesi</label>
+        <input
+          id="contact-website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {status === "error" && errorMessage && (
-        <div className="flex items-start gap-2 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+        <div
+          role="alert"
+          className="flex items-start gap-2 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300"
+        >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -223,12 +285,19 @@ function Field({
   required?: boolean;
   disabled?: boolean;
 }) {
+  // `htmlFor` ↔ `id` bağı olmadan ekran okuyucular kutunun ne olduğunu
+  // söyleyemez. Alan adı zaten benzersiz, id olarak onu kullanıyoruz.
+  const id = `contact-${name}`;
   return (
     <div>
-      <label className="block text-xs font-medium uppercase tracking-wider text-muted">
+      <label
+        htmlFor={id}
+        className="block text-xs font-medium uppercase tracking-wider text-muted"
+      >
         {label}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         placeholder={placeholder}
