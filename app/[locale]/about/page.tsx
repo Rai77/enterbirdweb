@@ -55,8 +55,19 @@ const teamPortraits = [
   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80&auto=format&fit=crop&crop=faces",
 ];
 
-const istanbulImage =
-  "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1400&q=80&auto=format&fit=crop";
+// Ofisin bulunduğu bina: Aqua Florya, Bakırköy/İstanbul.
+// Kaynak: Wikimedia Commons — "AquaFlorya - panoramio.jpg", CC BY-SA 3.0.
+// Lisans künye zorunlu kıldığı için görselin altında kaynak satırı gösteriliyor.
+// Dosya 4:5 dikey çerçeveye sağdan kırpıldı (bina kadrajda kalsın diye).
+const officeImage = "/about/aqua-florya.jpg";
+
+const officeImageCredit = {
+  author: "Stomatoloq Fərid Zey…",
+  sourceUrl:
+    "https://commons.wikimedia.org/wiki/File:AquaFlorya_-_panoramio.jpg",
+  license: "CC BY-SA 3.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+};
 
 // Replace <strong>…</strong> runs with a highlighted inline span.
 function richString(text: string, strongClass = "text-foreground") {
@@ -121,6 +132,19 @@ export default async function AboutPage({
     { text: about.manifesto.line7, highlight: false },
     { text: about.manifesto.line8, highlight: true },
   ];
+
+  // Panelde "story.caption" boş bırakılmış — o zaman ofis adresinden türetilen
+  // konum etiketini göster. Panele bir şey yazılırsa o kazanır.
+  const storyCaption =
+    about.story.caption?.trim() ||
+    (locale === "tr"
+      ? "Aqua Florya E-Ofis · Bakırköy, İstanbul"
+      : "Aqua Florya E-Office · Bakırköy, Istanbul");
+
+  const officeImageAlt =
+    locale === "tr"
+      ? "Aqua Florya, Bakırköy — Enterbird ofisinin bulunduğu bina"
+      : "Aqua Florya, Bakırköy — the building housing the Enterbird office";
 
   const timelineItems = about.timeline.items ?? [];
   const bigStats = about.bigStats.items ?? [];
@@ -208,8 +232,8 @@ export default async function AboutPage({
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-border">
                   <Image
-                    src={istanbulImage}
-                    alt="Istanbul"
+                    src={officeImage}
+                    alt={officeImageAlt}
                     fill
                     sizes="(min-width: 768px) 40vw, 100vw"
                     className="object-cover"
@@ -218,11 +242,30 @@ export default async function AboutPage({
                   <div className="absolute inset-x-0 bottom-0 p-6">
                     <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-xs text-muted backdrop-blur-md">
                       <MapPin className="h-3.5 w-3.5 text-brand" />
-                      {about.story.caption}
+                      {storyCaption}
                     </div>
                   </div>
                 </div>
                 <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-br from-brand/15 via-brand-2/15 to-brand-3/15 blur-2xl" />
+                <p className="mt-3 text-right text-[11px] text-muted/70">
+                  <a
+                    href={officeImageCredit.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-muted"
+                  >
+                    {officeImageCredit.author}
+                  </a>
+                  {" · "}
+                  <a
+                    href={officeImageCredit.licenseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-muted"
+                  >
+                    {officeImageCredit.license}
+                  </a>
+                </p>
               </div>
             </Reveal>
 
