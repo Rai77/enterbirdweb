@@ -114,7 +114,10 @@ export default async function AboutPage({
   }
 
   const heroStats = [
-    { label: about.heroStats.foundedLabel, value: about.heroStats.foundedValue },
+    {
+      label: about.heroStats.foundedLabel,
+      value: about.heroStats.foundedValue,
+    },
     {
       label: about.heroStats.projectsLabel,
       value: about.heroStats.projectsValue,
@@ -122,6 +125,8 @@ export default async function AboutPage({
     { label: about.heroStats.citiesLabel, value: about.heroStats.citiesValue },
   ];
 
+  // Panelde temizlenen alanlar boşluk karakteri olarak geliyor. Ayıklamazsak
+  // sayfa boş bir rozet ve sekiz satırlık dev bir boşluk basıyor.
   const manifestoLines = [
     { text: about.manifesto.line1, highlight: false },
     { text: about.manifesto.line2, highlight: false },
@@ -131,7 +136,28 @@ export default async function AboutPage({
     { text: about.manifesto.line6, highlight: false },
     { text: about.manifesto.line7, highlight: false },
     { text: about.manifesto.line8, highlight: true },
-  ];
+  ]
+    .map((line) => ({ ...line, text: line.text?.trim() }))
+    .filter((line): line is { text: string; highlight: boolean } =>
+      Boolean(line.text),
+    );
+
+  const manifestoEyebrow = about.manifesto.eyebrow?.trim();
+  const hasManifesto = manifestoLines.length > 0 || Boolean(manifestoEyebrow);
+
+  // Hikâye metni de boşaltılmış olabilir; o zaman boş başlık ve boş paragraf
+  // basmak yerine sadece fotoğrafı ortada gösteriyoruz.
+  const storyEyebrow = about.story.eyebrow?.trim();
+  const storyTitle = about.story.title?.trim();
+  const storyTitleHighlight = about.story.titleHighlight?.trim();
+  const storyTitleSuffix = about.story.titleSuffix?.trim();
+  const storyBodies = [about.story.body1, about.story.body2, about.story.body3]
+    .map((body) => body?.trim())
+    .filter((body): body is string => Boolean(body));
+  const hasStoryHeading = Boolean(
+    storyEyebrow || storyTitle || storyTitleHighlight,
+  );
+  const hasStoryText = hasStoryHeading || storyBodies.length > 0;
 
   // Panelde "story.caption" boş bırakılmış — o zaman ofis adresinden türetilen
   // konum etiketini göster. Panele bir şey yazılırsa o kazanır.
@@ -172,7 +198,9 @@ export default async function AboutPage({
               </span>
               <h1 className="mt-6 text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl md:text-[88px]">
                 {about.pageTitle}{" "}
-                <span className="text-gradient">{about.pageTitleHighlight}</span>
+                <span className="text-gradient">
+                  {about.pageTitleHighlight}
+                </span>
                 {about.pageTitleSuffix}
               </h1>
               <p className="mx-auto mt-7 max-w-2xl text-base text-muted sm:text-lg">
@@ -202,35 +230,47 @@ export default async function AboutPage({
       </section>
 
       {/* ==================== MANIFESTO ==================== */}
-      <Section className="!py-28 sm:!py-40">
-        <Container size="wide">
-          <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {about.manifesto.eyebrow}
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-10 max-w-5xl text-balance text-3xl font-semibold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl">
-              {manifestoLines.map((line, i) => (
-                <span key={i} className="block">
-                  {line.highlight ? (
-                    <span className="text-gradient">{line.text}</span>
-                  ) : (
-                    <span className="text-foreground/90">{line.text}</span>
-                  )}
+      {hasManifesto && (
+        <Section className="!py-28 sm:!py-40">
+          <Container size="wide">
+            {manifestoEyebrow && (
+              <Reveal>
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                  {manifestoEyebrow}
                 </span>
-              ))}
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
+              </Reveal>
+            )}
+            {manifestoLines.length > 0 && (
+              <Reveal delay={0.1}>
+                <p className="mt-10 max-w-5xl text-balance text-3xl font-semibold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl">
+                  {manifestoLines.map((line, i) => (
+                    <span key={i} className="block">
+                      {line.highlight ? (
+                        <span className="text-gradient">{line.text}</span>
+                      ) : (
+                        <span className="text-foreground/90">{line.text}</span>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              </Reveal>
+            )}
+          </Container>
+        </Section>
+      )}
 
       {/* ==================== STORY ==================== */}
       <Section>
         <Container size="wide">
           <div className="grid items-center gap-14 md:grid-cols-12">
-            <Reveal className="md:col-span-5">
+            <Reveal
+              className={
+                hasStoryText
+                  ? "md:col-span-5"
+                  : "mx-auto w-full max-w-sm md:col-span-12"
+              }
+            >
               <div className="relative">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-border">
                   <Image
@@ -272,25 +312,34 @@ export default async function AboutPage({
               </div>
             </Reveal>
 
-            <Reveal delay={0.1} className="md:col-span-7">
-              <SectionHeading
-                eyebrow={about.story.eyebrow}
-                title={
-                  <>
-                    {about.story.title}{" "}
-                    <span className="text-gradient">
-                      {about.story.titleHighlight}
-                    </span>
-                    {about.story.titleSuffix}
-                  </>
-                }
-              />
-              <div className="mt-8 space-y-5 text-base text-muted sm:text-lg">
-                <p>{richString(about.story.body1)}</p>
-                <p>{about.story.body2}</p>
-                <p>{richString(about.story.body3)}</p>
-              </div>
-            </Reveal>
+            {hasStoryText && (
+              <Reveal delay={0.1} className="md:col-span-7">
+                {hasStoryHeading && (
+                  <SectionHeading
+                    eyebrow={storyEyebrow}
+                    title={
+                      <>
+                        {storyTitle}
+                        {storyTitle && storyTitleHighlight ? " " : ""}
+                        {storyTitleHighlight && (
+                          <span className="text-gradient">
+                            {storyTitleHighlight}
+                          </span>
+                        )}
+                        {storyTitleSuffix}
+                      </>
+                    }
+                  />
+                )}
+                {storyBodies.length > 0 && (
+                  <div className="mt-8 space-y-5 text-base text-muted sm:text-lg">
+                    {storyBodies.map((body, i) => (
+                      <p key={i}>{richString(body)}</p>
+                    ))}
+                  </div>
+                )}
+              </Reveal>
+            )}
           </div>
         </Container>
       </Section>
