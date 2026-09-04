@@ -45,7 +45,6 @@ export default async function Home({
     getGlobalContent<CTABlockDoc>("cta-block", locale as AppLocale),
     getCollectionContent<ServiceDoc>("services", locale as AppLocale, {
       sort: "order",
-      limit: 6,
     }),
     getCollectionContent<ProjectDoc>("projects", locale as AppLocale, {
       sort: "order",
