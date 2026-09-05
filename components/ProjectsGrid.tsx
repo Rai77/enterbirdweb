@@ -33,6 +33,9 @@ export type ProjectsGridStrings = {
 const localProjectImages: Record<string, string> = {
   fou: "/projects/fou.jpg",
   tishoostore: "/projects/tishoostore.jpg",
+  // Ponchico'nun ana sayfasındaki ürün listesi kurumsal bir referans kartına
+  // uygun değil; bu yüzden yalnızca sitenin üst bölümü kadrajlandı.
+  ponchico: "/projects/ponchico.jpg",
 };
 
 function resolveImageSrc(project: ProjectDoc): string | null {
