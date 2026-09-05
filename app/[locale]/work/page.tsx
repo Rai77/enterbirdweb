@@ -3,8 +3,9 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/PageHeader";
 import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Section, SectionHeading } from "@/components/Section";
 import { ProjectsGrid, type ProjectDoc } from "@/components/ProjectsGrid";
+import { CorporateClients } from "@/components/CorporateClients";
 import { Stats } from "@/components/Stats";
 import { CTA } from "@/components/CTA";
 import { getCollectionContent } from "@/lib/cms";
@@ -63,6 +64,27 @@ function WorkContent({ projects }: { projects: ProjectDoc[] }) {
               ongoingBadge: t("ongoingBadge"),
             }}
           />
+        </Container>
+      </Section>
+
+      <Section>
+        <Container size="wide">
+          <SectionHeading
+            eyebrow={t("corporate.eyebrow")}
+            title={
+              <>
+                {t("corporate.title")}{" "}
+                <span className="text-gradient">
+                  {t("corporate.titleHighlight")}
+                </span>
+                {t("corporate.titleSuffix")}
+              </>
+            }
+            description={t("corporate.description")}
+          />
+          <div className="mt-12">
+            <CorporateClients />
+          </div>
         </Container>
       </Section>
 

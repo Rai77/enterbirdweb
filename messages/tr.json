@@ -415,6 +415,13 @@
     "pageTitleSuffix": ".",
     "pageDescription": "Butik e-ticaret mağazalarından kurumsal sitelere, VC platformlarından üretim markalarına — birlikte çalıştığımız markalardan bir seçki.",
     "visit": "Siteyi Ziyaret Et",
+    "corporate": {
+      "eyebrow": "Kurumsal",
+      "title": "Birlikte çalıştığımız",
+      "titleHighlight": "kurumsal markalar",
+      "titleSuffix": ".",
+      "description": "Kurumsal tarafta yürüttüğümüz çalışmalardan bazıları. Markanın kendi sitesine gitmek için karta dokunun."
+    },
     "ongoingBadge": "Devam Ediyor",
     "items": {
       "calypia": {

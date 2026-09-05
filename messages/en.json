@@ -415,6 +415,13 @@
     "pageTitleSuffix": ".",
     "pageDescription": "From boutique e-commerce stores to corporate sites and VC platforms — a selection of the brands we've partnered with.",
     "visit": "Visit Site",
+    "corporate": {
+      "eyebrow": "Corporate",
+      "title": "Corporate brands",
+      "titleHighlight": "we work with",
+      "titleSuffix": ".",
+      "description": "A selection of our corporate work. Tap a card to open the brand's own site."
+    },
     "ongoingBadge": "Ongoing",
     "items": {
       "calypia": {
