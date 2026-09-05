@@ -2,9 +2,45 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import {
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  MessageCircle,
+  Mail,
+} from "lucide-react";
+import { WHATSAPP_NUMBER, EMAIL } from "@/lib/contact";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+/** Ziyaretçinin doldurduğu form — yedek gönderim yolları için saklanır. */
+type Draft = {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  service: string;
+  message: string;
+};
+
+/**
+ * Gönderim başarısız olduğunda mesajın kaybolmaması için hazırlanan metin.
+ * Aynı gövde hem WhatsApp hem e-posta bağlantısında kullanılır.
+ */
+function draftToText(d: Draft, tr: boolean): string {
+  const line = (label: string, value: string) =>
+    value.trim() ? `${label}: ${value.trim()}\n` : "";
+  return (
+    line(tr ? "Ad Soyad" : "Name", d.name) +
+    line(tr ? "E-posta" : "Email", d.email) +
+    line(tr ? "Şirket" : "Company", d.company) +
+    line(tr ? "Telefon" : "Phone", d.phone) +
+    line(tr ? "Hizmet" : "Service", d.service) +
+    "\n" +
+    d.message.trim()
+  );
+}
 
 export type ContactFormData = {
   name: string;
@@ -27,9 +63,9 @@ export type ContactFormData = {
 
 function normaliseServices(services: ContactFormData["services"]): string[] {
   if (!services) return [];
-  return services.map((s) =>
-    typeof s === "string" ? s : (s?.label ?? ""),
-  ).filter(Boolean);
+  return services
+    .map((s) => (typeof s === "string" ? s : (s?.label ?? "")))
+    .filter(Boolean);
 }
 
 /**
@@ -64,6 +100,10 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
   const locale = useLocale();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  // Gönderim başarısız olursa ziyaretçi yazdıklarını kaybetmesin diye
+  // son gönderilen taslağı tutuyoruz.
+  const [draft, setDraft] = useState<Draft | null>(null);
+  const [fallbackVisible, setFallbackVisible] = useState(false);
 
   const labels: ContactFormData = data ?? {
     name: t("name"),
@@ -106,6 +146,15 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
       locale,
     };
 
+    setDraft({
+      name: payload.name,
+      email: payload.email,
+      company: payload.company,
+      phone: payload.phone,
+      service: payload.service,
+      message: payload.message,
+    });
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -126,6 +175,13 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
       // ne olduğunu ve ne yapabileceğini söyleyen kendi metnimizi gösteriyoruz.
       const code = err instanceof Error ? err.message : "SERVER_ERROR";
       setErrorMessage(errorText(code, locale));
+      // Alan hatalarında çözüm formu düzeltmek; yedek yol yalnızca gönderim
+      // gerçekten başarısız olduğunda anlamlı.
+      setFallbackVisible(
+        code !== "MISSING_FIELDS" &&
+          code !== "INVALID_EMAIL" &&
+          code !== "TOO_MANY_REQUESTS",
+      );
       setStatus("error");
     }
   }
@@ -226,7 +282,13 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
       */}
       <div
         aria-hidden="true"
-        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+        }}
       >
         <label htmlFor="contact-website">Web sitesi</label>
         <input
@@ -245,6 +307,40 @@ export function ContactForm({ data }: { data?: ContactFormData } = {}) {
         >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{errorMessage}</span>
+        </div>
+      )}
+
+      {status === "error" && fallbackVisible && draft && (
+        <div className="rounded-xl border border-border bg-surface/40 px-4 py-4 text-sm">
+          <p className="text-muted">
+            {locale === "tr"
+              ? "Yazdıklarınız duruyor — aşağıdaki yollardan biriyle tek tıkla gönderebilirsiniz."
+              : "Your message is still here — send it in one click using either option below."}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                draftToText(draft, locale === "tr"),
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 font-medium transition hover:border-brand-2/60"
+            >
+              <MessageCircle className="h-4 w-4 text-brand" />
+              {locale === "tr" ? "WhatsApp ile gönder" : "Send via WhatsApp"}
+            </a>
+            <a
+              href={`mailto:${EMAIL}?subject=${encodeURIComponent(
+                locale === "tr"
+                  ? `Web sitesi mesajı — ${draft.name}`
+                  : `Website message — ${draft.name}`,
+              )}&body=${encodeURIComponent(draftToText(draft, locale === "tr"))}`}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 font-medium transition hover:border-brand-2/60"
+            >
+              <Mail className="h-4 w-4 text-brand" />
+              {locale === "tr" ? "E-posta ile gönder" : "Send via email"}
+            </a>
+          </div>
         </div>
       )}
 
