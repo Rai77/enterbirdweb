@@ -21,13 +21,31 @@ export type ProjectsGridStrings = {
   ongoingBadge: string;
 };
 
+/**
+ * Projeye gömülü referans görselleri, slug'a göre.
+ *
+ * Panelden görsel yüklemek her zaman mümkün olmadığı için, burada duran dosya
+ * son çare olarak devreye girer: panelde bir görsel varsa o kazanır, yoksa
+ * kart boş gradient yerine gerçek siteyi gösterir.
+ *
+ * Anahtarlar küçük harf — panelde slug "Tishoostore" da olabilir "tishoostore" da.
+ */
+const localProjectImages: Record<string, string> = {
+  fou: "/projects/fou.jpg",
+  tishoostore: "/projects/tishoostore.jpg",
+};
+
 function resolveImageSrc(project: ProjectDoc): string | null {
   if (project.imageExternalUrl) return project.imageExternalUrl;
-  if (project.image && typeof project.image === "object" && project.image?.url) {
+  if (
+    project.image &&
+    typeof project.image === "object" &&
+    project.image?.url
+  ) {
     return project.image.url;
   }
   if (typeof project.image === "string") return project.image;
-  return null;
+  return localProjectImages[project.slug?.trim().toLowerCase() ?? ""] ?? null;
 }
 
 export function ProjectsGrid({
