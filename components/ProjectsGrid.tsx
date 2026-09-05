@@ -33,8 +33,9 @@ export type ProjectsGridStrings = {
 const localProjectImages: Record<string, string> = {
   fou: "/projects/fou.jpg",
   tishoostore: "/projects/tishoostore.jpg",
-  // Ponchico'nun ana sayfasındaki ürün listesi kurumsal bir referans kartına
-  // uygun değil; bu yüzden yalnızca sitenin üst bölümü kadrajlandı.
+  // Ponchico'nun sitesi kapandı, ekran görüntüsü alınamıyor. Kartta markanın
+  // kendi kampanya banner'ı var; 16:10'a sığması için kendi bulanık kopyasının
+  // üzerine oturtuldu (kırpmak logoyu ya da görseli kesiyordu).
   ponchico: "/projects/ponchico.jpg",
 };
 
