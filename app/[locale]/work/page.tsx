@@ -6,6 +6,11 @@ import { Container } from "@/components/Container";
 import { Section, SectionHeading } from "@/components/Section";
 import { ProjectsGrid, type ProjectDoc } from "@/components/ProjectsGrid";
 import { CorporateClients } from "@/components/CorporateClients";
+import {
+  fallbackCorporateClients,
+  isCorporateProject,
+  toCorporateClient,
+} from "@/lib/corporateClients";
 import { Stats } from "@/components/Stats";
 import { CTA } from "@/components/CTA";
 import { getCollectionContent } from "@/lib/cms";
@@ -41,6 +46,16 @@ export default async function WorkPage({
 function WorkContent({ projects }: { projects: ProjectDoc[] }) {
   const t = useTranslations("projects");
   const nav = useTranslations("nav");
+
+  // Panelde kategorisi "Kurumsal Marka" olan kayıtlar proje ızgarasında değil,
+  // aşağıdaki kurumsal şeritte görünür. Panelde hiç yoksa yedek liste devreye
+  // girer — böylece geçiş sırasında bölüm boş kalmıyor.
+  const corporateProjects = projects.filter(isCorporateProject);
+  const gridProjects = projects.filter((p) => !isCorporateProject(p));
+  const corporateClients =
+    corporateProjects.length > 0
+      ? corporateProjects.map(toCorporateClient)
+      : fallbackCorporateClients;
   return (
     <>
       <PageHeader
@@ -58,7 +73,7 @@ function WorkContent({ projects }: { projects: ProjectDoc[] }) {
       <Section>
         <Container size="wide">
           <ProjectsGrid
-            projects={projects}
+            projects={gridProjects}
             strings={{
               visit: t("visit"),
               ongoingBadge: t("ongoingBadge"),
@@ -83,7 +98,7 @@ function WorkContent({ projects }: { projects: ProjectDoc[] }) {
             description={t("corporate.description")}
           />
           <div className="mt-12">
-            <CorporateClients />
+            <CorporateClients clients={corporateClients} />
           </div>
         </Container>
       </Section>
