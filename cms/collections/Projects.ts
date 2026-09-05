@@ -42,6 +42,12 @@ export const Projects: CollectionConfig = {
       type: "text",
       required: true,
       localized: true,
+      admin: {
+        description: {
+          en: 'Type exactly "Kurumsal Marka" to move this record into the corporate strip on the work page instead of the project grid.',
+          tr: 'Referanslar sayfasındaki kurumsal şeritte görünmesi için tam olarak "Kurumsal Marka" yazın. Başka bir şey yazarsanız proje ızgarasında görünür.',
+        },
+      },
       label: { en: "Category", tr: "Kategori" },
     },
     {
@@ -49,6 +55,13 @@ export const Projects: CollectionConfig = {
       type: "textarea",
       required: true,
       localized: true,
+      defaultValue: "—",
+      admin: {
+        description: {
+          en: "Shown on the project card. Corporate brand records do not display it, so the default is fine there.",
+          tr: "Proje kartında görünür. Kurumsal Marka kayıtlarında gösterilmez; orada olduğu gibi bırakabilirsiniz.",
+        },
+      },
       label: { en: "Summary", tr: "Özet" },
     },
     {
@@ -83,8 +96,12 @@ export const Projects: CollectionConfig = {
       name: "gradient",
       type: "text",
       required: true,
+      defaultValue: "from-brand/20 via-brand-2/20 to-brand-3/20",
       admin: {
-        description: "Tailwind gradient: from-X/20 via-Y/20 to-Z/20",
+        description: {
+          en: "Placeholder colours used when the project has no image. The default works — change it only if you know Tailwind gradient classes.",
+          tr: "Projenin görseli yoksa kartta gösterilen renk geçişi. Varsayılan hâli çalışır; Tailwind bilmiyorsanız dokunmayın.",
+        },
       },
       label: { en: "Gradient", tr: "Gradient" },
     },
