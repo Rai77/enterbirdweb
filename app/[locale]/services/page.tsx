@@ -10,6 +10,7 @@ import { getCollectionContent } from "@/lib/cms";
 import type { AppLocale } from "@/cms/localization";
 import type { ServiceDoc } from "@/components/ServicesGrid";
 import { getIcon } from "@/lib/icons";
+import { toAnchorId } from "@/lib/slug";
 
 type ServicePageDoc = ServiceDoc & {
   description: string;
@@ -69,7 +70,7 @@ function ServicesContent({ services }: { services: ServicePageDoc[] }) {
               return (
                 <div
                   key={service.slug}
-                  id={service.slug}
+                  id={toAnchorId(service.slug)}
                   className={`grid scroll-mt-28 gap-12 md:grid-cols-2 md:items-center ${
                     reverse ? "md:[&>*:first-child]:order-2" : ""
                   }`}
