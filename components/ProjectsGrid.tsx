@@ -39,8 +39,37 @@ const localProjectImages: Record<string, string> = {
   ponchico: "/projects/ponchico.jpg",
 };
 
+/**
+ * next/image yalnızca kök yolları ve next.config'de izin verilen dış alan
+ * adlarını yükleyebilir. Panele "Dış görsel URL" alanına site adresi yazmak
+ * kolay bir hata ve olduğu gibi kullanılırsa kart hiç görsel gösteremiyor —
+ * üstelik yedek görsele de sıra gelmiyor. Kullanılamayacak değerleri burada
+ * eleyip yok sayıyoruz.
+ *
+ * Yeni bir dış kaynak eklenecekse önce next.config.ts içindeki
+ * `images.remotePatterns` listesine eklenmeli, sonra buraya.
+ */
+const ALLOWED_IMAGE_HOSTS = ["images.unsplash.com"];
+
+function usableImageSrc(value: string | null | undefined): string | null {
+  const src = value?.trim();
+  if (!src) return null;
+  if (src.startsWith("/")) return src;
+  try {
+    const { protocol, hostname } = new URL(src);
+    const ok =
+      (protocol === "https:" || protocol === "http:") &&
+      ALLOWED_IMAGE_HOSTS.includes(hostname);
+    return ok ? src : null;
+  } catch {
+    // "Ponchico.com" gibi protokolsüz bir metin: adres değil, görsel hiç değil.
+    return null;
+  }
+}
+
 function resolveImageSrc(project: ProjectDoc): string | null {
-  if (project.imageExternalUrl) return project.imageExternalUrl;
+  const external = usableImageSrc(project.imageExternalUrl);
+  if (external) return external;
   if (
     project.image &&
     typeof project.image === "object" &&
