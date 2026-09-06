@@ -627,6 +627,19 @@
       ]
     }
   },
+  "glossary": {
+    "eyebrow": "Sözlük",
+    "title": "Dijital pazarlamanın",
+    "titleHighlight": "terimleri",
+    "titleSuffix": ", sade Türkçeyle.",
+    "description": "Raporlarda ve toplantılarda geçen kısaltmaların ne anlama geldiğini, neden önemli olduğunu ve nasıl yorumlanması gerektiğini kısa kısa anlatıyoruz.",
+    "metaTitle": "Dijital Terimler Sözlüğü",
+    "metaDescription": "E-ticaret, performans pazarlama, SEO ve analitik terimlerinin sade Türkçe açıklamaları.",
+    "termTitle": "{term} nedir?",
+    "backToGlossary": "Tüm terimler",
+    "related": "İlgili terimler",
+    "sources": "Kaynaklar"
+  },
   "blog": {
     "pageTitle": "Pazarlamadan AI'a, kısa ve",
     "pageTitleHighlight": "faydalı yazılar",

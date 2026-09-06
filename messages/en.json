@@ -627,6 +627,19 @@
       ]
     }
   },
+  "glossary": {
+    "eyebrow": "Glossary",
+    "title": "The language of",
+    "titleHighlight": "digital marketing",
+    "titleSuffix": ", in plain words.",
+    "description": "What the abbreviations in your reports actually mean, why they matter and how to read them.",
+    "metaTitle": "Digital Marketing Glossary",
+    "metaDescription": "Plain-language definitions of e-commerce, performance marketing, SEO and analytics terms.",
+    "termTitle": "What is {term}?",
+    "backToGlossary": "All terms",
+    "related": "Related terms",
+    "sources": "Sources"
+  },
   "blog": {
     "pageTitle": "From marketing to AI —",
     "pageTitleHighlight": "short, useful notes",

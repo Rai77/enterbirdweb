@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/site";
 import { getCollectionContent } from "@/lib/cms";
+import { glossary } from "@/lib/glossary";
 
 /**
  * /sitemap.xml — Google'a "işte tüm sayfalarım" der.
@@ -19,6 +20,7 @@ const routes = [
   { path: "/loom", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },
+  { path: "/sozluk", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
 ];
 
@@ -70,5 +72,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  return [...staticPages, ...postPages];
+  // Sözlük terimleri koddan geliyor; bunun için veritabanına gitmeye gerek yok.
+  const glossaryPages = glossary.flatMap((term) =>
+    routing.locales.map((locale) => ({
+      url: `${SITE_URL}/${locale}/sozluk/${term.slug}`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
+      alternates: {
+        languages: Object.fromEntries(
+          routing.locales.map((alt) => [
+            alt,
+            `${SITE_URL}/${alt}/sozluk/${term.slug}`,
+          ]),
+        ),
+      },
+    })),
+  );
+
+  return [...staticPages, ...postPages, ...glossaryPages];
 }
