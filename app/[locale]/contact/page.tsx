@@ -5,16 +5,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ContactForm, type ContactFormData } from "@/components/ContactForm";
 import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
-import {
-  WHATSAPP_NUMBER,
-  WHATSAPP_DISPLAY,
-  PHONE_HREF,
-  EMAIL,
-  INSTAGRAM_URL,
-  INSTAGRAM_HANDLE,
-  LINKEDIN_URL,
-  LINKEDIN_HANDLE,
-} from "@/lib/contact";
+import { getContactInfo } from "@/lib/contactInfo";
 
 import { getGlobalContent } from "@/lib/cms";
 import type { AppLocale } from "@/cms/localization";
@@ -38,10 +29,11 @@ export default async function ContactPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const contact = await getGlobalContent<ContactPageDoc>(
-    "contact-page",
-    locale as AppLocale,
-  );
+  // Telefon/e-posta/sosyal medya artık panelden geliyor (Footer → İletişim).
+  const [contact, info] = await Promise.all([
+    getGlobalContent<ContactPageDoc>("contact-page", locale as AppLocale),
+    getContactInfo(locale as AppLocale),
+  ]);
   const t = await getTranslations({ locale, namespace: "nav" });
 
   if (!contact) {
@@ -58,20 +50,20 @@ export default async function ContactPage({
     {
       icon: MessageCircle,
       label: contact.labels.whatsapp,
-      value: WHATSAPP_DISPLAY,
-      href: `https://wa.me/${WHATSAPP_NUMBER}`,
+      value: info.whatsappDisplay,
+      href: `https://wa.me/${info.whatsappNumber}`,
     },
     {
       icon: Mail,
       label: contact.labels.email,
-      value: EMAIL,
-      href: `mailto:${EMAIL}`,
+      value: info.email,
+      href: `mailto:${info.email}`,
     },
     {
       icon: Phone,
       label: contact.labels.phone,
-      value: WHATSAPP_DISPLAY,
-      href: `tel:${PHONE_HREF}`,
+      value: info.whatsappDisplay,
+      href: `tel:${info.phoneHref}`,
     },
     {
       icon: MapPin,
@@ -162,7 +154,7 @@ export default async function ContactPage({
                 </div>
                 <div className="mt-4 flex flex-col gap-3">
                   <a
-                    href={INSTAGRAM_URL}
+                    href={info.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-background/60 px-4 py-3 transition hover:border-brand-2/60 hover:bg-surface"
@@ -176,7 +168,7 @@ export default async function ContactPage({
                           Instagram
                         </span>
                         <span className="block text-sm text-foreground">
-                          {INSTAGRAM_HANDLE}
+                          {info.instagramHandle}
                         </span>
                       </span>
                     </span>
@@ -185,7 +177,7 @@ export default async function ContactPage({
                     </span>
                   </a>
                   <a
-                    href={LINKEDIN_URL}
+                    href={info.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-background/60 px-4 py-3 transition hover:border-brand-2/60 hover:bg-surface"
@@ -199,7 +191,7 @@ export default async function ContactPage({
                           LinkedIn
                         </span>
                         <span className="block text-sm text-foreground">
-                          /{LINKEDIN_HANDLE}
+                          /{info.linkedinHandle}
                         </span>
                       </span>
                     </span>
