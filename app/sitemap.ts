@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/site";
+import { getCollectionContent } from "@/lib/cms";
 
 /**
  * /sitemap.xml — Google'a "işte tüm sayfalarım" der.
@@ -21,10 +22,12 @@ const routes = [
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type BlogPostDoc = { slug: string; publishedAt?: string | null };
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  return routes.flatMap(({ path, priority, changeFrequency }) =>
+  const staticPages = routes.flatMap(({ path, priority, changeFrequency }) =>
     routing.locales.map((locale) => ({
       url: `${SITE_URL}/${locale}${path}`,
       lastModified: now,
@@ -37,4 +40,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     })),
   );
+
+  // Blog yazıları listeye elle eklenmiyor: panele yeni yazı girildiğinde
+  // sitemap'te de kendiliğinden yer alsın. Veritabanına ulaşılamazsa sayfa
+  // listesi yine de yayınlanır — sitemap'in tamamı kaybolmasın.
+  let posts: BlogPostDoc[] = [];
+  try {
+    posts = await getCollectionContent<BlogPostDoc>("blog-posts", "tr", {
+      sort: "-publishedAt",
+    });
+  } catch {
+    posts = [];
+  }
+
+  const postPages = posts.flatMap((post) =>
+    routing.locales.map((locale) => ({
+      url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: Object.fromEntries(
+          routing.locales.map((alt) => [
+            alt,
+            `${SITE_URL}/${alt}/blog/${post.slug}`,
+          ]),
+        ),
+      },
+    })),
+  );
+
+  return [...staticPages, ...postPages];
 }
