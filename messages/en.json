@@ -633,6 +633,9 @@
     "pageTitleSuffix": ".",
     "pageDescription": "We share what our team learns every day — no fluff, straight to the point and practical.",
     "readMin": "min read",
+    "backToBlog": "All posts",
+    "sources": "Sources",
+    "comingSoon": "The full text of this post is on the way.",
     "readMore": "Read the article",
     "posts": {
       "ai-satis-agentlari-shopify": {

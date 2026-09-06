@@ -633,6 +633,9 @@
     "pageTitleSuffix": ".",
     "pageDescription": "Ekibimizin günlük işlerinden öğrendiklerini fluff'sız, doğrudan ve pratik şekilde paylaşıyoruz.",
     "readMin": "dk okuma",
+    "backToBlog": "Tüm yazılar",
+    "sources": "Kaynaklar",
+    "comingSoon": "Bu yazının tam metni hazırlanıyor.",
     "readMore": "Yazıyı Oku",
     "posts": {
       "ai-satis-agentlari-shopify": {
