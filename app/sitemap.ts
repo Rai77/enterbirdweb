@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/site";
-import { getCollectionContent } from "@/lib/cms";
+import { getBlogPosts } from "@/lib/blogPosts";
 import { glossary } from "@/lib/glossary";
 
 /**
@@ -48,9 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // listesi yine de yayınlanır — sitemap'in tamamı kaybolmasın.
   let posts: BlogPostDoc[] = [];
   try {
-    posts = await getCollectionContent<BlogPostDoc>("blog-posts", "tr", {
-      sort: "-publishedAt",
-    });
+    posts = await getBlogPosts("tr");
   } catch {
     posts = [];
   }

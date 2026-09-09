@@ -6,38 +6,20 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
-import { getCollectionContent } from "@/lib/cms";
-import { getArticle } from "@/lib/blogArticles";
+import { getBlogPost, getBlogSlugs, getPostArticle } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
 import { routing } from "@/i18n/routing";
 import type { AppLocale } from "@/cms/localization";
 
-type BlogPostDoc = {
-  id: string | number;
-  slug: string;
-  title: string;
-  category: string;
-  excerpt: string;
-  readingMinutes?: number | null;
-  publishedAt: string;
-};
-
 async function findPost(slug: string, locale: string) {
-  const posts = await getCollectionContent<BlogPostDoc>(
-    "blog-posts",
-    locale as AppLocale,
-    { sort: "-publishedAt" },
-  );
-  return posts.find((p) => p.slug === slug) ?? null;
+  return getBlogPost(slug, locale as AppLocale);
 }
 
 /** Yazıları önceden üret: her yazı statik bir sayfa olarak yayınlanır. */
 export async function generateStaticParams() {
-  const posts = await getCollectionContent<BlogPostDoc>("blog-posts", "tr", {
-    sort: "-publishedAt",
-  });
+  const slugs = await getBlogSlugs();
   return routing.locales.flatMap((locale) =>
-    posts.map((post) => ({ locale, slug: post.slug })),
+    slugs.map((slug) => ({ locale, slug })),
   );
 }
 
@@ -84,7 +66,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   const t = await getTranslations({ locale, namespace: "blog" });
-  const article = getArticle(slug, locale);
+  const article = getPostArticle(slug, locale);
 
   const published = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString(

@@ -6,18 +6,8 @@ import { Section } from "@/components/Section";
 import { CTA } from "@/components/CTA";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { getCollectionContent } from "@/lib/cms";
+import { getBlogPosts } from "@/lib/blogPosts";
 import type { AppLocale } from "@/cms/localization";
-
-type BlogPostDoc = {
-  id: string | number;
-  slug: string;
-  title: string;
-  category: string;
-  excerpt: string;
-  readingMinutes?: number | null;
-  publishedAt: string;
-};
 
 export async function generateMetadata({
   params,
@@ -40,11 +30,7 @@ export default async function BlogPage({
   const t = await getTranslations({ locale, namespace: "blog" });
   const nav = await getTranslations({ locale, namespace: "nav" });
 
-  const posts = await getCollectionContent<BlogPostDoc>(
-    "blog-posts",
-    locale as AppLocale,
-    { sort: "-publishedAt" },
-  );
+  const posts = await getBlogPosts(locale as AppLocale);
 
   return (
     <>
