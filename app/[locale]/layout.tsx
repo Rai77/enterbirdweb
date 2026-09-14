@@ -53,7 +53,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/logo_tr.png",
+          url: "/logo_ai.png",
           width: 1024,
           height: 1024,
           alt: t("siteName"),
@@ -64,7 +64,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("ogDescription"),
-      images: ["/logo_tr.png"],
+      images: ["/logo_ai.png"],
     },
   };
 }

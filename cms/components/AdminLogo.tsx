@@ -6,7 +6,7 @@
 export const AdminLogo = () => (
   <div className="eb-admin-logo" aria-label="Enterbird AI Digital">
     <div className="eb-admin-logo__mark">
-      <img src="/logo_tr.png" alt="Enterbird" />
+      <img src="/logo_ai.png" alt="Enterbird AI" />
     </div>
     <div className="eb-admin-logo__wordmark">Enterbird CMS</div>
     <div className="eb-admin-logo__tag">AI Digital · İçerik Yönetimi</div>
