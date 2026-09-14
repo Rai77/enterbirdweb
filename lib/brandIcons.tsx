@@ -28,10 +28,53 @@ export function ShopifyIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   );
 }
 
+/**
+ * ABD bayrağı, resmi oranlarla (19:10). 24px'te 50 yıldız okunmadığı için
+ * yıldızlar küçük beyaz noktalar olarak çiziliyor.
+ */
+const US_STRIPE = 20 / 13;
+const US_STARS = Array.from({ length: 9 }, (_, row) =>
+  Array.from({ length: 11 }, (_, col) => col)
+    .filter((col) => (row + col) % 2 === 0)
+    .map((col) => [1.26 * (col + 1), 1.08 * (row + 1)] as const),
+).flat();
+
+export function USFlagIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 38 20"
+      role="img"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      <rect width="38" height="20" fill="#FFFFFF" />
+      {Array.from({ length: 7 }, (_, i) => (
+        <rect
+          key={i}
+          y={i * 2 * US_STRIPE}
+          width="38"
+          height={US_STRIPE}
+          fill="#B22234"
+        />
+      ))}
+      <rect width="15.2" height={7 * US_STRIPE} fill="#3C3B6E" />
+      {US_STARS.map(([cx, cy]) => (
+        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="0.42" fill="#FFFFFF" />
+      ))}
+    </svg>
+  );
+}
+
 /** Anahtarlar küçük harf — panelde "shopify" de "Shopify" de çalışsın. */
 export const brandIcons: Record<
   string,
   ComponentType<SVGProps<SVGSVGElement>>
 > = {
   shopify: ShopifyIcon,
+  usflag: USFlagIcon,
+  "us-flag": USFlagIcon,
+  usa: USFlagIcon,
+  abd: USFlagIcon,
+  amerika: USFlagIcon,
 };
