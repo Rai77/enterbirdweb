@@ -403,11 +403,47 @@ export const serviceSeo: Record<
       metaTitle: "Yapay Zekâ Otomasyonu: Chatbot ve İçerik Üretimi",
       metaDescription:
         "Müşteri hizmetleri chatbotları, otomatik ürün açıklaması, kişiselleştirilmiş öneri ve CRM akışlarıyla e-ticarette yapay zekâ otomasyonu.",
+      faq: [
+        {
+          q: "E-ticaret için yapay zekâ otomasyonu neleri kapsıyor?",
+          a: "Sık tekrarlanan işleri: müşteri sorularını yanıtlayan chatbotları, ürün açıklaması ve çeviri gibi içerik üretimini, kişiselleştirilmiş ürün önerilerini, CRM ve e-posta akışlarını ve raporlamayı. Amaç ekibin yerini almak değil, zamanını büyümeye ayırabilmesini sağlamak.",
+        },
+        {
+          q: "Chatbot müşteri hizmetlerinin yerini tutar mı?",
+          a: "Tamamen değil. Kargo durumu, iade koşulları, beden ve ürün bilgisi gibi sık gelen soruları anında yanıtlayarak ekibin yükünü azaltır. Şikâyetler ve istisnai durumlar ise bir kişiye aktarılmalı; iyi kurgulanmış bir asistan ne zaman devretmesi gerektiğini bilir.",
+        },
+        {
+          q: "Yapay zekâ ile yazılan ürün açıklamaları SEO'ya zarar verir mi?",
+          a: "Kontrolsüz ve birbirinin kopyası metinler zarar verebilir. Google içeriğin nasıl üretildiğine değil, okuyana fayda sağlayıp sağlamadığına bakar. Bu yüzden ürün bilgisinden beslenen, marka dilinde yazılmış ve yayından önce bir kişinin kontrol ettiği metinler hedeflenmeli.",
+        },
+        {
+          q: "Loom Commerce nedir?",
+          a: "Enterbird'ün Shopify mağazaları için geliştirdiği, 5 modülden oluşan yapay zekâ katmanıdır. Marka sesinde içerik üretimi, çoklu dil çevirisi ve dolandırıcılık ile bot koruması (Loom Guard) gibi özellikleri mağazaya entegre eder.",
+        },
+      ],
     },
     en: {
       metaTitle: "AI Automation for E-Commerce: Chatbots and Content",
       metaDescription:
         "E-commerce AI automation: customer service chatbots, automated product copy, personalised recommendations and CRM flows.",
+      faq: [
+        {
+          q: "What does AI automation for e-commerce cover?",
+          a: "The repetitive work: chatbots that answer customer questions, content such as product copy and translations, personalised product recommendations, CRM and email flows, and reporting. The goal is not to replace your team but to free its time for growth.",
+        },
+        {
+          q: "Can a chatbot replace customer service?",
+          a: "Not entirely. It answers frequent questions about shipping status, return policies, sizing and product details instantly, which takes load off the team. Complaints and edge cases should go to a person; a well-designed assistant knows when to hand over.",
+        },
+        {
+          q: "Does AI-written product copy hurt SEO?",
+          a: "Unchecked, near-duplicate copy can. Google looks at whether content helps the reader, not at how it was produced. Aim for copy that is fed by real product data, written in your brand voice and reviewed by a person before it goes live.",
+        },
+        {
+          q: "What is Loom Commerce?",
+          a: "Loom Commerce is Enterbird's own 5-module AI layer built for Shopify stores. It brings brand-voice content, multi-language translation and fraud and bot protection (Loom Guard) into the store.",
+        },
+      ],
     },
   },
 
@@ -416,11 +452,39 @@ export const serviceSeo: Record<
       metaTitle: "Web Tasarım ve UI/UX: Hızlı, Dönüşüm Odaklı Siteler",
       metaDescription:
         "Figma'da prototipten Next.js, Webflow ve WordPress ile canlı yayına; SEO, erişilebilirlik ve Core Web Vitals uyumlu web tasarım.",
+      faq: [
+        {
+          q: "Web sitemi hangi altyapıyla yaptırmalıyım?",
+          a: "İhtiyaca göre değişir. Next.js hız ve özel geliştirme gereken projelerde, Webflow kod bilmeden içerik yönetmek isteyen ekiplerde, WordPress geniş eklenti ekosistemi gereken sitelerde, Shopify ise e-ticarette öne çıkar. Seçimi sitenin amacı ve ekibinizin siteyi nasıl yöneteceği belirlemeli.",
+        },
+        {
+          q: "Core Web Vitals nedir, neden önemli?",
+          a: "Google'ın bir sayfanın ne kadar hızlı yüklendiğini, ne kadar çabuk tepki verdiğini ve yüklenirken içeriğin kayıp kaymadığını ölçtüğü metriklerdir. Arama sıralamasında bir sinyal olarak kullanılır ve dönüşümü doğrudan etkiler: yavaş açılan sayfayı ziyaretçi beklemeden terk eder.",
+        },
+        {
+          q: "Tasarım süreci nasıl ilerliyor?",
+          a: "UX araştırması ve kullanıcı yolculuğu haritasıyla başlar, Figma'da wireframe ve prototiple devam eder. Onaylanan tasarım seçilen altyapıda koda dökülüp yayına alınır. Yayından sonra heatmap ve oturum kayıtlarıyla ziyaretçilerin nerede takıldığı izlenir ve tasarım bu veriyle iyileştirilir.",
+        },
+      ],
     },
     en: {
       metaTitle: "Web & UI/UX Design: Fast, Conversion-Focused Websites",
       metaDescription:
         "From Figma prototypes to live Next.js, Webflow and WordPress sites, built to SEO, accessibility and Core Web Vitals standards.",
+      faq: [
+        {
+          q: "Which platform should my website be built on?",
+          a: "It depends on the need. Next.js suits projects that need speed and custom development, Webflow suits teams that want to manage content without code, WordPress suits sites that rely on a large plugin ecosystem, and Shopify leads for e-commerce. The site's purpose and how your team will run it should decide.",
+        },
+        {
+          q: "What are Core Web Vitals and why do they matter?",
+          a: "They are Google's metrics for how fast a page loads, how quickly it responds and whether content shifts around while loading. Google uses them as a ranking signal, and they affect conversion directly: visitors leave slow pages before they finish loading.",
+        },
+        {
+          q: "How does the design process work?",
+          a: "It starts with UX research and user journey mapping, then moves to wireframes and prototypes in Figma. The approved design is built on the chosen platform and launched. After launch, heatmaps and session recordings show where visitors get stuck, and the design is improved with that data.",
+        },
+      ],
     },
   },
 
@@ -429,11 +493,39 @@ export const serviceSeo: Record<
       metaTitle: "Sosyal Medya Yönetimi ve E-posta Otomasyonu",
       metaDescription:
         "İçerik takvimi, Reels ve TikTok üretimi, topluluk yönetimi ve influencer iş birlikleriyle birlikte terk edilen sepet ve geri kazanım e-posta/SMS akışları.",
+      faq: [
+        {
+          q: "Sosyal medya yönetimi hangi işleri kapsıyor?",
+          a: "İçerik stratejisi ve editoryal takvim, marka dili ve görsel bütünlük, Reels, TikTok, fotoğraf ve video üretimi, yorum ve mesaj yönetimi ile influencer iş birlikleri. Amaç rastgele paylaşım değil, satışa ve markanın hatırlanmasına hizmet eden düzenli bir iletişim.",
+        },
+        {
+          q: "Terk edilen sepet e-postası gerçekten işe yarar mı?",
+          a: "Evet, e-ticaretteki en verimli otomasyonlardan biridir, çünkü satın almaya çok yaklaşmış kişiye ulaşır. Etkisi zamanlamaya ve içeriğe bağlıdır: sepetteki ürünü hatırlatan ilk mesajın ardından soruları gideren ya da güven veren takip mesajları, genellikle tek bir mesajdan daha iyi sonuç verir.",
+        },
+        {
+          q: "RFM segmentasyonu nedir?",
+          a: "Müşterileri son alışveriş tarihine (Recency), alışveriş sıklığına (Frequency) ve harcadıkları tutara (Monetary) göre gruplamaktır. Böylece sadık müşteriye, uzun süredir alışveriş yapmayana ve yeni müşteriye aynı kampanya yerine her birine uygun mesaj gönderilir.",
+        },
+      ],
     },
     en: {
       metaTitle: "Social Media Management and Email Automation",
       metaDescription:
         "Content calendars, Reels and TikTok production, community management and influencer work, plus abandoned-cart and win-back email/SMS flows.",
+      faq: [
+        {
+          q: "What does social media management include?",
+          a: "Content strategy and an editorial calendar, brand voice and visual consistency, Reels, TikTok, photo and video production, comment and message handling, and influencer collaborations. The goal is not random posting but consistent communication that drives sales and keeps the brand top of mind.",
+        },
+        {
+          q: "Do abandoned-cart emails really work?",
+          a: "Yes, they are among the most efficient e-commerce automations because they reach people who were very close to buying. Results depend on timing and content: a first reminder of the items in the cart, followed by messages that answer questions or build trust, usually outperforms a single email.",
+        },
+        {
+          q: "What is RFM segmentation?",
+          a: "It groups customers by how recently they bought (Recency), how often they buy (Frequency) and how much they spend (Monetary). Instead of one campaign for everyone, loyal customers, lapsed customers and new customers each get a message that fits them.",
+        },
+      ],
     },
   },
 
@@ -442,11 +534,39 @@ export const serviceSeo: Record<
       metaTitle: "E-Ticaret Operasyon ve Lojistik Yönetimi",
       metaDescription:
         "Sipariş yönetimi, kargo anlaşmaları, depo ve fulfillment, iade/değişim süreçleri ve müşteri hizmetleri prosedürleriyle e-ticaret operasyonu.",
+      faq: [
+        {
+          q: "E-ticaret operasyonu neden bu kadar önemli?",
+          a: "Müşteri siteden memnun ayrılsa bile geç gelen kargo, yanlış ürün ya da zor bir iade süreci onu bir daha geri getirmez ve çoğu zaman olumsuz yoruma dönüşür. Tekrar eden satın almalar ve iyi yorumlar büyük ölçüde satın alma sonrasındaki deneyimle kazanılır.",
+        },
+        {
+          q: "Hangi kargo firmalarıyla anlaşma kurabiliyorsunuz?",
+          a: "Aras, MNG, Yurtiçi ve Sürat gibi firmalarla anlaşma süreçlerini yönetiyoruz. Doğru seçim; gönderi hacminize, ürünlerinizin ağırlık ve boyutuna, teslimat bölgelerinize ve iade oranınıza göre yapılır. Birden fazla firmayla çalışmak maliyet ve teslimat süresinde esneklik sağlar.",
+        },
+        {
+          q: "Fulfillment hizmetine ne zaman geçmeliyim?",
+          a: "Sipariş hacmi arttığında ve paketleme ile depo işleri ekibin büyümeye zaman ayırmasını engellemeye başladığında. Depolama, paketleme ve gönderimi bir fulfillment firmasına devretmek sabit maliyeti değişkene çevirir; ancak stok senkronizasyonu ve iade akışı baştan doğru kurulmalıdır.",
+        },
+      ],
     },
     en: {
       metaTitle: "E-Commerce Operations and Logistics Management",
       metaDescription:
         "E-commerce operations: order management, shipping agreements, warehousing and fulfilment, returns and exchanges, and customer service procedures.",
+      faq: [
+        {
+          q: "Why do e-commerce operations matter so much?",
+          a: "Even if a customer enjoyed your site, a late delivery, the wrong item or a painful return means they will not come back, and it often turns into a negative review. Repeat purchases and good reviews are largely won by the experience after checkout.",
+        },
+        {
+          q: "Which carriers can you set up agreements with?",
+          a: "We manage agreements with carriers such as Aras, MNG, Yurtiçi and Sürat. The right choice depends on your shipping volume, product weight and size, delivery regions and return rate. Working with more than one carrier gives flexibility on cost and delivery time.",
+        },
+        {
+          q: "When should I move to a fulfilment provider?",
+          a: "When order volume grows and packing and warehouse work start keeping the team from growth work. Handing storage, packing and shipping to a fulfilment provider turns fixed costs into variable ones, but inventory sync and the returns flow need to be set up properly from day one.",
+        },
+      ],
     },
   },
 
@@ -455,11 +575,39 @@ export const serviceSeo: Record<
       metaTitle: "Marka Stratejisi, Konumlandırma ve Büyüme Danışmanlığı",
       metaDescription:
         "Marka konumlandırma, hedef kitle ve rakip analizi, fiyatlandırma stratejisi, sadakat programları ve yeni pazar açılım planı.",
+      faq: [
+        {
+          q: "Marka konumlandırma nedir?",
+          a: "Markanızın rakiplerine göre müşterinin zihninde nerede durduğunu belirlemektir: premium mu, ulaşılabilir mi, niş mi? Konumlandırma; fiyatlandırmadan görsel dile, hangi kanalda reklam verileceğinden hangi müşteriye odaklanılacağına kadar diğer bütün kararların çerçevesini çizer.",
+        },
+        {
+          q: "Fiyatlandırma stratejisi nasıl belirlenir?",
+          a: "Üç şey birlikte değerlendirilir: rakip fiyatları, reklam, kargo ve iade dahil ürün başına gerçek kâr ve markanın konumlandırması. Sadece rakibe göre fiyat vermek kârı eritir, sadece maliyete göre fiyat vermek ise pazarın ödemeye hazır olduğu tutarı kaçırabilir. Kampanya fiyatları da markayı ucuzlatmadan bu çerçevede planlanmalıdır.",
+        },
+        {
+          q: "Yurt dışı pazara açılmadan önce ne yapmalıyım?",
+          a: "Önce hangi pazarda talep olduğunu, oradaki rakiplerin fiyatlarını ve ürününüzün gümrük, kargo ve iade maliyetini hesaplayın. Ardından o pazar için satış kanalına karar verin: kendi siteniz mi, Amazon ve Etsy gibi pazaryerleri mi? Küçük bir test bütçesiyle başlayıp veriye göre büyütmek riski azaltır.",
+        },
+      ],
     },
     en: {
       metaTitle: "Brand Strategy, Positioning and Growth Consulting",
       metaDescription:
         "Brand positioning, audience and competitor analysis, pricing strategy, loyalty programmes and new market expansion planning.",
+      faq: [
+        {
+          q: "What is brand positioning?",
+          a: "It defines where your brand sits in the customer's mind relative to competitors: premium, accessible or niche. Positioning frames every other decision, from pricing and visual identity to which channels you advertise on and which customers you focus on.",
+        },
+        {
+          q: "How do you set a pricing strategy?",
+          a: "Three things are weighed together: competitor prices, true profit per product including advertising, shipping and returns, and the brand's positioning. Pricing only against competitors erodes margin; pricing only on cost can miss what the market is willing to pay. Campaign prices should be planned within the same frame so they do not cheapen the brand.",
+        },
+        {
+          q: "What should I do before expanding into a foreign market?",
+          a: "First check where demand exists, how competitors price there and what customs, shipping and returns will cost for your product. Then choose the sales channel for that market: your own store or marketplaces such as Amazon and Etsy. Starting with a small test budget and scaling on data reduces the risk.",
+        },
+      ],
     },
   },
 
@@ -468,11 +616,39 @@ export const serviceSeo: Record<
       metaTitle: "Stok ve Ürün Strateji Yönetimi",
       metaDescription:
         "Haftalık satış verisiyle stok planlama, ölü ürün tespiti, ürün performans takibi, yeni ürün lansmanı ve sezonluk ürün planlaması.",
+      faq: [
+        {
+          q: "Ölü ürün nedir, neden önemlidir?",
+          a: "Belirli bir süredir satılmayan ya da çok yavaş satılan üründür. Depoda yer kaplar, sermayeyi bağlar ve çoğu zaman sezon geçtikçe değer kaybeder. Erken tespit edilirse kampanya, paket satış ya da farklı bir kanalda satışla paraya çevrilebilir.",
+        },
+        {
+          q: "Ne kadar stok tutacağıma nasıl karar veririm?",
+          a: "Haftalık satış hızına, tedarik süresine ve yaklaşan sezon ya da kampanyalara bakarak. Fazla stok nakit akışını sıkıştırır; az stok ise en çok satan ürünün tükenmesiyle hem satış hem reklam bütçesi kaybettirir. Hedef, her ürün için bu iki riski dengeleyen bir sipariş seviyesi belirlemektir.",
+        },
+        {
+          q: "Yeni ürün lansmanında stok nasıl planlanır?",
+          a: "Geçmiş satış verisi olmadığı için benzer ürünlerin performansı referans alınır ve ilk sipariş temkinli tutulur. Lansmandan sonraki ilk haftaların satış hızı izlenir, tekrar sipariş kararı bu veriye göre verilir.",
+        },
+      ],
     },
     en: {
       metaTitle: "Inventory and Product Strategy Management",
       metaDescription:
         "Inventory planning from weekly sales data, dead-stock detection, product performance tracking, new product launches and seasonal planning.",
+      faq: [
+        {
+          q: "What is dead stock and why does it matter?",
+          a: "Dead stock is inventory that has not sold, or sells very slowly, over a set period. It takes up space, ties up capital and often loses value as the season passes. Spotted early, it can be turned into cash through campaigns, bundles or another sales channel.",
+        },
+        {
+          q: "How do I decide how much stock to hold?",
+          a: "By looking at weekly sales velocity, supplier lead time and upcoming seasons or campaigns. Too much stock squeezes cash flow; too little means your best sellers run out, costing both sales and ad spend. The goal is a reorder level for each product that balances those two risks.",
+        },
+        {
+          q: "How should stock be planned for a new product launch?",
+          a: "With no sales history, similar products serve as the reference and the first order is kept cautious. Sales velocity in the first weeks after launch is tracked, and the reorder decision is made on that data.",
+        },
+      ],
       title: "Inventory & Product Strategy",
       short:
         "We cut inventory costs and capture more sales by offering the right product, in the right quantity, at the right time.",
