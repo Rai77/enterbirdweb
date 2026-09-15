@@ -264,12 +264,38 @@
       "text": "Veriyi okuyup haftalık iterasyonlarla performansı sürekli yukarı taşıyoruz."
     }
   },
+  "seo": {
+    "services": {
+      "title": "Dijital Pazarlama ve E-Ticaret Hizmetleri",
+      "description": "E-ticaret sitesi kurulumu, performans pazarlama, SEO, pazaryeri yönetimi, e-ihracat ve Amerika'da şirket kurulumu: markanızı büyüten hizmetler tek çatı altında."
+    },
+    "about": {
+      "title": "Hakkımızda: AI Destekli Dijital Ajans",
+      "description": "2018'den beri İstanbul'dan markaların e-ticaret, performans pazarlama ve dijital büyüme süreçlerini yöneten Enterbird ekibini tanıyın."
+    },
+    "blog": {
+      "title": "Blog: E-Ticaret, Reklam ve Yapay Zekâ Yazıları",
+      "description": "Performans pazarlama, SEO, e-ticaret ve yapay zekâ üzerine ekibimizin sahada öğrendiklerini paylaştığı kısa ve pratik yazılar."
+    },
+    "contact": {
+      "title": "İletişim: Ücretsiz Strateji Görüşmesi",
+      "description": "Formu doldurun, 24 saat içinde size dönelim. E-ticaret, reklam ve dijital büyüme hedefleriniz için ücretsiz bir strateji görüşmesi planlayalım."
+    },
+    "work": {
+      "title": "Referanslar ve Projeler",
+      "description": "Butik e-ticaret mağazalarından kurumsal sitelere, kurduğumuz, lanse ettiğimiz ve büyüttüğümüz markalardan bir seçki."
+    }
+  },
   "services": {
     "pageTitle": "Markanı büyütecek",
     "pageTitleHighlight": "tüm uzmanlıklar",
     "pageTitleSuffix": "tek çatı altında.",
     "pageDescription": "Aşağıdaki hizmetlerin hepsi birbiriyle konuşur. Bir tanesini de alabilirsin, hepsini paket olarak da. Sana doğru gelen yere ekibini buraya kuruyoruz.",
     "bullets": "İçeriği",
+    "detailLink": "Hizmet detayları",
+    "backToServices": "Tüm hizmetler",
+    "faqTitle": "Sık sorulan sorular",
+    "otherServices": "Diğer hizmetlerimiz",
     "items": {
       "ecommerce": {
         "title": "E-Ticaret Altyapısı",

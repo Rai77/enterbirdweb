@@ -17,6 +17,19 @@ import { ArrowRight } from "lucide-react";
 import { getGlobalContent, getCollectionContent } from "@/lib/cms";
 import type { AppLocale } from "@/cms/localization";
 import type { HomePageDoc, CTABlockDoc } from "@/cms/types/globals";
+import type { Metadata } from "next";
+import { localizedAlternates } from "@/lib/seo";
+
+// Başlık ve açıklama düzenden (layout) geliyor; ana sayfaya yalnızca kanonik
+// adres ve dil alternatifleri ekleniyor.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: localizedAlternates("", locale) };
+}
 
 function withHighlight(text: string, highlight: string) {
   if (!highlight || !text.includes(highlight)) return <>{text}</>;

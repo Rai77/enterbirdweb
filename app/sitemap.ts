@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/site";
 import { getBlogPosts } from "@/lib/blogPosts";
+import { getServices } from "@/lib/services";
 import { glossary } from "@/lib/glossary";
 
 /**
@@ -26,26 +27,46 @@ const routes = [
 
 type BlogPostDoc = { slug: string; publishedAt?: string | null };
 
+/** Bir yolu tüm dillerde, birbirine bağlı olarak listeler. */
+function inAllLocales(
+  path: string,
+  entry: Omit<MetadataRoute.Sitemap[number], "url" | "alternates">,
+): MetadataRoute.Sitemap {
+  return routing.locales.map((locale) => ({
+    ...entry,
+    url: `${SITE_URL}/${locale}${path}`,
+    alternates: {
+      languages: Object.fromEntries(
+        routing.locales.map((alt) => [alt, `${SITE_URL}/${alt}${path}`]),
+      ),
+    },
+  }));
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticPages = routes.flatMap(({ path, priority, changeFrequency }) =>
-    routing.locales.map((locale) => ({
-      url: `${SITE_URL}/${locale}${path}`,
-      lastModified: now,
-      changeFrequency,
-      priority,
-      alternates: {
-        languages: Object.fromEntries(
-          routing.locales.map((alt) => [alt, `${SITE_URL}/${alt}${path}`]),
-        ),
-      },
-    })),
+    inAllLocales(path, { lastModified: now, changeFrequency, priority }),
   );
 
-  // Blog yazıları listeye elle eklenmiyor: panele yeni yazı girildiğinde
-  // sitemap'te de kendiliğinden yer alsın. Veritabanına ulaşılamazsa sayfa
-  // listesi yine de yayınlanır — sitemap'in tamamı kaybolmasın.
+  // Hizmet ve blog sayfaları panelden geliyor. Veritabanına ulaşılamazsa
+  // sayfa listesi yine de yayınlanır — sitemap'in tamamı kaybolmasın.
+  let serviceAnchors: string[] = [];
+  try {
+    serviceAnchors = (await getServices("tr")).map((s) => s.anchor);
+  } catch {
+    serviceAnchors = [];
+  }
+
+  const servicePages = serviceAnchors.flatMap((anchor) =>
+    inAllLocales(`/services/${anchor}`, {
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    }),
+  );
+
   let posts: BlogPostDoc[] = [];
   try {
     posts = await getBlogPosts("tr");
@@ -54,39 +75,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const postPages = posts.flatMap((post) =>
-    routing.locales.map((locale) => ({
-      url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+    inAllLocales(`/blog/${post.slug}`, {
       lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
-      changeFrequency: "monthly" as const,
+      changeFrequency: "monthly",
       priority: 0.6,
-      alternates: {
-        languages: Object.fromEntries(
-          routing.locales.map((alt) => [
-            alt,
-            `${SITE_URL}/${alt}/blog/${post.slug}`,
-          ]),
-        ),
-      },
-    })),
+    }),
   );
 
-  // Sözlük terimleri koddan geliyor; bunun için veritabanına gitmeye gerek yok.
-  const glossaryPages = glossary.flatMap((term) =>
-    routing.locales.map((locale) => ({
-      url: `${SITE_URL}/${locale}/sozluk/${term.slug}`,
-      lastModified: now,
-      changeFrequency: "yearly" as const,
-      priority: 0.5,
-      alternates: {
-        languages: Object.fromEntries(
-          routing.locales.map((alt) => [
-            alt,
-            `${SITE_URL}/${alt}/sozluk/${term.slug}`,
-          ]),
-        ),
-      },
-    })),
-  );
+  // Sözlük terimleri yalnızca Türkçe yazıldı; İngilizce adres aynı metni
+  // gösterdiği için listeye sadece Türkçe sürüm giriyor.
+  const glossaryPages: MetadataRoute.Sitemap = glossary.map((term) => ({
+    url: `${SITE_URL}/tr/sozluk/${term.slug}`,
+    lastModified: now,
+    changeFrequency: "yearly",
+    priority: 0.5,
+  }));
 
-  return [...staticPages, ...postPages, ...glossaryPages];
+  return [...staticPages, ...servicePages, ...postPages, ...glossaryPages];
 }

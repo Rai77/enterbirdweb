@@ -8,3 +8,21 @@
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://enterbird.com"
 ).replace(/\/$/, "");
+
+/**
+ * Google Analytics 4 ölçüm kimliği, ör. "G-AB12CD34EF".
+ *
+ * Gizli bir bilgi değil (sayfanın kaynağında zaten görünür), bu yüzden koda
+ * yazılabilir. Analytics → Yönetici → Veri akışları → web akışı → "Ölçüm
+ * kimliği". Boş kaldıkça ölçüm kodu basılmaz.
+ */
+export const GA_MEASUREMENT_ID = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
+
+/**
+ * Google Search Console "HTML etiketi" doğrulama kodu: etiketteki
+ * content="..." değeri. Doğrulamadan sonra da silinmemeli; silinirse
+ * Search Console erişimi düşer.
+ */
+export const GOOGLE_SITE_VERIFICATION = (
+  process.env.GOOGLE_SITE_VERIFICATION ?? ""
+).trim();

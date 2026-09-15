@@ -9,7 +9,10 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeScript } from "@/components/ThemeScript";
+import { GoogleAnalytics } from "@/components/Analytics";
 import { routing } from "@/i18n/routing";
+import { SITE_URL, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
+import { EMAIL, PHONE_HREF, INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/contact";
 
 // İçerik CMS'ten geldiği için sayfalar her istekte taze render edilir.
 // Aksi halde sayfalar build anında statik dondurulur ve editörün panelden
@@ -44,6 +47,9 @@ export async function generateMetadata({
     },
     description: t("description"),
     metadataBase: new URL("https://enterbird.com"),
+    verification: GOOGLE_SITE_VERIFICATION
+      ? { google: GOOGLE_SITE_VERIFICATION }
+      : undefined,
     openGraph: {
       title: t("title"),
       description: t("ogDescription"),
@@ -82,6 +88,36 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "meta" });
+
+  // Şirketin kim olduğunu arama motorlarına ve yapay zekâ araçlarına anlatan
+  // kimlik kartı. Hizmet sayfaları "sağlayıcı" olarak buradaki @id'ye bağlanır.
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
+        name: "Enterbird",
+        alternateName: "Enterbird AI Digital",
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo_ai.png`,
+        description: t("description"),
+        email: EMAIL,
+        telephone: PHONE_HREF,
+        sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: t("siteName"),
+        inLanguage: locale,
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      },
+    ],
+  };
+
   return (
     <html
       lang={locale}
@@ -92,6 +128,12 @@ export default async function LocaleLayout({
         <ThemeScript />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         <ThemeProvider>
           <NextIntlClientProvider>
             <Header locale={locale} />
@@ -100,6 +142,7 @@ export default async function LocaleLayout({
             <WhatsAppButton />
           </NextIntlClientProvider>
         </ThemeProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );

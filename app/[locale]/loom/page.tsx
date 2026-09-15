@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizedAlternates } from "@/lib/seo";
 import { Fragment } from "react";
 import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/Container";
@@ -36,6 +37,7 @@ export async function generateMetadata({
   return {
     title: doc?.meta?.title ?? "Loom Commerce",
     description: doc?.meta?.description ?? undefined,
+    alternates: localizedAlternates("/loom", locale),
   };
 }
 

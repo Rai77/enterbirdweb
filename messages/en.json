@@ -264,12 +264,38 @@
       "text": "We read the data and push performance up with weekly iterations."
     }
   },
+  "seo": {
+    "services": {
+      "title": "Digital Marketing and E-Commerce Services",
+      "description": "E-commerce store development, performance marketing, SEO, marketplace management, e-export and US company formation: the services that grow your brand, under one roof."
+    },
+    "about": {
+      "title": "About Us: An AI-Powered Digital Agency",
+      "description": "Meet Enterbird, the Istanbul team running e-commerce, performance marketing and digital growth for brands since 2018."
+    },
+    "blog": {
+      "title": "Blog: E-Commerce, Advertising and AI",
+      "description": "Short, practical notes from our team on performance marketing, SEO, e-commerce and AI, based on what we learn in client work."
+    },
+    "contact": {
+      "title": "Contact: Book a Free Strategy Call",
+      "description": "Fill in the form and we will get back to you within 24 hours. Let's plan a free strategy call for your e-commerce, advertising and growth goals."
+    },
+    "work": {
+      "title": "Work and Case Studies",
+      "description": "From boutique e-commerce stores to corporate sites, a selection of the brands we have built, launched and scaled."
+    }
+  },
   "services": {
     "pageTitle": "All the expertise",
     "pageTitleHighlight": "your brand needs",
     "pageTitleSuffix": "under one roof.",
     "pageDescription": "Every service below talks to the others. You can pick one or take them all as a bundle — we'll place the right team exactly where you need it.",
     "bullets": "What's included",
+    "detailLink": "Service details",
+    "backToServices": "All services",
+    "faqTitle": "Frequently asked questions",
+    "otherServices": "Our other services",
     "items": {
       "ecommerce": {
         "title": "E-Commerce Infrastructure",

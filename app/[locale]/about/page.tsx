@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/Container";
@@ -18,8 +19,13 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "nav" });
-  return { title: t("about") };
+  const seo = await getTranslations({ locale, namespace: "seo" });
+  return pageMetadata({
+    locale,
+    path: "/about",
+    title: seo("about.title"),
+    description: seo("about.description"),
+  });
 }
 
 // Team member shape — mirrored from `cms/collections/TeamMembers.ts`.

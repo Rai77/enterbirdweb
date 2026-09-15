@@ -7,6 +7,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
 import { glossary, getTerm } from "@/lib/glossary";
+import { localizedAlternates } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { routing } from "@/i18n/routing";
 
@@ -32,15 +33,9 @@ export async function generateMetadata({
     // "ROAS nedir?" biçimi, insanların gerçekten arattığı sorgu.
     title: t("termTitle", { term: term.term }),
     description: term.short,
-    alternates: {
-      canonical: url,
-      languages: Object.fromEntries(
-        routing.locales.map((alt) => [
-          alt,
-          `${SITE_URL}/${alt}/sozluk/${slug}`,
-        ]),
-      ),
-    },
+    // Terimler yalnızca Türkçe yazıldı. İngilizce adres aynı metni gösterdiği
+    // için kopya sayılmasın diye kanonik her zaman Türkçe sürüm.
+    alternates: localizedAlternates(`/sozluk/${slug}`, locale, ["tr"]),
     openGraph: {
       type: "article",
       title: t("termTitle", { term: term.term }),
@@ -72,9 +67,9 @@ export default async function GlossaryTermPage({
     name: term.term,
     alternateName: term.full,
     description: term.short,
-    inDefinedTermSet: `${SITE_URL}/${locale}/sozluk`,
-    url: `${SITE_URL}/${locale}/sozluk/${slug}`,
-    inLanguage: locale,
+    inDefinedTermSet: `${SITE_URL}/tr/sozluk`,
+    url: `${SITE_URL}/tr/sozluk/${slug}`,
+    inLanguage: "tr",
   };
 
   return (
