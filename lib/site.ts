@@ -14,9 +14,11 @@ export const SITE_URL = (
  *
  * Gizli bir bilgi değil (sayfanın kaynağında zaten görünür), bu yüzden koda
  * yazılabilir. Analytics → Yönetici → Veri akışları → web akışı → "Ölçüm
- * kimliği". Boş kaldıkça ölçüm kodu basılmaz.
+ * kimliği". Vercel'de NEXT_PUBLIC_GA_ID girilirse o kullanılır.
  */
-export const GA_MEASUREMENT_ID = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim();
+export const GA_MEASUREMENT_ID = (
+  process.env.NEXT_PUBLIC_GA_ID || "G-8JVKM65GBH"
+).trim();
 
 /**
  * Google Search Console "HTML etiketi" doğrulama kodu: etiketteki
