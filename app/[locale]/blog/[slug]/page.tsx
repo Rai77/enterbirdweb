@@ -8,6 +8,7 @@ import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
 import { getBlogPost, getBlogSlugs, getPostArticle } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
+import { localizedAlternates } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 import type { AppLocale } from "@/cms/localization";
 
@@ -38,12 +39,7 @@ export async function generateMetadata({
     description: post.excerpt,
     // Yazı sayfaları için kanonik ve dil alternatiflerini burada veriyoruz;
     // aynı yazının iki dili birbirinin kopyası sayılmasın.
-    alternates: {
-      canonical: url,
-      languages: Object.fromEntries(
-        routing.locales.map((alt) => [alt, `${SITE_URL}/${alt}/blog/${slug}`]),
-      ),
-    },
+    alternates: localizedAlternates(`/blog/${slug}`, locale),
     openGraph: {
       type: "article",
       title: post.title,

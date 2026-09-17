@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  // www.enterbird.com ayrı bir site gibi aynı sayfaları gösteriyordu; Google
+  // bunları kopya sayıyordu. Tüm www adresleri kalıcı olarak ana alana gider.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.enterbird.com" }],
+        destination: "https://enterbird.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

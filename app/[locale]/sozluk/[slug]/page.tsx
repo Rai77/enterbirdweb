@@ -128,6 +128,7 @@ export default async function GlossaryTermPage({
                   <Link
                     key={item.slug}
                     href={`/sozluk/${item.slug}`}
+                    locale="tr"
                     className="rounded-full border border-border bg-surface/50 px-4 py-2 text-sm text-foreground/80 transition hover:border-brand-2/60 hover:text-foreground"
                   >
                     {item.term}

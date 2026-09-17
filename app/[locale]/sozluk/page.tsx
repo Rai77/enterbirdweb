@@ -54,7 +54,7 @@ export default async function GlossaryPage({
       "@type": "DefinedTerm",
       name: term.term,
       description: term.short,
-      url: `${SITE_URL}/${locale}/sozluk/${term.slug}`,
+      url: `${SITE_URL}/tr/sozluk/${term.slug}`,
     })),
   };
 
@@ -96,6 +96,7 @@ export default async function GlossaryPage({
                     <Link
                       key={term.slug}
                       href={`/sozluk/${term.slug}`}
+                      locale="tr"
                       className="group relative flex flex-col bg-background/80 p-6 transition hover:bg-surface"
                     >
                       <div className="flex items-start justify-between gap-3">
