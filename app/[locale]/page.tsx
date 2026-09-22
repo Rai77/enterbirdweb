@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Section, SectionHeading } from "@/components/Section";
@@ -10,6 +10,7 @@ import { Process } from "@/components/Process";
 import { CTA } from "@/components/CTA";
 import { LoomTeaser } from "@/components/LoomTeaser";
 import { Testimonials, type TestimonialDoc } from "@/components/Testimonials";
+import { Partners } from "@/components/Partners";
 import { Reveal } from "@/components/Reveal";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
@@ -52,6 +53,8 @@ export default async function Home({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const tHome = await getTranslations({ locale, namespace: "home" });
 
   const [home, cta, services, projects, testimonials] = await Promise.all([
     getGlobalContent<HomePageDoc>("home-page", locale as AppLocale),
@@ -195,6 +198,26 @@ export default async function Home({
           </Container>
         </Section>
       )}
+
+      {/* Partnerlikler: metinleri dil dosyasından, listesi content/partners.ts'ten
+          gelir. Panelde karşılığı yok — partner sayısı az ve nadiren değişiyor. */}
+      <Section>
+        <Container size="wide">
+          <Reveal>
+            <SectionHeading
+              eyebrow={tHome("partners.eyebrow")}
+              title={withHighlight(
+                tHome("partners.title"),
+                tHome("partners.titleHighlight"),
+              )}
+              description={tHome("partners.description")}
+            />
+          </Reveal>
+          <Reveal delay={0.1} className="mt-14">
+            <Partners locale={locale} />
+          </Reveal>
+        </Container>
+      </Section>
 
       <CTA data={cta ?? undefined} />
     </>
