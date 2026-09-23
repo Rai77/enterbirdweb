@@ -26,8 +26,8 @@ export const partners: Partner[] = [
     name: "Adira",
     url: "https://www.adira.com.tr/",
     logo: "/logos/adira.png",
-    logoWidth: 832,
-    logoHeight: 500,
+    logoWidth: 848,
+    logoHeight: 381,
     tr: {
       role: "Bilgi Teknolojileri & Altyapı",
       description:

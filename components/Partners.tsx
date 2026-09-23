@@ -44,8 +44,8 @@ export function Partners({ locale }: { locale: string }) {
                 alt={partner.name}
                 width={partner.logoWidth}
                 height={partner.logoHeight}
-                sizes="200px"
-                className="h-auto w-[168px] rounded-xl"
+                sizes="220px"
+                className="h-auto w-[200px] rounded-xl"
               />
               <ArrowUpRight className="h-4 w-4 shrink-0 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
             </div>
