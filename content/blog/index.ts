@@ -11,9 +11,11 @@
  */
 import type { RepoPost } from "./types";
 
+import { post as iadeOraniniDusurmekUrunSayfasi } from "./iade-oranini-dusurmek-urun-sayfasi";
 import { post as performanceMax2026Kontroller } from "./performance-max-2026-kontroller";
 
 export const repoPosts: RepoPost[] = [
+  iadeOraniniDusurmekUrunSayfasi,
   performanceMax2026Kontroller,
   // [liste] — yeni yazılar buraya
 ];

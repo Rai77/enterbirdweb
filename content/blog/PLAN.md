@@ -11,7 +11,6 @@ buraya eklenir.
 
 ## Sıradakiler
 
-- [ ] E-ticarette iade oranını düşürmek: ürün sayfasındaki hangi eksik iadeyi tetikliyor
 - [ ] WhatsApp Business API ile satış: otomasyon nerede işe yarıyor, nerede müşteriyi kaçırıyor
 - [ ] Shopify'da yurt dışına satış: Markets, para birimi ve kargo kurgusu
 - [ ] Çerezsiz ölçümleme: sunucu taraflı takip ve first-party veri
@@ -26,4 +25,5 @@ buraya eklenir.
 
 ## Yayınlananlar
 
+- [x] İade oranını düşürmek: ürün sayfası — 2026-10-12 — `iade-oranini-dusurmek-urun-sayfasi`
 - [x] Performance Max 2026 kontrolleri — 2026-09-09 — `performance-max-2026-kontroller`
