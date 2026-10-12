@@ -7,7 +7,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
 import { glossary, getTerm } from "@/lib/glossary";
-import { localizedAlternates } from "@/lib/seo";
+import { localizedAlternates, jsonLdHtml } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { routing } from "@/i18n/routing";
 
@@ -76,7 +76,7 @@ export default async function GlossaryTermPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       <Section className="!pb-10 !pt-28 sm:!pt-36">

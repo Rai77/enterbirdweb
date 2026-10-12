@@ -8,6 +8,7 @@ import { Section } from "@/components/Section";
 import { glossary, groupByCategory } from "@/lib/glossary";
 import { SITE_URL } from "@/lib/site";
 import { routing } from "@/i18n/routing";
+import { jsonLdHtml } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -62,7 +63,7 @@ export default async function GlossaryPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       <PageHeader

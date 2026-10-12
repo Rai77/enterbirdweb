@@ -72,3 +72,12 @@ export function pageMetadata({
     },
   };
 }
+
+/**
+ * Yapılandırılmış veriyi <script> etiketine güvenle gömer. Panelden gelen bir
+ * metinde "</script>" geçerse etiketi kapatıp sayfaya kod sokamasın diye "<"
+ * kaçırılır; JSON olarak anlamı değişmez.
+ */
+export function jsonLdHtml(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\u003c");
+}

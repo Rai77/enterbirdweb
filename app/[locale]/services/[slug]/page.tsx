@@ -9,7 +9,7 @@ import { Section } from "@/components/Section";
 import { CTA } from "@/components/CTA";
 import { getIcon } from "@/lib/icons";
 import { getServices } from "@/lib/services";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, jsonLdHtml } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import type { AppLocale } from "@/cms/localization";
 
@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: { params: Params }) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       <Section className="!pb-12 !pt-28 sm:!pt-36">

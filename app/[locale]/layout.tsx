@@ -13,6 +13,7 @@ import { GoogleAnalytics } from "@/components/Analytics";
 import { routing } from "@/i18n/routing";
 import { SITE_URL, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import { EMAIL, PHONE_HREF, INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/contact";
+import { jsonLdHtml } from "@/lib/seo";
 
 // Sayfalar önbellekten sunulur ve en geç 10 dakikada bir arka planda yenilenir.
 // Panelde yapılan değişiklikler beklemeden görünür: kayıt anında
@@ -131,7 +132,7 @@ export default async function LocaleLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
+            __html: jsonLdHtml(organizationJsonLd),
           }}
         />
         <ThemeProvider>

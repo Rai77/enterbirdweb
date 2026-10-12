@@ -35,13 +35,14 @@ const DEV_TOKEN = "dev-only-seed";
 export async function POST(req: Request) {
   const isProd = process.env.NODE_ENV === "production";
 
-  // Prod'da SEED_TOKEN tanımlı DEĞİLSE endpoint tamamen kapalıdır. Aksi halde
-  // bilinen varsayılan token ile prod DB'si silinip yeniden seed'lenebilirdi.
-  if (isProd && !process.env.SEED_TOKEN) {
+  // Canlı sitede bu uç tamamen kapalıdır. `?reset=1` tüm içeriği silip
+  // yeniden yazdığı için, sızan bir token canlı veritabanını silmeye
+  // yeterdi. Tohumlama yalnızca yerel geliştirme sunucusunda yapılır.
+  if (isProd) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const expected = process.env.SEED_TOKEN ?? (isProd ? null : DEV_TOKEN);
+  const expected = process.env.SEED_TOKEN ?? DEV_TOKEN;
   const provided = req.headers.get("x-seed-token");
   if (!expected || provided !== expected) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

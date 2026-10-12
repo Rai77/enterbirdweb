@@ -19,6 +19,7 @@ export const Media: CollectionConfig = {
       { name: "card", width: 1200 },
       { name: "og", width: 1200, height: 630, position: "centre" },
     ],
-    mimeTypes: ["image/*"],
+    // SVG içine kod gömülebildiği için yalnızca fotoğraf türleri kabul edilir.
+    mimeTypes: ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"],
   },
 };

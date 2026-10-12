@@ -8,7 +8,7 @@ import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
 import { getBlogPost, getBlogSlugs, getPostArticle } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
-import { localizedAlternates } from "@/lib/seo";
+import { localizedAlternates, jsonLdHtml } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 import type { AppLocale } from "@/cms/localization";
 
@@ -89,7 +89,7 @@ export default async function BlogPostPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
       />
 
       <Section className="!pb-10 !pt-28 sm:!pt-36">
