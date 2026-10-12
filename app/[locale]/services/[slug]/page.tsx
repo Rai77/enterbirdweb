@@ -23,6 +23,12 @@ import type { AppLocale } from "@/cms/localization";
 
 type Params = Promise<{ locale: string; slug: string }>;
 
+// Hizmetler panelden geldiği için derlemede sayfa üretilmez; her hizmet ilk
+// ziyarette oluşturulup diğer sayfalar gibi önbellekten sunulur.
+export function generateStaticParams() {
+  return [];
+}
+
 async function findService(slug: string, locale: string) {
   const services = await getServices(locale as AppLocale);
   const service = services.find((item) => item.anchor === slug) ?? null;

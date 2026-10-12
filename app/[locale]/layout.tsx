@@ -14,10 +14,10 @@ import { routing } from "@/i18n/routing";
 import { SITE_URL, GOOGLE_SITE_VERIFICATION } from "@/lib/site";
 import { EMAIL, PHONE_HREF, INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/contact";
 
-// İçerik CMS'ten geldiği için sayfalar her istekte taze render edilir.
-// Aksi halde sayfalar build anında statik dondurulur ve editörün panelden
-// yaptığı değişiklikler yeniden deploy edilene kadar sitede görünmezdi.
-export const dynamic = "force-dynamic";
+// Sayfalar önbellekten sunulur ve en geç 10 dakikada bir arka planda yenilenir.
+// Panelde yapılan değişiklikler beklemeden görünür: kayıt anında
+// cms/hooks/revalidate.ts tüm sitenin önbelleğini temizler.
+export const revalidate = 600;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -23,6 +23,7 @@ import { AboutPage } from "./cms/globals/AboutPage";
 import { LoomPage } from "./cms/globals/LoomPage";
 import { ContactPage } from "./cms/globals/ContactPage";
 import { CTABlock } from "./cms/globals/CTABlock";
+import { withRevalidate, withRevalidateGlobal } from "./cms/hooks/revalidate";
 
 import { localization } from "./cms/localization";
 
@@ -66,8 +67,13 @@ export default buildConfig({
       beforeDashboard: ["/cms/components/BeforeDashboard#BeforeDashboard"],
     },
   },
-  collections: [Users, Media, Services, Projects, Testimonials, TeamMembers, BlogPosts],
-  globals: [Header, Footer, HomePage, ServicesPage, AboutPage, LoomPage, ContactPage, CTABlock],
+  collections: [
+    Users,
+    ...[Media, Services, Projects, Testimonials, TeamMembers, BlogPosts].map(withRevalidate),
+  ],
+  globals: [Header, Footer, HomePage, ServicesPage, AboutPage, LoomPage, ContactPage, CTABlock].map(
+    withRevalidateGlobal,
+  ),
   localization,
   editor: lexicalEditor(),
   secret: payloadSecret,
