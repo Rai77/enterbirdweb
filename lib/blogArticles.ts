@@ -119,6 +119,99 @@ export const blogArticles: Record<string, Record<string, Article>> = {
         },
       ],
     },
+    en: {
+      blocks: [
+        {
+          type: "p",
+          text: "A year ago, “AI will sell for your store” was a marketing slogan. Today it is a measurable channel. According to data published by Shopify, sessions arriving at Shopify stores from ChatGPT, Perplexity, Gemini, Copilot and similar chat engines grew **more than 8x** year over year, and orders from that traffic grew **roughly 13x**. It is currently the fastest-growing acquisition channel in e-commerce.",
+        },
+        {
+          type: "p",
+          text: "But the growth rate is not the most interesting part. The quality of the visitor is.",
+        },
+        { type: "h2", text: "Why AI-referred visitors are different" },
+        {
+          type: "p",
+          text: "Someone arriving from classic organic search is often still researching. Someone arriving from a chat engine has already asked the question, received an answer and reached the decision stage. The numbers back this up:",
+        },
+        {
+          type: "ul",
+          items: [
+            "AI-referred visitors convert on product pages at **about 50% higher** rates than organic search visitors.",
+            "In 23 of 25 merchant categories, AI-referred conversion beats organic search, by 56% on average.",
+            "More than half of AI-referred sessions start directly on a **product page**, compared with 20% for organic search.",
+          ],
+        },
+        {
+          type: "p",
+          text: "That last point matters most strategically. The visitor lands on the product, not on your home page. So the product page has to persuade on its own: a complete description, clear shipping and returns information, real images, stock status. How beautiful your home page is makes no difference to this visitor.",
+        },
+        { type: "h2", text: "Don't confuse two different things" },
+        {
+          type: "p",
+          text: "Two very different things are discussed under the label “AI sales agent”, and mixing them up leads to the wrong investment:",
+        },
+        {
+          type: "ol",
+          items: [
+            "**On-site assistant:** The chat layer on your own site. It knows the catalog, answers size and compatibility questions, guides shoppers to the cart and reduces support load.",
+            "**Visibility in external chat engines:** ChatGPT or Gemini recommending your product when someone asks for a recommendation. This is not a chat box; it is a data and visibility problem.",
+          ],
+        },
+        {
+          type: "p",
+          text: "The first gets more sales out of the traffic you already have. The second brings you new traffic. Most brands are disappointed because they set up the first and expect the second.",
+        },
+        { type: "h2", text: "How much difference it makes" },
+        {
+          type: "p",
+          text: "Results shared across the industry for on-site assistants cluster around **an 8–12% lift in conversion**, **roughly 25% cart recovery** and **up to 80% fewer support tickets**. Read these numbers as a ceiling, not a promise: in a store with a messy catalog and incomplete product descriptions, the assistant gives incomplete answers too.",
+        },
+        {
+          type: "quote",
+          text: "An AI assistant amplifies the quality of your catalog. It does not fix a bad one.",
+        },
+        { type: "h2", text: "What Shopify has made easier" },
+        {
+          type: "p",
+          text: "Shopify now lets you manage exposure to ChatGPT, Microsoft Copilot, Google AI Mode and Gemini from a single place. There is no need to build separate integrations or prepare a separate product feed for each engine. That lowers the technical bar considerably, but being visible is not the same as being recommended.",
+        },
+        { type: "h2", text: "What to do before setting anything up" },
+        {
+          type: "p",
+          text: "For chat engines to describe your product correctly, your data has to be right first. In practice we recommend this order:",
+        },
+        {
+          type: "ol",
+          items: [
+            "**Complete your product descriptions.** Material, dimensions, use, compatibility. Every question a person would ask should be answered in the text, because that is the information the model receives.",
+            "**Add structured data.** Without product, price, stock and review markup, an engine cannot recommend your product with confidence.",
+            "**Put shipping and returns terms on one clear page.** Chat engines look for this information; if they can't find it, you drop down the recommendation list.",
+            "**Set up measurement from day one.** If you don't tag AI-referred traffic as its own channel, three months later you'll be arguing about whether it worked.",
+            "**Then set up the assistant.** Reversing this order is the most common mistake.",
+          ],
+        },
+        { type: "h2", text: "Who it is still too early for" },
+        {
+          type: "p",
+          text: "In stores with very few products, a single hero product, or a purchase decision that is purely visual, the assistant's contribution stays limited. In stores with a broad catalog that get questions about size, fit or compatibility, the impact shows up immediately. List the 20 questions your customer service hears most often: if most of the answers are information that isn't written on the product page, the assistant is ready for you.",
+        },
+      ],
+      sources: [
+        {
+          label: "Shopify — AI-referred shoppers convert better and spend more",
+          url: "https://www.shopify.com/enterprise/blog/ai-search-insights",
+        },
+        {
+          label: "Shopify — Agentic Commerce on Shopify: How It Works",
+          url: "https://www.shopify.com/blog/how-agentic-commerce-works",
+        },
+        {
+          label: "Shopify — Best AI Agents for Sales",
+          url: "https://www.shopify.com/blog/ai-agents-for-sales",
+        },
+      ],
+    },
   },
 
   "shopify-horizon-tema-degerlendirme": {
@@ -191,6 +284,88 @@ export const blogArticles: Record<string, Record<string, Article>> = {
         {
           type: "p",
           text: "Yeni bir mağaza kuruyorsanız ve katalog küçükse Horizon güçlü bir başlangıç. Ayakta duran, ciro üreten bir mağazayı sırf yeni diye taşımak ise bugün için erken.",
+        },
+      ],
+      sources: [
+        {
+          label: "PageFly — Shopify Horizon Theme Review (2026)",
+          url: "https://pagefly.io/blogs/shopify/shopify-horizon-theme",
+        },
+        {
+          label: "Craftshift — Shopify Horizon vs Dawn (2026)",
+          url: "https://craftshift.com/shopify-horizon-vs-dawn-2026/",
+        },
+      ],
+    },
+    en: {
+      blocks: [
+        {
+          type: "p",
+          text: "Horizon, Shopify's new free theme, is the biggest change to the underlying architecture since Dawn. The excitement is understandable, but choosing a theme is an expensive decision to reverse. This post skips the marketing copy and covers the real pros and cons that stood out after three weeks of use.",
+        },
+        { type: "h2", text: "What changed technically" },
+        {
+          type: "p",
+          text: "Horizon is not built on the Online Store 2.0 framework; it is a new architecture written with **Web Components**. In practice that means three things:",
+        },
+        {
+          type: "ul",
+          items: [
+            "**Block-based layout:** Page sections can be moved and rearranged much more freely.",
+            "**Global blocks:** Edit a block once and update it across the whole site. A real time saver for stores with many pages.",
+            "**Section generation with Shopify Magic:** Creating ready-made sections with AI is built into the theme.",
+          ],
+        },
+        { type: "h2", text: "Speed: good on desktop, not yet on mobile" },
+        {
+          type: "p",
+          text: "Desktop measurements are strong: **a performance score of 94**, first contentful paint at 0.4 seconds and largest contentful paint at 1.5 seconds. On mobile, Horizon is currently behind Dawn. The gap is closing, but as of today it is still there.",
+        },
+        {
+          type: "p",
+          text: "Given that most e-commerce traffic in Turkey comes from mobile, this is not a detail to ignore. Horizon is also an image-heavy theme: once it is filled with uncompressed images and video, performance drops quickly.",
+        },
+        { type: "h2", text: "Who it suits and who it doesn't" },
+        {
+          type: "p",
+          text: "Field observation shows a clear split:",
+        },
+        {
+          type: "ul",
+          items: [
+            "**A good fit:** Fashion and lifestyle brands, catalogs **under 200 products**, and stores where the brand story and visuals matter more than product discovery.",
+            "**Not a good fit:** Catalogs **over 500 products**. At that scale the shopping flow gets clunky and customers struggle to find what they are looking for.",
+          ],
+        },
+        {
+          type: "p",
+          text: "In other words, Horizon is a showcase theme. If catalog depth and filtering are critical for you, don't be swayed by its looks.",
+        },
+        { type: "h2", text: "What user reviews say" },
+        {
+          type: "p",
+          text: "As of July 2026, Horizon has only **35% positive** ratings across 190 reviews, well below established paid themes. Even so, it runs on about **1.8%** of detected Shopify stores and is the fastest-growing free theme.",
+        },
+        {
+          type: "p",
+          text: "The contradiction is telling: because the theme is free and new, people try it quickly, but users who aren't used to the new architecture struggle. A large share of the low ratings comes from the learning curve, not from the theme's quality.",
+        },
+        { type: "h2", text: "Should you switch?" },
+        {
+          type: "p",
+          text: "Three questions are enough to decide:",
+        },
+        {
+          type: "ol",
+          items: [
+            "**Is your current theme causing a problem?** If not, the cost of moving a working store to a new architecture outweighs the gain.",
+            "**Is your catalog under 200 products?** If not, skip Horizon for now.",
+            "**How much of your traffic is mobile?** If most of it is, it makes sense to wait until the mobile performance gap closes.",
+          ],
+        },
+        {
+          type: "p",
+          text: "If you are launching a new store with a small catalog, Horizon is a strong start. Moving an established, revenue-generating store just because the theme is new is premature today.",
         },
       ],
       sources: [
@@ -293,6 +468,92 @@ export const blogArticles: Record<string, Record<string, Article>> = {
         },
       ],
     },
+    en: {
+      blocks: [
+        {
+          type: "p",
+          text: "Meta's Advantage+ campaigns (now called Advantage+ Sales Campaigns) hand most of the control to the algorithm. Under the right conditions they deliver real efficiency; under the wrong ones they quietly burn through the budget. The difference lies not in the campaign itself but in when you turn it on.",
+        },
+        { type: "h2", text: "When Advantage+ is the right choice" },
+        {
+          type: "p",
+          text: "Advantage+ needs data to learn. It is a strong candidate if all of the following are true:",
+        },
+        {
+          type: "ul",
+          items: [
+            "Your goal is direct **online sales** (not lead generation or awareness).",
+            "You have a working pixel and a **Conversions API** setup.",
+            "You generate **more than 50 purchases a week**.",
+            "Your product catalog is connected to Meta.",
+            "Your products are mostly priced **under $200** and the decision cycle is short.",
+          ],
+        },
+        { type: "h2", text: "When to stay with manual campaigns" },
+        {
+          type: "ul",
+          items: [
+            "A **new ad account** with zero conversion data. The algorithm has nothing to learn from.",
+            "**High-priced products** (over $500) with a long purchase cycle.",
+            "B2B businesses selling **services** rather than products.",
+            "Cases where you need to **exclude** specific audiences; Advantage+'s broad targeting doesn't allow it.",
+            "Goals other than purchases: form fills, app installs, awareness.",
+          ],
+        },
+        { type: "h2", text: "Budget: the most common mistake" },
+        {
+          type: "p",
+          text: "To exit the learning phase, Advantage+ has to clear a weekly conversion threshold. In practice the recommended floor is **$100 a day**; below that, the algorithm can't collect enough data. A reasonable starting point for small and mid-sized e-commerce is **$150–300 a day**, and **$500–2,000 a day or more** for established brands.",
+        },
+        {
+          type: "p",
+          text: "The common mistake is splitting the budget across many campaigns. Advantage+ works the opposite way: put the budget in one place and let the algorithm distribute it.",
+        },
+        {
+          type: "quote",
+          text: "Advantage+ isn't something to test on a small budget. A campaign that isn't fed enough dies before it learns.",
+        },
+        { type: "h2", text: "Creative: the real lever" },
+        {
+          type: "p",
+          text: "Once targeting is handed to the algorithm, there is only one big variable left that you control: creative. The approach that works in practice:",
+        },
+        {
+          type: "ol",
+          items: [
+            "Upload **at least 10 different creatives**, with variety across images, video and copy.",
+            "Mix formats: product shots, how-to videos, customer reviews, comparisons.",
+            "**Refresh regularly.** Ad fatigue arrives faster in Advantage+ because the algorithm burns through the winning creative very quickly.",
+            "Increase the budget gradually, not abruptly: **10–20%** every few days. Sharp increases reset the learning.",
+          ],
+        },
+        { type: "h2", text: "Always use the existing-customer cap" },
+        {
+          type: "p",
+          text: "Advantage+ picks the easiest route to measurable results: selling again to people who have already bought from you. ROAS looks great in the report, but you aren't winning new customers.",
+        },
+        {
+          type: "p",
+          text: "The **existing customer budget cap** in the campaign settings exists for exactly this reason. If new customer acquisition is the goal, don't launch the campaign without setting that cap, or three months later you'll see ad costs rise while revenue stays flat.",
+        },
+        { type: "h2", text: "In short" },
+        {
+          type: "p",
+          text: "Advantage+ is not a set-and-forget tool; it is an engine that needs data and creative. If you are under 50 sales a week, your catalog isn't connected, or your budget doesn't clear the threshold, manual campaigns are more profitable. If the conditions are met, the weight of the work shifts from targeting to creative, so put your team's time there.",
+        },
+      ],
+      sources: [
+        {
+          label:
+            "Birch — Understanding Meta's Advantage+ Sales Campaigns (2026)",
+          url: "https://bir.ch/blog/advantage-plus-sales-campaigns-guide",
+        },
+        {
+          label: "Skale Strategy — Advantage+ Shopping Campaigns in 2026",
+          url: "https://www.skalestrategy.com/blog/meta-advantage-plus-shopping-campaigns-2026",
+        },
+      ],
+    },
   },
 
   "google-ai-overviews-seo": {
@@ -356,6 +617,81 @@ export const blogArticles: Record<string, Record<string, Article>> = {
         {
           type: "p",
           text: "SEO ölmedi ama hedefi değişti. Eskiden amaç ilk sıraya çıkmaktı; şimdi amaç cevabın içinde olmak. E-ticaret tarafında öncelik sırası da netleşti: önce ürün ve kategori sayfalarının teknik sağlığı, sonra yapılandırılmış veri, en sonda rehber içerik. Bu sıra ters çevrildiğinde emek en çok zarar gören alana harcanmış oluyor.",
+        },
+      ],
+      sources: [
+        {
+          label:
+            "Search Engine Journal — Study Confirms AI Overviews Cut Organic Clicks",
+          url: "https://www.searchenginejournal.com/ai-overviews-cut-organic-clicks-38-field-study-finds/573145/",
+        },
+        {
+          label:
+            "Cognizo — Google AI Overviews statistics: coverage, click loss and citations",
+          url: "https://www.cognizo.ai/blog/google-ai-overviews-statistics",
+        },
+      ],
+    },
+    en: {
+      blocks: [
+        {
+          type: "p",
+          text: "Ever since Google started placing AI summaries above the search results, the SEO debate has split in two: those who say “SEO is dead” and those who insist nothing has changed. Both are wrong. The data paints a clearer picture.",
+        },
+        { type: "h2", text: "How common it is and how much it hurts" },
+        {
+          type: "ul",
+          items: [
+            "As of January 2026, AI Overviews appear on **25.8%** of US searches, most often on informational queries.",
+            "When an AI summary appears, the click-through rate to organic results drops **by 50–61%**.",
+            "Seer Interactive measured a **61%** drop; Pew Research's study of 68,000 queries found a relative drop of **46.7%**.",
+          ],
+        },
+        {
+          type: "p",
+          text: "So the loss is real and large. But here is the critical point: it isn't spread across every query; it is concentrated on **informational** ones. “How to”, “what is” and “which is better” content is the group hit hardest.",
+        },
+        { type: "h2", text: "The side that isn't affected" },
+        {
+          type: "p",
+          text: "Queries with purchase intent are largely spared. Once a user has decided to buy a product, they want to compare prices and order, not read a summary. That is good news for e-commerce: traffic to your category and product pages isn't hurt as much as your blog traffic.",
+        },
+        {
+          type: "p",
+          text: "The losers are guides that generate indirect traffic. Such content is still worth producing, but its goal now has to be **being cited**, not being clicked.",
+        },
+        { type: "h2", text: "The new metric: citations, not clicks" },
+        {
+          type: "quote",
+          text: "Visibility now lives in citations, not clicks. Having your name inside the answer is becoming worth more than the link underneath it.",
+        },
+        {
+          type: "p",
+          text: "This changes measurement habits too. If you only watch organic sessions you'll see a decline, panic and make the wrong call. Track these instead:",
+        },
+        {
+          type: "ul",
+          items: [
+            "**Citation share:** How often you are cited as a source in AI summaries for queries in your sector.",
+            "**Branded search volume:** Whether people search for your name directly after reading the summary.",
+            "**Direct traffic and conversions:** If sales hold while clicks fall, the channel is still working.",
+          ],
+        },
+        { type: "h2", text: "How to get cited" },
+        {
+          type: "ol",
+          items: [
+            "**Add structured data (schema).** For a model to quote your content with confidence, it needs to be able to read its structure. This is the highest-return technical work today.",
+            "**Produce original data.** Information everyone repeats doesn't get quoted; your own measurements and case studies do.",
+            "**Answer the question directly.** Don't bury the answer under three paragraphs of introduction; put a clear answer right below the heading.",
+            "**Strengthen brand authority signals.** Make it clear who you are, where you are and who you work with.",
+            "**Prioritise mobile.** AI summaries take up a much larger share of the screen on mobile and push organic results further down.",
+          ],
+        },
+        { type: "h2", text: "The practical takeaway" },
+        {
+          type: "p",
+          text: "SEO isn't dead, but its target has changed. The goal used to be ranking first; now it is being inside the answer. For e-commerce the order of priorities is clear: first the technical health of product and category pages, then structured data, and guide content last. Reverse that order and the effort goes to the area that is losing the most.",
         },
       ],
       sources: [

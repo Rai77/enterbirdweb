@@ -6,8 +6,10 @@ import type { ArticleBlock } from "@/lib/blogArticles";
  * Her terim kendi sayfasında yayınlanır: "ROAS nedir" ile "CAC nedir" ayrı
  * aranıyor, tek sayfada toplanırsa her biri kendi sorgusunda yarışamaz.
  *
- * Metinler özgündür ve kısa tutulur — sözlük tanımı, makale değil. Tanımın
- * ilk cümlesi hem listede hem meta açıklamasında kullanıldığı için tek başına
+ * Metinler özgündür. Çoğu terim kısa bir tanımdır; Google'da gösterim alan
+ * terimler (AOV, dönüşüm oranı, ROAS, CAC, pazaryeri, buybox, kargo
+ * entegrasyonu) hesaplama, örnek ve uygulama bölümleriyle genişletildi.
+ * `short` hem listede hem meta açıklamasında kullanıldığı için tek başına
  * anlamlı olmalı.
  *
  * İçerik panelde değil burada: panele yeni bir bölüm eklemek veritabanında
@@ -57,6 +59,26 @@ export const glossary: GlossaryTerm[] = [
         type: "p",
         text: "Tek başına yanıltıcı olabilir — birkaç büyük sipariş ortalamayı şişirir. Medyan sepet tutarıyla birlikte bakmak daha sağlıklıdır.",
       },
+      { type: "h2", text: "AOV nasıl hesaplanır?" },
+      {
+        type: "p",
+        text: "**AOV = Toplam ciro ÷ Sipariş sayısı.** Hesapta iade edilen siparişleri ve KDV'yi nasıl ele aldığınıza karar verin ve her ay aynı yöntemi kullanın. Yöntem değişirse AOV gerçekten değişmediği halde değişmiş gibi görünür.",
+      },
+      { type: "h2", text: "AOV nasıl artırılır?" },
+      {
+        type: "ul",
+        items: [
+          "**Ücretsiz kargo eşiği:** Eşiği mevcut AOV'nin biraz üzerine koyun. 250 TL ortalamada 300 TL eşik, müşteriyi bir ürün daha eklemeye iter.",
+          "**Paket ürünler:** Birlikte kullanılan ürünleri tek fiyatla sunun (şampuan + saç kremi gibi).",
+          "**Sepette tamamlayıcı öneri:** Ödeme adımından önce, sepetteki ürünle gerçekten ilgili tek bir öneri gösterin.",
+          "**Miktar indirimi:** 2. üründe indirim, tek ürün alacak müşteriyi ikiye taşır.",
+        ],
+      },
+      { type: "h2", text: "AOV'ye bakarken sık yapılan hata" },
+      {
+        type: "p",
+        text: "AOV yükselirken dönüşüm oranı düşüyorsa kazanç olmayabilir. Ücretsiz kargo eşiğini çok yükseğe koymak sepeti büyütür ama sepeti terk eden müşteri sayısını da artırır. AOV'yi her zaman **dönüşüm oranı ve toplam ciro** ile birlikte izleyin.",
+      },
     ],
     related: ["donusum-orani", "ltv", "capraz-satis"],
   },
@@ -79,6 +101,31 @@ export const glossary: GlossaryTerm[] = [
       {
         type: "p",
         text: "Kanala göre çok değişir: markalı aramadan gelen trafik, soğuk reklam trafiğinin kat kat üzerinde dönüşür. Tek bir ortalamaya bakmak yerine kanal kırılımında izleyin.",
+      },
+      { type: "h2", text: "Dönüşüm oranı nasıl hesaplanır?" },
+      {
+        type: "p",
+        text: "**Dönüşüm oranı = (Dönüşüm sayısı ÷ Oturum sayısı) × 100.** Oturum yerine tekil ziyaretçi de kullanılabilir; önemli olan hep aynı tabanı kullanmaktır. GA4'te bu oran \"oturum dönüşüm oranı\" ve \"kullanıcı dönüşüm oranı\" olarak ayrı ayrı görünür ve ikisi farklı sonuç verir.",
+      },
+      {
+        type: "p",
+        text: "Örnek: Aylık 40.000 oturumu ve %1,5 dönüşüm oranı olan bir mağaza 600 sipariş alır. Oran %2'ye çıkarsa aynı trafikle 800 sipariş gelir; reklam bütçesine dokunmadan **%33 daha fazla satış** demektir.",
+      },
+      { type: "h2", text: "Dönüşüm oranını düşüren yaygın sebepler" },
+      {
+        type: "ul",
+        items: [
+          "Mobilde yavaş açılan ya da düzgün görünmeyen ürün sayfaları.",
+          "Kargo ücretinin ve teslim süresinin ancak ödeme adımında ortaya çıkması.",
+          "Üye olmadan alışverişe izin vermeyen ödeme akışı.",
+          "Beden, ölçü, malzeme gibi soruların ürün sayfasında cevapsız kalması.",
+          "Reklamın vaat ettiği ile açılan sayfanın uyuşmaması.",
+        ],
+      },
+      { type: "h2", text: "Neye göre kıyaslamalı?" },
+      {
+        type: "p",
+        text: "Başka mağazaların oranıyla kıyaslamak yanıltıcıdır; sektör, fiyat seviyesi ve trafik kaynağı oranı tamamen değiştirir. En sağlıklı kıyas, **kendi mağazanızın geçen dönemi ve aynı kanal** ile yapılandır. Bir değişiklik yaptığınızda (yeni ödeme sayfası, yeni ürün görselleri) önce ve sonrasını aynı kanal üzerinden karşılaştırın.",
       },
     ],
     related: ["sepet-terk-orani", "checkout", "aov"],
@@ -275,6 +322,29 @@ export const glossary: GlossaryTerm[] = [
         type: "p",
         text: "Anlamlı kullanım için önce **başabaş ROAS**'ınızı hesaplayın: 1 bölü brüt kâr marjı. Marjınız %40 ise başabaş noktanız 2,5x'tir; hedefiniz bunun üzerinde olmalıdır.",
       },
+      { type: "h2", text: "ROAS nasıl hesaplanır?" },
+      {
+        type: "p",
+        text: "**ROAS = Reklamdan gelen ciro ÷ Reklam harcaması.** Sonuç \"4x\" ya da \"%400\" diye yazılabilir; ikisi aynı şeydir. Reklam paneli yalnızca kendi ölçtüğü satışları sayar, o yüzden panelde görünen ROAS ile mağaza verinizden hesapladığınız ROAS farklı çıkabilir.",
+      },
+      { type: "h2", text: "İyi ROAS kaç olmalı?" },
+      {
+        type: "p",
+        text: "Herkes için geçerli bir \"iyi ROAS\" yoktur; doğru hedef sizin kâr marjınızdan çıkar. Brüt marjı %25 olan bir ürünün başabaş ROAS'ı 4x'tir, %50 olanınki 2x. Yani aynı 3x ROAS bir markada kâr, diğerinde zarar demektir.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Marj %20 → başabaş 5x",
+          "Marj %33 → başabaş 3x",
+          "Marj %50 → başabaş 2x",
+        ],
+      },
+      { type: "h2", text: "ROAS mı, CAC mı?" },
+      {
+        type: "p",
+        text: "ROAS tek bir siparişin reklama değip değmediğini söyler. Tekrar satın alan müşterilerin olduğu işlerde ilk siparişte düşük ROAS kabul edilebilir, çünkü müşteri sonraki siparişlerle kâra geçer. Bu kararı vermek için ROAS'ı **CAC ve LTV** ile birlikte okuyun.",
+      },
     ],
     related: ["cac", "ltv", "iade-orani"],
   },
@@ -296,6 +366,30 @@ export const glossary: GlossaryTerm[] = [
       {
         type: "p",
         text: "Tek başına değil, LTV ile birlikte anlamlıdır. Sağlıklı kabul edilen yaklaşım LTV'nin CAC'ın en az üç katı olmasıdır.",
+      },
+      { type: "h2", text: "CAC nasıl hesaplanır?" },
+      {
+        type: "p",
+        text: "**CAC = Toplam pazarlama harcaması ÷ Yeni müşteri sayısı.** Örnek: Bir ayda reklama 60.000 TL, ajans ve araçlara 15.000 TL harcadınız ve 300 yeni müşteri kazandınız. CAC = 75.000 ÷ 300 = **250 TL**.",
+      },
+      {
+        type: "p",
+        text: "Hangi kalemleri dahil ettiğinize karar verin ve hep aynı yöntemi kullanın. Sadece reklam harcamasıyla hesaplanan CAC daha düşük çıkar; ajans, araç ve ekip maliyeti eklenince gerçek tablo ortaya çıkar.",
+      },
+      { type: "h2", text: "CAC nasıl düşürülür?" },
+      {
+        type: "ul",
+        items: [
+          "**Dönüşüm oranını artırın:** Aynı reklam harcamasıyla daha fazla müşteri kazanmanın en hızlı yolu budur.",
+          "**Mevcut müşterileri kampanyadan çıkarın:** Zaten alan kişiye para harcamak CAC'ı yapay olarak düşük gösterir, gerçek maliyeti saklar.",
+          "**Kanal bazında ölçün:** Ortalama CAC iyi görünürken bir kanal bütün bütçeyi eritiyor olabilir.",
+          "**Organik kanalları büyütün:** SEO, e-posta listesi ve tavsiye programı zamanla müşteri başına maliyeti düşürür.",
+        ],
+      },
+      { type: "h2", text: "CAC ne zaman fazla?" },
+      {
+        type: "p",
+        text: "Müşterinin ilk siparişten bıraktığı brüt kâr CAC'tan düşükse, ilk satış zararınadır. Bu kabul edilebilir olabilir, ama ancak müşteri tekrar satın alıyorsa. Tekrar satın almanın nadir olduğu bir üründe CAC, ilk siparişin brüt kârının altında kalmalıdır.",
       },
     ],
     related: ["ltv", "roas", "lookalike-kitle"],
@@ -814,6 +908,26 @@ export const glossary: GlossaryTerm[] = [
         type: "p",
         text: "Sağlıklı yaklaşım pazaryerini kendi mağazanızın alternatifi değil, tamamlayıcısı olarak kurgulamaktır. Yalnızca pazaryerine bağlı bir işletme, kendi müşteri ilişkisini kuramaz ve kural değişikliklerine karşı savunmasız kalır.",
       },
+      { type: "h2", text: "Pazaryerinde satmanın artıları ve eksileri" },
+      {
+        type: "ul",
+        items: [
+          "**Artı:** Hazır alıcı kitlesi, güvenilir ödeme altyapısı, hızlı başlangıç.",
+          "**Artı:** Yeni bir ürünün talebini kendi sitenize yatırım yapmadan test etme imkânı.",
+          "**Eksi:** Satış başına komisyon ve hizmet bedelleri kâr marjını daraltır.",
+          "**Eksi:** Aynı ürünü satan başka satıcılarla fiyat rekabeti.",
+          "**Eksi:** Müşteri iletişim bilgilerine sınırlı erişim; tekrar satış için müşteriye doğrudan ulaşamazsınız.",
+        ],
+      },
+      { type: "h2", text: "Pazaryeri yönetimi neleri kapsar?" },
+      {
+        type: "p",
+        text: "Pazaryerinde başarılı olmak ürünü listelemekle bitmez. Düzenli takip edilmesi gerekenler: ürün başlığı ve görsellerinin arama sonuçlarına uygun hazırlanması, stok ve fiyatın tüm kanallarda senkron tutulması, kampanya takviminin planlanması, mağaza puanını etkileyen kargo süresi ile iptal ve iade oranlarının izlenmesi, ve pazaryeri içi reklamların bütçesinin kârlılığa göre yönetilmesi.",
+      },
+      {
+        type: "p",
+        text: "Birden çok pazaryerinde satış yapılıyorsa stok ve sipariş akışını tek yerden yöneten bir entegrasyon kullanmak, aynı ürünün iki kanalda birden satılıp stoksuz kalmasının önüne geçer.",
+      },
     ],
     related: ["buybox", "komisyon-orani", "urun-feed"],
   },
@@ -832,6 +946,22 @@ export const glossary: GlossaryTerm[] = [
       {
         type: "p",
         text: "Belirleyiciler yalnızca fiyat değildir: stok sürekliliği, teslimat hızı, iptal ve iade oranı ile satıcı puanı birlikte değerlendirilir. Sadece fiyat kırarak yürütülen rekabet kârı eritir, konumu garanti etmez.",
+      },
+      { type: "h2", text: "Buybox nasıl kazanılır?" },
+      {
+        type: "ul",
+        items: [
+          "**Stoğu hiç bitirmeyin:** Stoksuz kalan satıcı kutuyu anında kaybeder ve geri kazanması zaman alır.",
+          "**Kargoya veriş süresini kısaltın:** Aynı gün kargo gibi hızlı teslimat seçenekleri sıralamada avantaj sağlar.",
+          "**İptal ve iade oranını düşük tutun:** Stok hatası yüzünden iptal edilen her sipariş satıcı puanını düşürür.",
+          "**Müşteri sorularına hızlı cevap verin:** Pazaryerleri satıcının yanıt süresini de ölçer.",
+          "**Fiyatı akıllı belirleyin:** En düşük fiyat olmak zorunda değilsiniz; diğer metrikleriniz güçlüyse biraz daha yüksek fiyatla da kutuyu alabilirsiniz.",
+        ],
+      },
+      { type: "h2", text: "Buybox ile fiyat savaşı arasındaki fark" },
+      {
+        type: "p",
+        text: "Birçok satıcı kutuyu kaybedince fiyatı kırar, rakip de kırar ve iki taraf da zararına satmaya başlar. Önce kaybetmenin sebebine bakın: stok mu, kargo süresi mi, puan mı? Fiyat dışındaki bir eksiği düzeltmek, fiyat indirmekten hem daha kârlı hem daha kalıcıdır.",
       },
     ],
     related: ["pazaryeri", "komisyon-orani", "fulfillment"],
@@ -888,6 +1018,31 @@ export const glossary: GlossaryTerm[] = [
       {
         type: "p",
         text: "Elle yürütülen süreçlerde hata ve gecikme kaçınılmazdır; sipariş sayısı arttıkça bu maliyet hızla büyür. “Kargom nerede” sorularının müşteri hizmetleri yükünü en çok azaltan iyileştirmelerden biridir.",
+      },
+      { type: "h2", text: "Kargo entegrasyonu nasıl çalışır?" },
+      {
+        type: "ol",
+        items: [
+          "Müşteri siparişi verir; sipariş bilgileri e-ticaret altyapınızdan kargo firmasına otomatik gönderilir.",
+          "Kargo firması gönderi kodunu ve barkodu üretir; depo bu etiketi basıp paketi hazırlar.",
+          "Kargo teslim alındığında takip numarası müşteriye e-posta veya SMS ile iletilir.",
+          "Teslimat, iade ya da teslim edilememe durumu sisteminize geri yazılır ve sipariş durumu kendiliğinden güncellenir.",
+        ],
+      },
+      { type: "h2", text: "Entegrasyon seçerken nelere bakmalı?" },
+      {
+        type: "ul",
+        items: [
+          "Birden fazla kargo firmasıyla çalışabiliyor mu? Bölgeye veya desiye göre en uygun firmayı seçmek maliyeti düşürür.",
+          "Kullandığınız altyapıyla (Shopify, İkas, Ticimax, WooCommerce gibi) ve pazaryerleriyle doğrudan bağlantısı var mı?",
+          "İade gönderilerini de kapsıyor mu? İade kodu üretmek müşterinin işini kolaylaştırır.",
+          "Toplu etiket basma ve günlük kargo listesi gibi depo işlerini hızlandıran özellikler var mı?",
+        ],
+      },
+      { type: "h2", text: "Ne zaman gerekli olur?" },
+      {
+        type: "p",
+        text: "Günde birkaç siparişte elle çalışmak mümkündür. Sipariş sayısı arttıkça, birden fazla satış kanalı devreye girdikçe ya da müşteri hizmetlerine gelen soruların önemli kısmı kargo takibiyle ilgili olmaya başladığında entegrasyon kendini kısa sürede amorti eder.",
       },
     ],
     related: ["fulfillment", "iade-orani"],

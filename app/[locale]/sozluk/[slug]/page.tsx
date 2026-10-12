@@ -28,17 +28,22 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "glossary" });
   const url = `${SITE_URL}/${locale}/sozluk/${slug}`;
+  // "ROAS nedir?" biçimi, insanların gerçekten arattığı sorgu. Açılımın
+  // Türkçe kısmı da eklenir: "müşteri edinme maliyeti" diye arayan da bulsun.
+  const expansion = term.full?.split(" — ").pop();
+  const title = expansion
+    ? `${t("termTitle", { term: term.term })} ${expansion}`
+    : t("termTitle", { term: term.term });
 
   return {
-    // "ROAS nedir?" biçimi, insanların gerçekten arattığı sorgu.
-    title: t("termTitle", { term: term.term }),
+    title,
     description: term.short,
     // Terimler yalnızca Türkçe yazıldı. İngilizce adres aynı metni gösterdiği
     // için kopya sayılmasın diye kanonik her zaman Türkçe sürüm.
     alternates: localizedAlternates(`/sozluk/${slug}`, locale, ["tr"]),
     openGraph: {
       type: "article",
-      title: t("termTitle", { term: term.term }),
+      title,
       description: term.short,
       url,
     },
