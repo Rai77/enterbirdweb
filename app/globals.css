@@ -167,3 +167,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-rise { animation: none; }
 }
+
+/* Site analizi tarama paneli: yukarıdan aşağı geçen tarama ışığı. */
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(520%); }
+}
+.scan-line { animation: scan-line 2.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .scan-line { animation: none; opacity: 0; }
+}
