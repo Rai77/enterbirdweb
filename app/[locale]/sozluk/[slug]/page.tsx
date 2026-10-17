@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
+import { AuditPromo } from "@/components/AuditPromo";
 import { glossary, getTerm } from "@/lib/glossary";
 import { localizedAlternates, jsonLdHtml } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
@@ -122,6 +123,8 @@ export default async function GlossaryTermPage({
               sourcesLabel={t("sources")}
             />
           </div>
+
+          <AuditPromo locale={locale} />
 
           {related.length > 0 && (
             <div className="mt-16">

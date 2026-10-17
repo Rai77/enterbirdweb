@@ -1,0 +1,35 @@
+# Enterbird AI Digital
+
+> Enterbird is an AI-powered e-commerce and digital growth agency in Istanbul, Turkey. It builds and grows online stores: Shopify and e-commerce infrastructure, performance marketing (Google Ads, Meta Ads), SEO and GEO, marketplace management (Trendyol, Hepsiburada, Amazon), e-export, US company formation, operations and logistics, AI automation, brand and design. The site is available in Turkish (/tr) and English (/en).
+
+## Free tool
+
+- [Ücretsiz Site Analizi (free e-commerce website audit)](https://enterbird.com/tr/site-analizi): Free online tool, no sign-up. Enter a store URL and get a 0–100 score in about a minute: Google PageSpeed mobile speed and Core Web Vitals (LCP, TBT, CLS); site errors (broken links and images, SSL certificate expiry, http→https and www redirects, soft 404, insecure http assets, console errors); Google visibility (title, meta description, structured data, sitemap, robots.txt, canonical, noindex, accessibility); ad tracking (Google Analytics, Tag Manager, Meta pixel); trust and legal pages (returns, privacy/KVKK, distance-selling terms, contact, WhatsApp, payment badges); and a product page check (Product schema price/availability/rating, add-to-cart button, reviews, image count).
+- [Free Website Audit (English)](https://enterbird.com/en/site-analizi): Same tool in English.
+
+## Services
+
+- [E-commerce store development](https://enterbird.com/tr/services/ecommerce)
+- [Shopify](https://enterbird.com/tr/services/shopify)
+- [Performance marketing: Google and Meta Ads](https://enterbird.com/tr/services/performance)
+- [SEO and GEO](https://enterbird.com/tr/services/seo)
+- [Marketplace management: Trendyol, Hepsiburada, Amazon](https://enterbird.com/tr/services/marketplace)
+- [E-export](https://enterbird.com/tr/services/e-ihracat)
+- [Company formation in the USA](https://enterbird.com/tr/services/amerika-da-sirket-kurulumu)
+- [Operations and logistics](https://enterbird.com/tr/services/operations)
+- [Stock and product strategy](https://enterbird.com/tr/services/stok-ve-urun-strateji-yonetimi)
+- [AI automation](https://enterbird.com/tr/services/ai)
+- [Social media](https://enterbird.com/tr/services/social)
+- [Brand](https://enterbird.com/tr/services/brand)
+- [Web and UI design](https://enterbird.com/tr/services/design)
+
+## Knowledge
+
+- [Blog](https://enterbird.com/tr/blog): Practical articles on e-commerce, performance marketing, SEO/GEO and AI, with sources.
+- [E-commerce glossary (Sözlük)](https://enterbird.com/tr/sozluk): Turkish definitions of e-commerce and advertising terms such as ROAS, CAC, AOV, conversion rate and Buybox, with formulas and examples.
+
+## Company
+
+- [About](https://enterbird.com/tr/about)
+- [Work and case studies](https://enterbird.com/tr/work)
+- [Contact](https://enterbird.com/tr/contact): hello@enterbird.com, +90 542 599 50 77 (WhatsApp)

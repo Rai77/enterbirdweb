@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Search, Loader2, Lock, CheckCircle2, AlertTriangle, MessageCircle, ArrowRight, RotateCcw, Sparkles } from "lucide-react";
 import { PAGE_COPY } from "@/lib/siteAudit/pageCopy";
 import { LANDING_COPY } from "@/lib/siteAudit/landingCopy";
+import { SEO_COPY } from "@/lib/siteAudit/seoCopy";
 import type { AuditResult, Issue, Locale } from "@/lib/siteAudit/types";
 import { cn } from "@/lib/cn";
 
@@ -281,6 +282,10 @@ export function SiteAudit({ locale, whatsappNumber }: { locale: Locale; whatsapp
               {l.badge}
             </span>
             <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+              {/* Aranan ifade başlığın içinde: "ücretsiz site analizi". */}
+              <span className="mb-3 block text-sm font-semibold uppercase tracking-[0.18em] text-brand-2 sm:text-base">
+                {SEO_COPY[locale].keywordLine}
+              </span>
               {l.titleA} <span className="text-gradient">{l.titleB}</span>
               <span className="mt-2 block text-3xl text-muted sm:text-4xl">{l.titleC}</span>
             </h1>

@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ArticleBody } from "@/components/ArticleBody";
+import { AuditPromo } from "@/components/AuditPromo";
 import { getBlogPost, getBlogSlugs, getPostArticle } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
 import { localizedAlternates, jsonLdHtml } from "@/lib/seo";
@@ -135,6 +136,7 @@ export default async function BlogPostPage({
             // Gövdesi olmayan bir yazı — sayfayı boş bırakmak yerine durumu söyle.
             <p className="mt-12 text-base text-muted">{t("comingSoon")}</p>
           )}
+          <AuditPromo locale={locale} />
         </Container>
       </Section>
     </>

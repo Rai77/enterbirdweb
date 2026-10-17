@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { CTA } from "@/components/CTA";
+import { AuditPromo } from "@/components/AuditPromo";
 import { getIcon } from "@/lib/icons";
 import { getServices } from "@/lib/services";
 import { pageMetadata, jsonLdHtml } from "@/lib/seo";
@@ -187,6 +188,12 @@ export default async function ServicePage({ params }: { params: Params }) {
           </Container>
         </Section>
       )}
+
+      <Section className="!pt-0">
+        <Container size="default">
+          <AuditPromo locale={locale} />
+        </Container>
+      </Section>
 
       {others.length > 0 && (
         <Section className="!pt-0">

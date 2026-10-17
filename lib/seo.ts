@@ -49,11 +49,14 @@ export function pageMetadata({
   path,
   title,
   description,
+  image,
 }: {
   locale: string;
   path: string;
   title: string;
   description: string;
+  /** Sayfaya özel paylaşım görseli (1200×630); verilmezse logo kullanılır. */
+  image?: { url: string; width: number; height: number; alt: string };
 }): Metadata {
   return {
     title,
@@ -67,9 +70,10 @@ export function pageMetadata({
       title,
       description,
       images: [
-        { url: "/logo_ai.png", width: 1024, height: 1024, alt: "Enterbird" },
+        image ?? { url: "/logo_ai.png", width: 1024, height: 1024, alt: "Enterbird" },
       ],
     },
+    ...(image ? { twitter: { card: "summary_large_image", title, description, images: [image.url] } } : {}),
   };
 }
 
