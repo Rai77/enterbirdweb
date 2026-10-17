@@ -37,4 +37,6 @@ export type AuditResult = {
   issues: Issue[];
   passed: string[];
   speedMeasured: boolean;
+  /** Hız ölçülemediyse teşhis bilgisi (anahtar tanımlı mı, Google'ın hata kodu). */
+  speedError: { keyConfigured: boolean; reason: string } | null;
 };

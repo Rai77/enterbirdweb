@@ -68,23 +68,35 @@ function format(id: Metric["id"], value: number, locale: Locale): string {
   return locale === "tr" ? `${s.replace(".", ",")} sn` : `${s} s`;
 }
 
-export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedResult | null> {
+/**
+ * Ölçüm başarısızsa nedeni: anahtar tanımlı mı ve Google'ın hata kodu
+ * (ör. "403 SERVICE_DISABLED"). Anahtarın kendisi asla dönmez.
+ */
+export type SpeedFailure = { failed: true; keyConfigured: boolean; reason: string };
+
+export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedResult | SpeedFailure> {
   const params = new URLSearchParams({ url, strategy: "mobile", category: "performance", locale });
-  const key = process.env.PAGESPEED_API_KEY;
+  const key = process.env.PAGESPEED_API_KEY?.trim();
   if (key) params.set("key", key);
+  const fail = (reason: string): SpeedFailure => ({ failed: true, keyConfigured: Boolean(key), reason });
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
     const res = await fetch(`${ENDPOINT}?${params}`, { signal: controller.signal, cache: "no-store" });
     if (!res.ok) {
-      console.warn("[site-audit] pagespeed status", res.status);
-      return null;
+      const body = (await res.json().catch(() => null)) as {
+        error?: { status?: string; details?: { reason?: string }[]; errors?: { reason?: string }[] };
+      } | null;
+      const reason =
+        body?.error?.details?.find((d) => d.reason)?.reason ?? body?.error?.errors?.[0]?.reason ?? body?.error?.status ?? "";
+      console.warn("[site-audit] pagespeed status", res.status, reason, "key:", Boolean(key));
+      return fail(`${res.status} ${reason}`.trim());
     }
     const data = (await res.json()) as PsiResponse;
     const lh = data.lighthouseResult;
     const perf = lh?.categories?.performance?.score;
-    if (!lh?.audits || typeof perf !== "number") return null;
+    if (!lh?.audits || typeof perf !== "number") return fail("NO_LIGHTHOUSE_RESULT");
 
     const metrics: Metric[] = (Object.keys(AUDIT_IDS) as Metric["id"][]).flatMap((id) => {
       const v = lh.audits![AUDIT_IDS[id]]?.numericValue;
@@ -103,7 +115,7 @@ export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedRe
     return { performance: Math.round(perf * 100), metrics, fieldVerdict, opportunities };
   } catch (err) {
     console.warn("[site-audit] pagespeed failed", (err as Error).name);
-    return null;
+    return fail((err as Error).name === "AbortError" ? "TIMEOUT" : "NETWORK");
   } finally {
     clearTimeout(timer);
   }

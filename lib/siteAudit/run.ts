@@ -181,7 +181,9 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
   const checksScore = Math.max(0, 100 - lost);
 
   // Hız
-  const speed = await speedPromise;
+  const speedOutcome = await speedPromise;
+  const speed = "failed" in speedOutcome ? null : speedOutcome;
+  const speedIssue = "failed" in speedOutcome ? speedOutcome : null;
   if (speed) {
     if (speed.performance < 50) found.add("slow");
     else if (speed.performance < 90) found.add("mediumSpeed");
@@ -211,5 +213,6 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
     issues,
     passed,
     speedMeasured: Boolean(speed),
+    speedError: speedIssue ? { keyConfigured: speedIssue.keyConfigured, reason: speedIssue.reason } : null,
   };
 }
