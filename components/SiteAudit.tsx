@@ -46,7 +46,7 @@ function ScoreRing({ score, size = 168 }: { score: number; size?: number }) {
   );
 }
 
-function IssueCard({ issue, label, fixLabel, showFix }: { issue: Issue; label: string; fixLabel: string; showFix: boolean }) {
+function IssueCard({ issue, label, category, fixLabel, examplesLabel, showFix }: { issue: Issue; label: string; category: string; fixLabel: string; examplesLabel: string; showFix: boolean }) {
   return (
     <li className="rounded-2xl border border-border bg-surface/70 p-5">
       <div className="flex items-start gap-3">
@@ -54,6 +54,7 @@ function IssueCard({ issue, label, fixLabel, showFix }: { issue: Issue; label: s
           {label}
         </span>
         <div className="min-w-0">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted">{category}</p>
           <h3 className="font-semibold">{issue.title}</h3>
           <p className="mt-1 text-sm text-muted">{issue.detail}</p>
           {showFix && (
@@ -61,6 +62,18 @@ function IssueCard({ issue, label, fixLabel, showFix }: { issue: Issue; label: s
               <span className="font-semibold text-brand">{fixLabel}: </span>
               {issue.fix}
             </p>
+          )}
+          {showFix && issue.items && issue.items.length > 0 && (
+            <div className="mt-3">
+              <p className="text-xs font-semibold text-muted">{examplesLabel}</p>
+              <ul className="mt-1 space-y-1">
+                {issue.items.slice(0, 8).map((it) => (
+                  <li key={it} className="break-all rounded-lg bg-surface-2/60 px-3 py-1.5 font-mono text-xs">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </div>
@@ -259,6 +272,39 @@ export function SiteAudit({ locale, whatsappNumber }: { locale: Locale; whatsapp
             </div>
           </div>
 
+          {/* Bölüm özeti ve kapsam */}
+          <div className="rounded-3xl border border-border bg-surface/80 p-6 sm:p-8">
+            <h2 className="text-lg font-semibold">{c.summaryTitle}</h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {(Object.keys(c.categories) as Issue["category"][]).map((cat) => {
+                const n = result.issues.filter((i) => i.category === cat).length;
+                const worst = result.issues.find((i) => i.category === cat)?.severity;
+                return (
+                  <li key={cat} className="flex items-center justify-between rounded-2xl border border-border bg-background/60 px-4 py-3">
+                    <span className="text-sm font-medium">{c.categories[cat]}</span>
+                    {n > 0 ? (
+                      <span className={cn("rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1", SEVERITY_STYLE[worst ?? "low"])}>{n}</span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-xs text-emerald-500">
+                        <CheckCircle2 className="h-4 w-4" aria-hidden />
+                        {c.noneFound}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="mt-4 text-sm text-muted">
+              <span className="font-semibold text-foreground">{c.coverageTitle}: </span>
+              {c.coverage(result.coverage)}
+            </p>
+            {result.coverage.productUrl && (
+              <p className="mt-1 break-all text-xs text-muted">
+                {c.productChecked}: {result.coverage.productUrl}
+              </p>
+            )}
+          </div>
+
           {/* Metrikler */}
           {result.metrics.length > 0 && (
             <div className="rounded-3xl border border-border bg-surface/80 p-6 sm:p-8">
@@ -287,7 +333,15 @@ export function SiteAudit({ locale, whatsappNumber }: { locale: Locale; whatsapp
             <h2 className="text-2xl font-semibold">{result.issues.length ? c.issuesTitle(result.issues.length) : c.noIssues}</h2>
             <ul className="mt-4 space-y-3">
               {shown.map((i) => (
-                <IssueCard key={i.id} issue={i} label={c.severity[i.severity]} fixLabel={c.whatToDo} showFix={unlocked} />
+                <IssueCard
+                  key={i.id}
+                  issue={i}
+                  label={c.severity[i.severity]}
+                  category={c.categories[i.category]}
+                  fixLabel={c.whatToDo}
+                  examplesLabel={c.examples}
+                  showFix={unlocked}
+                />
               ))}
             </ul>
             {unlocked && <p className="mt-4 rounded-2xl bg-emerald-500/10 p-4 text-sm text-emerald-400">{c.thanks}</p>}

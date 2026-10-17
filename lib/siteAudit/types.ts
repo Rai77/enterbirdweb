@@ -6,10 +6,24 @@ export type Severity = "critical" | "high" | "medium" | "low";
 export type Issue = {
   id: string;
   severity: Severity;
-  category: "speed" | "seo" | "tracking" | "trust" | "mobile";
+  category: Category;
   title: string;
   detail: string;
   fix: string;
+  /** Bulguya ait örnekler (ör. kırık bağlantı adresleri). */
+  items?: string[];
+};
+
+export type Category = "speed" | "seo" | "tracking" | "trust" | "mobile" | "errors" | "product";
+
+/** Raporun "ne kadar derin baktık" özeti. */
+export type Coverage = {
+  linksChecked: number;
+  imagesChecked: number;
+  productUrl: string | null;
+  sslDaysLeft: number | null;
+  accessibility: number | null;
+  bestPractices: number | null;
 };
 
 export type Metric = {
@@ -39,4 +53,5 @@ export type AuditResult = {
   speedMeasured: boolean;
   /** Hız ölçülemediyse teşhis bilgisi (anahtar tanımlı mı, Google'ın hata kodu). */
   speedError: { keyConfigured: boolean; reason: string } | null;
+  coverage: Coverage;
 };

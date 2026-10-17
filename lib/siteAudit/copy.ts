@@ -317,13 +317,341 @@ export const ISSUES = {
       fix: "Reduce large embedded data blocks and repeated product lists.",
     },
   },
+
+  // ── Site hataları ──────────────────────────────────────────────────
+  brokenLinks: {
+    severity: "high",
+    category: "errors",
+    tr: {
+      title: "Kırık bağlantılar var",
+      detail: "Ana sayfadaki bazı bağlantılar \"sayfa bulunamadı\" ya da sunucu hatası veriyor. Müşteri tıkladığında boş sayfaya düşüyor; Google da bunu bakımsız site işareti sayar.",
+      fix: "Aşağıdaki adresleri düzeltin ya da kaldırın; silinen ürün ve kategoriler için ilgili sayfaya kalıcı (301) yönlendirme kurun.",
+    },
+    en: {
+      title: "Broken links found",
+      detail: "Some links on the home page return \"not found\" or a server error. Customers land on a dead page, and Google reads it as a sign of a poorly maintained site.",
+      fix: "Fix or remove the addresses below, and set up permanent (301) redirects for removed products and categories.",
+    },
+  },
+  brokenImages: {
+    severity: "high",
+    category: "errors",
+    tr: {
+      title: "Açılmayan görseller var",
+      detail: "Sayfadaki bazı görseller yüklenemiyor. Müşteri boş kutu ya da kırık resim simgesi görüyor; bu, güveni doğrudan zedeler.",
+      fix: "Aşağıdaki görselleri yeniden yükleyin ya da sayfadan kaldırın.",
+    },
+    en: {
+      title: "Some images fail to load",
+      detail: "Some images on the page can't be loaded, so customers see empty boxes or broken-image icons. That directly hurts trust.",
+      fix: "Re-upload the images below or remove them from the page.",
+    },
+  },
+  mixedContent: {
+    severity: "medium",
+    category: "errors",
+    tr: {
+      title: "Güvenli sayfada güvensiz (http) dosyalar yükleniyor",
+      detail: "Sayfa https olsa da bazı görsel, betik veya stil dosyaları http üzerinden çağrılıyor. Tarayıcı bunları engelleyebilir ya da adres çubuğunda güvenlik uyarısı gösterebilir.",
+      fix: "Aşağıdaki adresleri https ile değiştirin.",
+    },
+    en: {
+      title: "Insecure (http) files load on a secure page",
+      detail: "The page is https, but some images, scripts or stylesheets are requested over http. Browsers may block them or show a security warning.",
+      fix: "Change the addresses below to https.",
+    },
+  },
+  noHttpsRedirect: {
+    severity: "high",
+    category: "errors",
+    tr: {
+      title: "http adresi https'e yönlenmiyor",
+      detail: "Sitenin http:// ile başlayan adresi güvenli sürüme otomatik geçmiyor. Eski bağlantılardan gelen ziyaretçiler \"Güvenli değil\" uyarısı görüyor.",
+      fix: "Sunucuda ya da altyapı panelinde tüm http isteklerini kalıcı (301) olarak https'e yönlendirin.",
+    },
+    en: {
+      title: "http doesn't redirect to https",
+      detail: "The http:// version of the site doesn't switch to the secure version, so visitors from old links see a \"Not secure\" warning.",
+      fix: "Permanently (301) redirect every http request to https on the server or in your platform settings.",
+    },
+  },
+  wwwBroken: {
+    severity: "medium",
+    category: "errors",
+    tr: {
+      title: "www'lu (veya www'suz) adres açılmıyor",
+      detail: "Sitenin bir sürümü açılmıyor. Adresi alışkanlıkla www ile (ya da www'suz) yazan müşteri siteye ulaşamıyor.",
+      fix: "Alan adı ayarlarına eksik kaydı ekleyin ve iki adresi de tek bir adrese kalıcı olarak yönlendirin.",
+    },
+    en: {
+      title: "The www (or non-www) address doesn't open",
+      detail: "One version of the address doesn't load, so customers who type it out of habit can't reach the site.",
+      fix: "Add the missing DNS record and permanently redirect both addresses to a single one.",
+    },
+  },
+  wwwDuplicate: {
+    severity: "low",
+    category: "errors",
+    tr: {
+      title: "www'lu ve www'suz adres ayrı site gibi açılıyor",
+      detail: "İki adres de aynı sayfayı yönlendirme olmadan gösteriyor. Google bunları kopya içerik sayabilir.",
+      fix: "Birini ana adres seçin, diğerini ona kalıcı (301) yönlendirin.",
+    },
+    en: {
+      title: "www and non-www open as separate sites",
+      detail: "Both addresses show the same page without redirecting, which Google may treat as duplicate content.",
+      fix: "Pick one as the main address and permanently (301) redirect the other to it.",
+    },
+  },
+  redirectChain: {
+    severity: "low",
+    category: "errors",
+    tr: {
+      title: "Ana sayfaya ulaşmak için birden fazla yönlendirme var",
+      detail: "Adres yazıldığında sayfa açılmadan önce birkaç kez yönlendiriliyor. Her adım mobilde gecikme demek.",
+      fix: "Tüm eski adresleri tek adımda son adrese yönlendirin.",
+    },
+    en: {
+      title: "Several redirects before the home page",
+      detail: "The address bounces through several redirects before the page opens. Each hop adds delay on mobile.",
+      fix: "Redirect every old address to the final one in a single step.",
+    },
+  },
+  soft404: {
+    severity: "medium",
+    category: "errors",
+    tr: {
+      title: "Olmayan sayfalar \"bulunamadı\" demiyor",
+      detail: "Var olmayan bir adres 404 yerine normal sayfa gibi (200) dönüyor. Google bu boş sayfaları dizine alıp sitenizin kalitesini düşük değerlendirebilir.",
+      fix: "Bulunamayan sayfalar için 404 durum kodu döndüren bir hata sayfası kullanın.",
+    },
+    en: {
+      title: "Missing pages don't say \"not found\"",
+      detail: "A non-existent address returns a normal page (200) instead of 404. Google may index these empty pages and rate your site lower.",
+      fix: "Use an error page that returns a 404 status code for missing pages.",
+    },
+  },
+  sslExpiring: {
+    severity: "high",
+    category: "errors",
+    tr: {
+      title: "SSL sertifikasının süresi dolmak üzere",
+      detail: "Sertifika yenilenmezse tarayıcılar siteyi \"güvenli değil\" diye engelleyecek ve satış duracak.",
+      fix: "Sertifikayı hemen yenileyin ya da otomatik yenilemeyi açın.",
+    },
+    en: {
+      title: "The SSL certificate is about to expire",
+      detail: "If it isn't renewed, browsers will block the site as \"not secure\" and sales will stop.",
+      fix: "Renew the certificate now or turn on automatic renewal.",
+    },
+  },
+  sslInvalid: {
+    severity: "critical",
+    category: "errors",
+    tr: {
+      title: "SSL sertifikası geçersiz",
+      detail: "Tarayıcılar bu sertifikaya güvenmiyor; ziyaretçiler güvenlik uyarısı görüyor.",
+      fix: "Alan adınıza uygun, güvenilir bir sertifika kurun (ör. Let's Encrypt).",
+    },
+    en: {
+      title: "The SSL certificate is invalid",
+      detail: "Browsers don't trust this certificate, so visitors see a security warning.",
+      fix: "Install a trusted certificate that matches your domain (e.g. Let's Encrypt).",
+    },
+  },
+  consoleErrors: {
+    severity: "medium",
+    category: "errors",
+    tr: {
+      title: "Sayfada JavaScript hataları var",
+      detail: "Google'ın testinde tarayıcı konsoluna hata yazıldı. Bu hatalar menü, filtre, sepet veya ölçüm kodlarının çalışmamasına yol açabilir.",
+      fix: "Geliştiricinizle konsol hatalarını giderin; çoğu zaman eski bir uygulama ya da bozuk bir izleme kodu sebeptir.",
+    },
+    en: {
+      title: "JavaScript errors on the page",
+      detail: "Google's test logged errors to the browser console. They can break menus, filters, the cart or tracking.",
+      fix: "Have your developer clear the console errors; an old app or a broken tracking snippet is often the cause.",
+    },
+  },
+  accessibility: {
+    severity: "low",
+    category: "errors",
+    tr: {
+      title: "Erişilebilirlik sorunları var",
+      detail: "Google'ın erişilebilirlik testinde eksikler bulundu: okunması zor renkler, etiketsiz düğme ve bağlantılar gibi. Bunlar hem kullanıcı deneyimini hem görünürlüğü etkiler.",
+      fix: "Aşağıdaki maddeleri tema ayarlarında düzeltin.",
+    },
+    en: {
+      title: "Accessibility issues",
+      detail: "Google's accessibility test found gaps such as low-contrast text and unlabeled buttons or links. They affect both usability and visibility.",
+      fix: "Fix the items below in your theme settings.",
+    },
+  },
+
+  // ── Güven ve satış ─────────────────────────────────────────────────
+  noReturnPolicy: {
+    severity: "high",
+    category: "trust",
+    tr: {
+      title: "İade ve değişim bilgisine ulaşılamıyor",
+      detail: "Ana sayfada iade/değişim koşullarına giden bir bağlantı bulunamadı. Online alışverişte müşterinin en çok aradığı bilgilerden biri bu.",
+      fix: "Alt menüye ve ürün sayfalarına \"İade ve Değişim\" bağlantısı ekleyin.",
+    },
+    en: {
+      title: "No returns and exchanges information",
+      detail: "There's no link to return/exchange terms on the home page. It's one of the first things online shoppers look for.",
+      fix: "Add a \"Returns & Exchanges\" link to the footer and product pages.",
+    },
+  },
+  noPrivacy: {
+    severity: "high",
+    category: "trust",
+    tr: {
+      title: "KVKK / gizlilik metni bulunamadı",
+      detail: "Ana sayfada KVKK aydınlatma metni ya da gizlilik politikasına bağlantı yok. Kişisel veri toplayan siteler için bu yasal bir zorunluluk.",
+      fix: "KVKK aydınlatma metni, çerez politikası ve gizlilik politikasını hazırlayıp alt menüye bağlayın.",
+    },
+    en: {
+      title: "No privacy policy found",
+      detail: "There's no link to a privacy policy on the home page. For sites that collect personal data it's a legal requirement.",
+      fix: "Publish a privacy policy and cookie policy and link them in the footer.",
+    },
+  },
+  noTerms: {
+    severity: "medium",
+    category: "trust",
+    tr: {
+      title: "Mesafeli satış sözleşmesi bağlantısı yok",
+      detail: "Türkiye'de online satışta mesafeli satış sözleşmesi ve ön bilgilendirme formu zorunludur; müşterinin bunlara ulaşabilmesi gerekir.",
+      fix: "Mesafeli satış sözleşmesi ve ön bilgilendirme formunu alt menüye ekleyin.",
+    },
+    en: {
+      title: "No terms of sale link",
+      detail: "Customers should be able to find your terms of sale before they buy.",
+      fix: "Add your terms of sale (and distance-selling terms where required) to the footer.",
+    },
+  },
+  noContact: {
+    severity: "medium",
+    category: "trust",
+    tr: {
+      title: "İletişim bilgisi bulunamadı",
+      detail: "Ana sayfada telefon, e-posta ya da iletişim sayfasına bağlantı yok. Ulaşılabilir görünmeyen bir mağazaya müşteri güvenmez.",
+      fix: "Alt menüye telefon, e-posta ve iletişim sayfası bağlantısı ekleyin.",
+    },
+    en: {
+      title: "No contact information",
+      detail: "There's no phone, email or contact page link on the home page. Customers don't trust a store that looks unreachable.",
+      fix: "Add a phone number, email and contact page link to the footer.",
+    },
+  },
+  noWhatsapp: {
+    severity: "low",
+    category: "trust",
+    tr: {
+      title: "WhatsApp ile hızlı iletişim yok",
+      detail: "Türkiye'de müşterilerin önemli bir kısmı soru sormak için önce WhatsApp'ı dener. Hızlı ulaşabildiği mağazadan alışveriş yapma ihtimali artar.",
+      fix: "Sitenin köşesine bir WhatsApp butonu ekleyin.",
+    },
+    en: {
+      title: "No quick WhatsApp contact",
+      detail: "Many shoppers try WhatsApp first when they have a question. A store they can reach quickly is more likely to get the sale.",
+      fix: "Add a WhatsApp button to a corner of the site.",
+    },
+  },
+  noPaymentTrust: {
+    severity: "low",
+    category: "trust",
+    tr: {
+      title: "Ödeme yöntemleri ve güvenli ödeme gösterilmiyor",
+      detail: "Ana sayfada kabul edilen kartlar, taksit ya da güvenli ödeme altyapısına dair bir işaret bulunamadı. Bunlar ilk kez gelen müşterinin güvenini artırır.",
+      fix: "Alt kısma ödeme logolarını (Visa, Mastercard, Troy, iyzico vb.) ve \"Güvenli ödeme\" ibaresini ekleyin.",
+    },
+    en: {
+      title: "Payment methods and secure checkout aren't shown",
+      detail: "There's no sign of accepted cards, installments or a secure payment provider on the home page. These reassure first-time visitors.",
+      fix: "Add payment logos (Visa, Mastercard, PayPal, etc.) and a \"Secure checkout\" note to the footer.",
+    },
+  },
+
+  // ── Ürün sayfası ───────────────────────────────────────────────────
+  productNoSchema: {
+    severity: "high",
+    category: "product",
+    tr: {
+      title: "Ürün sayfasında ürün bilgisi Google'a verilmiyor",
+      detail: "İncelenen ürün sayfasında Product (ürün) yapılandırılmış verisi yok. Google aramada fiyat, stok ve puan gösteremiyor; Google Alışveriş'te ücretsiz listelemeler de zorlaşıyor.",
+      fix: "Ürün sayfalarına ad, görsel, fiyat, para birimi, stok durumu ve varsa puan içeren Product şeması ekleyin.",
+    },
+    en: {
+      title: "Product details aren't given to Google",
+      detail: "The product page has no Product structured data, so Google can't show price, stock or ratings in search, and free Shopping listings are harder.",
+      fix: "Add Product schema with name, image, price, currency, availability and rating (if any) to product pages.",
+    },
+  },
+  productSchemaIncomplete: {
+    severity: "medium",
+    category: "product",
+    tr: {
+      title: "Ürün bilgisinde eksik alanlar var",
+      detail: "Ürün şeması var ama Google'ın arama sonucunda zengin görünüm için kullandığı bazı alanlar eksik.",
+      fix: "Aşağıdaki eksik alanları ürün şemasına ekleyin.",
+    },
+    en: {
+      title: "Product data is missing fields",
+      detail: "The product schema exists, but some fields Google uses for rich results are missing.",
+      fix: "Add the missing fields below to the product schema.",
+    },
+  },
+  productNoCart: {
+    severity: "medium",
+    category: "product",
+    tr: {
+      title: "Ürün sayfasında \"Sepete ekle\" düğmesi bulunamadı",
+      detail: "İncelenen ürün sayfasının ilk yüklenen kodunda sepete ekleme ya da satın alma düğmesi görünmüyor. Düğme sonradan yükleniyorsa yavaş bağlantılarda geç çıkabilir.",
+      fix: "Sepete ekle düğmesinin sayfa açılır açılmaz görünür olduğundan emin olun.",
+    },
+    en: {
+      title: "No \"Add to cart\" button found on the product page",
+      detail: "The product page's initial code shows no add-to-cart or buy button. If it loads later, it may appear late on slow connections.",
+      fix: "Make sure the add-to-cart button is visible as soon as the page opens.",
+    },
+  },
+  productNoReviews: {
+    severity: "low",
+    category: "product",
+    tr: {
+      title: "Ürün sayfasında müşteri yorumu yok",
+      detail: "İncelenen ürün sayfasında yorum ya da puan bulunamadı. Yorumlar, ilk kez alışveriş yapacak müşteri için en güçlü güven unsurlarından biri.",
+      fix: "Satış sonrası yorum isteyen bir sistem kurun ve yorumları ürün sayfasında gösterin.",
+    },
+    en: {
+      title: "No customer reviews on the product page",
+      detail: "No reviews or ratings were found on the product page. Reviews are one of the strongest trust signals for first-time buyers.",
+      fix: "Set up post-purchase review requests and show reviews on product pages.",
+    },
+  },
+  productFewImages: {
+    severity: "low",
+    category: "product",
+    tr: {
+      title: "Ürün görseli az",
+      detail: "İncelenen ürün için 3'ten az görsel bulundu. Farklı açılar ve kullanım fotoğrafları, iade oranını düşürmeye ve satışı artırmaya yardımcı olur.",
+      fix: "Her ürün için en az 4–5 görsel kullanın: ön, arka, detay ve kullanım fotoğrafı.",
+    },
+    en: {
+      title: "Few product images",
+      detail: "Fewer than 3 images were found for the product. Multiple angles and lifestyle shots help reduce returns and lift sales.",
+      fix: "Use at least 4–5 images per product: front, back, detail and in-use shots.",
+    },
+  },
 } satisfies Record<string, Entry>;
 
 export type IssueId = keyof typeof ISSUES;
 
-export function issue(id: IssueId, locale: Locale): Issue {
+export function issue(id: IssueId, locale: Locale, items?: string[]): Issue {
   const e: Entry = ISSUES[id];
-  return { id, severity: e.severity, category: e.category, ...e[locale] };
+  return { id, severity: e.severity, category: e.category, ...e[locale], ...(items?.length ? { items } : {}) };
 }
 
 /** Geçilen kontrollerin kısa adları. */
@@ -344,4 +672,21 @@ export const PASSED: Record<string, Record<Locale, string>> = {
   lang: { tr: "Dil etiketi", en: "Language attribute" },
   indexable: { tr: "Google'a açık (noindex yok)", en: "Indexable (no noindex)" },
   speed: { tr: "Mobil hız", en: "Mobile speed" },
+  links: { tr: "Kırık bağlantı yok", en: "No broken links" },
+  images: { tr: "Görseller açılıyor", en: "Images load" },
+  mixed: { tr: "Güvensiz (http) dosya yok", en: "No insecure (http) files" },
+  httpsRedirect: { tr: "http → https yönlendirmesi", en: "http → https redirect" },
+  www: { tr: "www adresi doğru yönleniyor", en: "www redirects correctly" },
+  notFound: { tr: "404 sayfası doğru çalışıyor", en: "404 page works correctly" },
+  ssl: { tr: "SSL sertifikası geçerli", en: "Valid SSL certificate" },
+  console: { tr: "Konsol hatası yok", en: "No console errors" },
+  returns: { tr: "İade ve değişim bilgisi", en: "Returns information" },
+  privacy: { tr: "KVKK / gizlilik metni", en: "Privacy policy" },
+  terms: { tr: "Mesafeli satış sözleşmesi", en: "Terms of sale" },
+  contact: { tr: "İletişim bilgisi", en: "Contact information" },
+  whatsapp: { tr: "WhatsApp iletişimi", en: "WhatsApp contact" },
+  payment: { tr: "Ödeme ve güven işaretleri", en: "Payment and trust badges" },
+  productSchema: { tr: "Ürün yapılandırılmış verisi", en: "Product structured data" },
+  cart: { tr: "Sepete ekle düğmesi", en: "Add to cart button" },
+  reviews: { tr: "Ürün yorumları", en: "Product reviews" },
 };

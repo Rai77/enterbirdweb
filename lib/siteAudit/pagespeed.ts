@@ -15,17 +15,26 @@ export type SpeedResult = {
   fieldVerdict: "good" | "average" | "poor" | null;
   /** Lighthouse'un "fırsat" denetimleri: id → tahmini kazanç (ms). */
   opportunities: { id: string; savingsMs: number }[];
+  accessibility: number | null;
+  bestPractices: number | null;
+  /** Başarısız erişilebilirlik denetimlerinin (Google'ın dilinde) başlıkları. */
+  a11yFailures: string[];
+  /** Tarayıcı konsoluna yazılan hata mesajları. */
+  consoleErrors: string[];
 };
 
 type LhAudit = {
+  title?: string;
   numericValue?: number;
   score?: number | null;
-  details?: { type?: string; overallSavingsMs?: number };
+  details?: { type?: string; overallSavingsMs?: number; items?: { description?: string; source?: string }[] };
 };
+
+type LhCategory = { score?: number | null; auditRefs?: { id: string; weight: number }[] };
 
 type PsiResponse = {
   lighthouseResult?: {
-    categories?: { performance?: { score?: number | null } };
+    categories?: { performance?: LhCategory; accessibility?: LhCategory; "best-practices"?: LhCategory };
     audits?: Record<string, LhAudit>;
   };
   loadingExperience?: { overall_category?: "FAST" | "AVERAGE" | "SLOW" };
@@ -75,7 +84,8 @@ function format(id: Metric["id"], value: number, locale: Locale): string {
 export type SpeedFailure = { failed: true; keyConfigured: boolean; reason: string };
 
 export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedResult | SpeedFailure> {
-  const params = new URLSearchParams({ url, strategy: "mobile", category: "performance", locale });
+  const params = new URLSearchParams({ url, strategy: "mobile", locale });
+  for (const c of ["performance", "accessibility", "best-practices"]) params.append("category", c);
   const key = process.env.PAGESPEED_API_KEY?.trim();
   if (key) params.set("key", key);
   const fail = (reason: string): SpeedFailure => ({ failed: true, keyConfigured: Boolean(key), reason });
@@ -112,7 +122,29 @@ export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedRe
     const cat = data.loadingExperience?.overall_category;
     const fieldVerdict = cat === "FAST" ? "good" : cat === "AVERAGE" ? "average" : cat === "SLOW" ? "poor" : null;
 
-    return { performance: Math.round(perf * 100), metrics, fieldVerdict, opportunities };
+    const pct = (s?: number | null) => (typeof s === "number" ? Math.round(s * 100) : null);
+    const a11y = lh.categories?.accessibility;
+    const a11yFailures = (a11y?.auditRefs ?? [])
+      .filter((r) => r.weight > 0 && lh.audits![r.id]?.score === 0)
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, 6)
+      .map((r) => (lh.audits![r.id]?.title ?? r.id).replace(/`/g, "").slice(0, 140));
+    const consoleAudit = lh.audits["errors-in-console"];
+    const consoleErrors =
+      consoleAudit?.score === 0
+        ? (consoleAudit.details?.items ?? []).slice(0, 5).map((i) => (i.description ?? i.source ?? "").replace(/\s+/g, " ").slice(0, 140))
+        : [];
+
+    return {
+      performance: Math.round(perf * 100),
+      metrics,
+      fieldVerdict,
+      opportunities,
+      accessibility: pct(a11y?.score),
+      bestPractices: pct(lh.categories?.["best-practices"]?.score),
+      a11yFailures,
+      consoleErrors,
+    };
   } catch (err) {
     console.warn("[site-audit] pagespeed failed", (err as Error).name);
     return fail((err as Error).name === "AbortError" ? "TIMEOUT" : "NETWORK");

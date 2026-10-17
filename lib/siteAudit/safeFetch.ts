@@ -70,7 +70,7 @@ export function normalizeUrl(input: string): URL {
   return url;
 }
 
-async function assertPublicHost(url: URL): Promise<void> {
+export async function assertPublicHost(url: URL): Promise<void> {
   const host = url.hostname.replace(/^\[|\]$/g, "");
   if (isIP(host)) {
     if (isPrivateIp(host)) throw new AuditUrlError("BLOCKED_HOST");
@@ -94,6 +94,8 @@ export type FetchedPage = {
   body: string;
   redirectedFromHttp: boolean;
   elapsedMs: number;
+  /** Son sayfaya ulaşana kadar izlenen yönlendirme sayısı. */
+  hops: number;
 };
 
 const UA =
@@ -160,7 +162,7 @@ export async function safeFetch(start: URL, opts: { maxBytes?: number; acceptNon
     }
     clearTimeout(timer);
     const body = new TextDecoder("utf-8").decode(Buffer.concat(chunks));
-    return { finalUrl: url, status: res.status, headers: res.headers, body, redirectedFromHttp, elapsedMs: Date.now() - t0 };
+    return { finalUrl: url, status: res.status, headers: res.headers, body, redirectedFromHttp, elapsedMs: Date.now() - t0, hops: hop };
   }
   throw new AuditUrlError("UNREACHABLE");
 }

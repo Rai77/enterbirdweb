@@ -1,6 +1,7 @@
 import { safeFetch, normalizeUrl, AuditUrlError } from "./safeFetch";
 import { runPageSpeed } from "./pagespeed";
 import { issue, PASSED, type IssueId } from "./copy";
+import { errorChecks, trustChecks, productChecks } from "./deep";
 import type { AuditResult, Issue, Locale } from "./types";
 
 const SEVERITY_ORDER = { critical: 0, high: 1, medium: 2, low: 3 } as const;
@@ -23,7 +24,36 @@ const WEIGHTS: Partial<Record<IssueId, number>> = {
   noRobots: 1,
   noLang: 1,
   badTitle: 1,
+  // Site hataları
+  sslInvalid: 12,
+  brokenLinks: 6,
+  sslExpiring: 6,
+  brokenImages: 5,
+  noHttpsRedirect: 5,
+  mixedContent: 3,
+  wwwBroken: 3,
+  soft404: 2,
+  consoleErrors: 2,
+  wwwDuplicate: 1,
+  redirectChain: 1,
+  accessibility: 1,
+  // Güven ve satış
+  noReturnPolicy: 4,
+  noPrivacy: 4,
+  noContact: 3,
+  noTerms: 2,
+  noWhatsapp: 1,
+  noPaymentTrust: 1,
+  // Ürün sayfası
+  productNoSchema: 5,
+  productNoCart: 3,
+  productSchemaIncomplete: 2,
+  productNoReviews: 1,
+  productFewImages: 1,
 };
+
+// Tüm kontroller kusursuzsa kaybedilebilecek toplam ağırlık; site puanı buna oranlanır.
+const TOTAL_WEIGHT = Object.values(WEIGHTS).reduce((a, b) => a + (b ?? 0), 0);
 
 function attr(tag: string, name: string): string | null {
   const m = tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"));
@@ -94,6 +124,8 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
 
   // Hız ölçümü uzun sürer; diğer kontrollerle paralel başlatılır.
   const speedPromise = runPageSpeed(finalUrl.toString(), locale);
+  const errorsPromise = errorChecks(html, finalUrl, { hops: page.hops });
+  const productPromise = productChecks(html, finalUrl);
   const [robotsTxt, sitemapXml] = await Promise.all([
     fetchText(new URL("/robots.txt", finalUrl)),
     fetchText(new URL("/sitemap.xml", finalUrl)),
@@ -103,6 +135,7 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
   const hasSitemap = sitemapXml !== null || /^\s*sitemap\s*:\s*https?:\/\//im.test(robotsTxt ?? "");
 
   const found = new Set<IssueId>();
+  const itemsById = new Map<IssueId, string[]>();
   const passed: string[] = [];
   const pass = (key: keyof typeof PASSED) => passed.push(PASSED[key][locale]);
 
@@ -176,9 +209,15 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
 
   if (html.length > 1_500_000) found.add("heavyHtml");
 
-  // Site içi puan
-  const lost = [...found].reduce((sum, id) => sum + (WEIGHTS[id] ?? 0), 0);
-  const checksScore = Math.max(0, 100 - lost);
+  // Derin kontroller: site hataları, güven unsurları, ürün sayfası
+  const [errors, product] = await Promise.all([errorsPromise, productPromise]);
+  for (const out of [errors, trustChecks(html, locale), product]) {
+    for (const f of out.found) {
+      found.add(f.id);
+      if (f.items?.length) itemsById.set(f.id, f.items);
+    }
+    out.passed.forEach(pass);
+  }
 
   // Hız
   const speedOutcome = await speedPromise;
@@ -192,12 +231,24 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
     if (rating("lcp") === "poor") found.add("poorLcp");
     if (rating("cls") !== undefined && rating("cls") !== "good") found.add("poorCls");
     if (rating("tbt") === "poor") found.add("poorTbt");
+    if (speed.consoleErrors.length) {
+      found.add("consoleErrors");
+      itemsById.set("consoleErrors", speed.consoleErrors);
+    } else pass("console");
+    if (speed.a11yFailures.length && (speed.accessibility ?? 100) < 90) {
+      found.add("accessibility");
+      itemsById.set("accessibility", speed.a11yFailures);
+    }
   }
+
+  // Site içi puan (hız hariç tüm kontroller)
+  const lost = [...found].reduce((sum, id) => sum + (WEIGHTS[id] ?? 0), 0);
+  const checksScore = Math.max(0, Math.round(100 * (1 - lost / TOTAL_WEIGHT)));
 
   const score = speed ? Math.round(speed.performance * 0.5 + checksScore * 0.5) : checksScore;
 
   const issues: Issue[] = [...found]
-    .map((id) => issue(id, locale))
+    .map((id) => issue(id, locale, itemsById.get(id)))
     .sort((a, b) => SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity]);
 
   return {
@@ -214,5 +265,13 @@ export async function runAudit(input: string, locale: Locale): Promise<AuditResu
     passed,
     speedMeasured: Boolean(speed),
     speedError: speedIssue ? { keyConfigured: speedIssue.keyConfigured, reason: speedIssue.reason } : null,
+    coverage: {
+      linksChecked: errors.linksChecked,
+      imagesChecked: errors.imagesChecked,
+      productUrl: product.productUrl,
+      sslDaysLeft: errors.sslDaysLeft,
+      accessibility: speed?.accessibility ?? null,
+      bestPractices: speed?.bestPractices ?? null,
+    },
   };
 }
