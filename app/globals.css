@@ -154,3 +154,16 @@ body {
   100% { transform: translateY(8px); opacity: 0; }
 }
 .animate-scroll-cue { animation: scroll-cue 2s ease-in-out infinite; }
+
+/* Ana sayfa başlığı: yalnız konum animasyonu. Opaklık baştan 1 kalır; böylece
+   yazı ilk karede görünür ve Google'ın LCP ölçümü JavaScript'i beklemez. */
+@keyframes hero-rise {
+  from { transform: translateY(22px); }
+  to { transform: none; }
+}
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+}

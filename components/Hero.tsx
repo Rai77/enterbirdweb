@@ -208,54 +208,42 @@ export function Hero({
           </span>
         </motion.div>
 
+        {/* Başlık, açıklama ve düğmeler sayfanın en büyük içeriği (LCP).
+            Görünmez başlayıp JavaScript ile belirmeleri mobilde ana içeriği
+            saniyelerce geciktiriyordu; artık ilk karede görünürler ve yalnız
+            CSS ile yukarı kayarak gelirler (globals.css → .hero-rise). */}
         <h1 className="mx-auto mt-7 max-w-5xl text-center text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl md:text-[88px]">
           {titleWords1.map((w, i) => (
-            <motion.span
+            <span
               key={`a-${i}`}
-              initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.7,
-                delay: 0.18 + i * 0.08,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              className="mr-[0.25em] inline-block"
+              className="hero-rise mr-[0.25em] inline-block"
+              style={{ animationDelay: `${0.05 + i * 0.06}s` }}
             >
               {w}
-            </motion.span>
+            </span>
           ))}
           <br className="hidden sm:block" />
           {titleWords2.map((w, i) => (
-            <motion.span
+            <span
               key={`b-${i}`}
-              initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.7,
-                delay: 0.42 + i * 0.08,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              className="text-gradient mr-[0.25em] inline-block"
+              className="hero-rise text-gradient mr-[0.25em] inline-block"
+              style={{ animationDelay: `${0.2 + i * 0.06}s` }}
             >
               {w}
-            </motion.span>
+            </span>
           ))}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="mx-auto mt-7 max-w-2xl text-center text-base text-muted sm:text-lg"
+        <p
+          className="hero-rise mx-auto mt-7 max-w-2xl text-center text-base text-muted sm:text-lg"
+          style={{ animationDelay: "0.35s" }}
         >
           {richString(hero.description)}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.78 }}
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        <div
+          className="hero-rise mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          style={{ animationDelay: "0.45s" }}
         >
           <Link
             href={hero.primaryCtaHref || "/contact"}
@@ -271,7 +259,7 @@ export function Hero({
           >
             {hero.secondaryCta}
           </Link>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 28 }}

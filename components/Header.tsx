@@ -27,7 +27,15 @@ export async function Header({ locale }: { locale: string }) {
           label: n.label,
           highlight: !!n.highlight,
         }))
-      : DEFAULT_NAV;
+      : [...DEFAULT_NAV];
+
+  // Ücretsiz site analizi aracı müşteri kazanma sayfası; panelde menüye
+  // eklenmemiş olsa da İletişim'den hemen önce gösterilir.
+  if (!nav.some((n) => n.href.includes("site-analizi"))) {
+    const item = { href: "/site-analizi", label: locale === "en" ? "Site Audit" : "Site Analizi" };
+    const contactAt = nav.findIndex((n) => n.href.includes("contact"));
+    nav.splice(contactAt === -1 ? nav.length : contactAt, 0, item);
+  }
 
   const cta = {
     label: data?.ctaLabel ?? "Teklif Al",
