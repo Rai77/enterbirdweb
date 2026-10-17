@@ -22,6 +22,7 @@ const SECTIONS = new Set([
   "blog",
   "loom",
   "sozluk",
+  "site-analizi",
 ]);
 
 const LOCALES = new Set<string>(routing.locales);

@@ -14,6 +14,7 @@ import { Projects } from "./cms/collections/Projects";
 import { Testimonials } from "./cms/collections/Testimonials";
 import { TeamMembers } from "./cms/collections/TeamMembers";
 import { BlogPosts } from "./cms/collections/BlogPosts";
+import { SiteAuditLeads } from "./cms/collections/SiteAuditLeads";
 
 import { Header } from "./cms/globals/Header";
 import { Footer } from "./cms/globals/Footer";
@@ -70,6 +71,8 @@ export default buildConfig({
   collections: [
     Users,
     ...[Media, Services, Projects, Testimonials, TeamMembers, BlogPosts].map(withRevalidate),
+    // Talepler site içeriği değil; kayıt geldiğinde önbellek temizlenmesin.
+    SiteAuditLeads,
   ],
   globals: [Header, Footer, HomePage, ServicesPage, AboutPage, LoomPage, ContactPage, CTABlock].map(
     withRevalidateGlobal,
