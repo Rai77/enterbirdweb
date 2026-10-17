@@ -8,7 +8,7 @@ import type { Locale, Metric } from "./types";
 
 const ENDPOINT = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
 // Ağır sitelerde Google'ın testi 60 sn'yi aşabiliyor (bkz. route maxDuration).
-const TIMEOUT_MS = 85_000;
+const TIMEOUT_MS = 60_000;
 
 export type SpeedResult = {
   performance: number;
