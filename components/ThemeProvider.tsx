@@ -4,8 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 
@@ -17,40 +16,38 @@ type ThemeContextValue = {
   toggle: () => void;
 };
 
+// Yalnız ziyaretçinin kendi seçimi saklanır (bkz. ThemeScript).
+const STORAGE_KEY = "eb-theme";
+
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+// Geçerli tema <html> üzerindeki "dark" sınıfıdır; ThemeScript onu sayfa
+// çizilmeden önce koyar. React durumu ayrıca tutulmaz, sınıf izlenir.
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  return () => observer.disconnect();
+}
 
-  useEffect(() => {
+const getSnapshot = (): Theme =>
+  document.documentElement.classList.contains("dark") ? "dark" : "light";
+const getServerSnapshot = (): Theme => "light";
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setTheme = useCallback((next: Theme) => {
+    const root = document.documentElement;
+    root.classList.toggle("dark", next === "dark");
+    root.style.colorScheme = next;
     try {
-      const stored = localStorage.getItem("theme");
-      if (stored === "light" || stored === "dark") {
-        setThemeState(stored);
-      }
+      localStorage.setItem(STORAGE_KEY, next);
     } catch {}
-    setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
-    const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    root.style.colorScheme = theme;
-    try {
-      localStorage.setItem("theme", theme);
-    } catch {}
-  }, [theme, mounted]);
-
-  const setTheme = useCallback((next: Theme) => setThemeState(next), []);
   const toggle = useCallback(
-    () => setThemeState((t) => (t === "dark" ? "light" : "dark")),
-    [],
+    () => setTheme(getSnapshot() === "dark" ? "light" : "dark"),
+    [setTheme],
   );
 
   return (
@@ -64,7 +61,7 @@ export function useTheme() {
   const ctx = useContext(ThemeContext);
   if (!ctx) {
     return {
-      theme: "dark" as Theme,
+      theme: "light" as Theme,
       setTheme: () => {},
       toggle: () => {},
     };
