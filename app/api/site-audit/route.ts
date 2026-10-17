@@ -5,8 +5,8 @@ import { rateLimit, clientIp } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-// Google PageSpeed ölçümü 15–45 sn sürebiliyor.
-export const maxDuration = 60;
+// Google PageSpeed ölçümü ağır sitelerde 60 sn'yi aşabiliyor (bkz. pagespeed.ts).
+export const maxDuration = 120;
 
 // Her analiz Google'a bir istek demek; aynı IP 10 dakikada en fazla 5 analiz.
 const RATE_LIMIT = 5;

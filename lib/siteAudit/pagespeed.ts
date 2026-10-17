@@ -2,12 +2,13 @@ import type { Locale, Metric } from "./types";
 
 /**
  * Google PageSpeed Insights (Lighthouse) — mobil ölçüm.
- * Anahtar zorunlu değil ama anahtarsız istekler Google tarafından sıkı
- * sınırlanır; Vercel'de PAGESPEED_API_KEY girilmeli.
+ * Anahtarsız istekler Google'ın ortak kotasına takılıyor; Vercel'de
+ * PAGESPEED_API_KEY tanımlı olmalı.
  */
 
 const ENDPOINT = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
-const TIMEOUT_MS = 45_000;
+// Ağır sitelerde Google'ın testi 60 sn'yi aşabiliyor (bkz. route maxDuration).
+const TIMEOUT_MS = 85_000;
 
 export type SpeedResult = {
   performance: number;
@@ -83,10 +84,11 @@ function format(id: Metric["id"], value: number, locale: Locale): string {
  */
 export type SpeedFailure = { failed: true; keyConfigured: boolean; reason: string };
 
-export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedResult | SpeedFailure> {
+type PsiCall = { ok: true; data: PsiResponse } | SpeedFailure;
+
+async function callPsi(url: string, locale: Locale, categories: string[], key: string | undefined): Promise<PsiCall> {
   const params = new URLSearchParams({ url, strategy: "mobile", locale });
-  for (const c of ["performance", "accessibility", "best-practices"]) params.append("category", c);
-  const key = process.env.PAGESPEED_API_KEY?.trim();
+  for (const c of categories) params.append("category", c);
   if (key) params.set("key", key);
   const fail = (reason: string): SpeedFailure => ({ failed: true, keyConfigured: Boolean(key), reason });
 
@@ -103,52 +105,73 @@ export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedRe
       console.warn("[site-audit] pagespeed status", res.status, reason, "key:", Boolean(key));
       return fail(`${res.status} ${reason}`.trim());
     }
-    const data = (await res.json()) as PsiResponse;
-    const lh = data.lighthouseResult;
-    const perf = lh?.categories?.performance?.score;
-    if (!lh?.audits || typeof perf !== "number") return fail("NO_LIGHTHOUSE_RESULT");
-
-    const metrics: Metric[] = (Object.keys(AUDIT_IDS) as Metric["id"][]).flatMap((id) => {
-      const v = lh.audits![AUDIT_IDS[id]]?.numericValue;
-      if (typeof v !== "number") return [];
-      return [{ id, label: LABELS[id][locale], display: format(id, v, locale), rating: rate(id, v) }];
-    });
-
-    const opportunities = Object.entries(lh.audits)
-      .filter(([, a]) => a.details?.type === "opportunity" && (a.details.overallSavingsMs ?? 0) >= 150 && (a.score ?? 1) < 0.9)
-      .map(([id, a]) => ({ id, savingsMs: Math.round(a.details!.overallSavingsMs!) }))
-      .sort((a, b) => b.savingsMs - a.savingsMs);
-
-    const cat = data.loadingExperience?.overall_category;
-    const fieldVerdict = cat === "FAST" ? "good" : cat === "AVERAGE" ? "average" : cat === "SLOW" ? "poor" : null;
-
-    const pct = (s?: number | null) => (typeof s === "number" ? Math.round(s * 100) : null);
-    const a11y = lh.categories?.accessibility;
-    const a11yFailures = (a11y?.auditRefs ?? [])
-      .filter((r) => r.weight > 0 && lh.audits![r.id]?.score === 0)
-      .sort((a, b) => b.weight - a.weight)
-      .slice(0, 6)
-      .map((r) => (lh.audits![r.id]?.title ?? r.id).replace(/`/g, "").slice(0, 140));
-    const consoleAudit = lh.audits["errors-in-console"];
-    const consoleErrors =
-      consoleAudit?.score === 0
-        ? (consoleAudit.details?.items ?? []).slice(0, 5).map((i) => (i.description ?? i.source ?? "").replace(/\s+/g, " ").slice(0, 140))
-        : [];
-
-    return {
-      performance: Math.round(perf * 100),
-      metrics,
-      fieldVerdict,
-      opportunities,
-      accessibility: pct(a11y?.score),
-      bestPractices: pct(lh.categories?.["best-practices"]?.score),
-      a11yFailures,
-      consoleErrors,
-    };
+    return { ok: true, data: (await res.json()) as PsiResponse };
   } catch (err) {
     console.warn("[site-audit] pagespeed failed", (err as Error).name);
     return fail((err as Error).name === "AbortError" ? "TIMEOUT" : "NETWORK");
   } finally {
     clearTimeout(timer);
   }
+}
+
+/**
+ * Hız ile erişilebilirlik/hata ölçümü Google'a iki ayrı, paralel istek olarak
+ * gider: tek istekte ağır sitelerde süre aşılıp hız puanı da kayboluyordu.
+ * İkinci istek başarısız olursa yalnız o bilgiler boş kalır.
+ */
+export async function runPageSpeed(url: string, locale: Locale): Promise<SpeedResult | SpeedFailure> {
+  const key = process.env.PAGESPEED_API_KEY?.trim();
+  const [perfCall, qualityCall] = await Promise.all([
+    callPsi(url, locale, ["performance"], key),
+    callPsi(url, locale, ["accessibility", "best-practices"], key),
+  ]);
+  if ("failed" in perfCall) return perfCall;
+
+  const data = perfCall.data;
+  const lh = data.lighthouseResult;
+  const perf = lh?.categories?.performance?.score;
+  if (!lh?.audits || typeof perf !== "number") {
+    return { failed: true, keyConfigured: Boolean(key), reason: "NO_LIGHTHOUSE_RESULT" };
+  }
+  const audits = lh.audits;
+
+  const metrics: Metric[] = (Object.keys(AUDIT_IDS) as Metric["id"][]).flatMap((id) => {
+    const v = audits[AUDIT_IDS[id]]?.numericValue;
+    if (typeof v !== "number") return [];
+    return [{ id, label: LABELS[id][locale], display: format(id, v, locale), rating: rate(id, v) }];
+  });
+
+  const opportunities = Object.entries(audits)
+    .filter(([, a]) => a.details?.type === "opportunity" && (a.details.overallSavingsMs ?? 0) >= 150 && (a.score ?? 1) < 0.9)
+    .map(([id, a]) => ({ id, savingsMs: Math.round(a.details!.overallSavingsMs!) }))
+    .sort((a, b) => b.savingsMs - a.savingsMs);
+
+  const cat = data.loadingExperience?.overall_category;
+  const fieldVerdict = cat === "FAST" ? "good" : cat === "AVERAGE" ? "average" : cat === "SLOW" ? "poor" : null;
+
+  const pct = (x?: number | null) => (typeof x === "number" ? Math.round(x * 100) : null);
+  const qlh = "failed" in qualityCall ? undefined : qualityCall.data.lighthouseResult;
+  const qAudits = qlh?.audits ?? {};
+  const a11y = qlh?.categories?.accessibility;
+  const a11yFailures = (a11y?.auditRefs ?? [])
+    .filter((r) => r.weight > 0 && qAudits[r.id]?.score === 0)
+    .sort((a, b) => b.weight - a.weight)
+    .slice(0, 6)
+    .map((r) => (qAudits[r.id]?.title ?? r.id).replace(/`/g, "").slice(0, 140));
+  const consoleAudit = qAudits["errors-in-console"];
+  const consoleErrors =
+    consoleAudit?.score === 0
+      ? (consoleAudit.details?.items ?? []).slice(0, 5).map((i) => (i.description ?? i.source ?? "").replace(/\s+/g, " ").slice(0, 140))
+      : [];
+
+  return {
+    performance: Math.round(perf * 100),
+    metrics,
+    fieldVerdict,
+    opportunities,
+    accessibility: pct(a11y?.score),
+    bestPractices: pct(qlh?.categories?.["best-practices"]?.score),
+    a11yFailures,
+    consoleErrors,
+  };
 }
