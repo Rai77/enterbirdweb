@@ -121,9 +121,11 @@ export async function POST(req: Request) {
 
     if (error) {
       // Resend'in ham hata metni istemciye gitmez — içinde yapılandırma
-      // detayı (domain, kota, anahtar durumu) olabilir.
+      // detayı (domain, kota, anahtar durumu) olabilir. Yalnız genel hata
+      // türü (ör. "invalid_api_key", "validation_error") teşhis için döner.
       console.error("[contact] resend error", error);
-      return NextResponse.json({ ok: false, error: "SEND_FAILED" }, { status: 502 });
+      const reason = typeof error.name === "string" ? error.name : "unknown";
+      return NextResponse.json({ ok: false, error: "SEND_FAILED", reason }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, id: data?.id ?? null });
