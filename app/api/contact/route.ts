@@ -6,11 +6,14 @@ import { rateLimit, clientIp } from "@/lib/rateLimit";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Sender must be a verified domain in Resend, or use "onboarding@resend.dev"
-// for initial testing. Set in Vercel env.
-const FROM =
-  process.env.RESEND_FROM ?? "Enterbird <onboarding@resend.dev>";
-const TO = process.env.CONTACT_TO ?? "hello@enterbird.com";
+// Gönderen adres Resend'de doğrulanmış alan adından olmalı (enterbird.com).
+// Vercel'deki RESEND_FROM elle yazıldığı için biçimi bozuk olabiliyor (ör.
+// sonda ">" eksik → Resend 422 "Invalid from"); bozuksa doğru adrese düşülür.
+const DEFAULT_FROM = "Enterbird <hello@enterbird.com>";
+const FROM_RE = /^(?:[^<>@]+<[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+>|[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+)$/;
+const envFrom = (process.env.RESEND_FROM ?? "").trim().replace(/^["']|["']$/g, "");
+const FROM = FROM_RE.test(envFrom) ? envFrom : DEFAULT_FROM;
+const TO = (process.env.CONTACT_TO ?? "").trim() || "hello@enterbird.com";
 
 // Aynı IP dakikada en fazla 3 mesaj. Gerçek bir ziyaretçi için fazlasıyla
 // yeterli, otomatik bir bot için anlamlı bir duvar.
