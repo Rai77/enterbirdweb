@@ -125,7 +125,9 @@ export async function POST(req: Request) {
       // türü (ör. "invalid_api_key", "validation_error") teşhis için döner.
       console.error("[contact] resend error", error);
       const reason = typeof error.name === "string" ? error.name : "unknown";
-      return NextResponse.json({ ok: false, error: "SEND_FAILED", reason }, { status: 502 });
+      // Doğrulama hataları yalnız hangi alanın (from/to/reply_to) bozuk olduğunu söyler.
+      const detail = reason === "validation_error" ? String(error.message ?? "").slice(0, 200) : undefined;
+      return NextResponse.json({ ok: false, error: "SEND_FAILED", reason, detail }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, id: data?.id ?? null });
