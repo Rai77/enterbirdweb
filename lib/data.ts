@@ -167,6 +167,7 @@ export const partners: { name: string; src: string }[] = [
   { name: "WordPress", src: "/logos/wordpress.svg" },
   { name: "Ticimax", src: "/logos/ticimax.svg" },
   { name: "T-Soft", src: "/logos/tsoft.svg" },
+  { name: "Inveon", src: "/logos/inveon.png" },
   { name: "Meta", src: "/logos/meta.svg" },
   { name: "Google", src: "/logos/google.svg" },
   { name: "TikTok", src: "/logos/tiktok.svg" },
