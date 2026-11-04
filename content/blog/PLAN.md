@@ -11,7 +11,6 @@ buraya eklenir.
 
 ## Sıradakiler
 
-- [ ] Shopify'da yurt dışına satış: Markets, para birimi ve kargo kurgusu
 - [ ] Çerezsiz ölçümleme: sunucu taraflı takip ve first-party veri
 - [ ] Ürün açıklamalarını yapay zekâ ile yazmak: nerede kazandırır, nerede SEO'ya zarar verir
 - [ ] Pazaryeri reklamları (Trendyol, Hepsiburada) ile kendi sitenizin reklamı: bütçe nasıl bölünmeli
@@ -24,6 +23,7 @@ buraya eklenir.
 
 ## Yayınlananlar
 
+- [x] Shopify'da yurt dışına satış: pazar, para birimi, gümrük — 2026-11-04 — `shopify-markets-yurt-disi-satis`
 - [x] WhatsApp Business API ile satış — 2026-10-17 — `whatsapp-business-api-satis`
 - [x] İade oranını düşürmek: ürün sayfası — 2026-10-12 — `iade-oranini-dusurmek-urun-sayfasi`
 - [x] Performance Max 2026 kontrolleri — 2026-09-09 — `performance-max-2026-kontroller`
