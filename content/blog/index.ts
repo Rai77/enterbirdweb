@@ -11,12 +11,14 @@
  */
 import type { RepoPost } from "./types";
 
+import { post as sunucuTarafliTakipFirstPartyVeri } from "./sunucu-tarafli-takip-first-party-veri";
 import { post as shopifyMarketsYurtDisiSatis } from "./shopify-markets-yurt-disi-satis";
 import { post as whatsappBusinessApiSatis } from "./whatsapp-business-api-satis";
 import { post as iadeOraniniDusurmekUrunSayfasi } from "./iade-oranini-dusurmek-urun-sayfasi";
 import { post as performanceMax2026Kontroller } from "./performance-max-2026-kontroller";
 
 export const repoPosts: RepoPost[] = [
+  sunucuTarafliTakipFirstPartyVeri,
   shopifyMarketsYurtDisiSatis,
   whatsappBusinessApiSatis,
   iadeOraniniDusurmekUrunSayfasi,
