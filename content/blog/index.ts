@@ -11,6 +11,7 @@
  */
 import type { RepoPost } from "./types";
 
+import { post as yapayZekaUrunAciklamalariSeo } from "./yapay-zeka-urun-aciklamalari-seo";
 import { post as sunucuTarafliTakipFirstPartyVeri } from "./sunucu-tarafli-takip-first-party-veri";
 import { post as shopifyMarketsYurtDisiSatis } from "./shopify-markets-yurt-disi-satis";
 import { post as whatsappBusinessApiSatis } from "./whatsapp-business-api-satis";
@@ -18,6 +19,7 @@ import { post as iadeOraniniDusurmekUrunSayfasi } from "./iade-oranini-dusurmek-
 import { post as performanceMax2026Kontroller } from "./performance-max-2026-kontroller";
 
 export const repoPosts: RepoPost[] = [
+  yapayZekaUrunAciklamalariSeo,
   sunucuTarafliTakipFirstPartyVeri,
   shopifyMarketsYurtDisiSatis,
   whatsappBusinessApiSatis,

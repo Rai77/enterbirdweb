@@ -11,7 +11,6 @@ buraya eklenir.
 
 ## Sıradakiler
 
-- [ ] Ürün açıklamalarını yapay zekâ ile yazmak: nerede kazandırır, nerede SEO'ya zarar verir
 - [ ] Pazaryeri reklamları (Trendyol, Hepsiburada) ile kendi sitenizin reklamı: bütçe nasıl bölünmeli
 - [ ] E-posta ve SMS otomasyonu: terk edilen sepetten sonraki 7 gün
 - [ ] Marka aramaları: kendi markanıza reklam vermek gerekli mi
@@ -22,6 +21,7 @@ buraya eklenir.
 
 ## Yayınlananlar
 
+- [x] Ürün açıklamalarını yapay zekâ ile yazmak — 2026-11-18 — `yapay-zeka-urun-aciklamalari-seo`
 - [x] Çerezsiz ölçümleme: sunucu taraflı takip — 2026-11-12 — `sunucu-tarafli-takip-first-party-veri`
 - [x] Shopify'da yurt dışına satış: pazar, para birimi, gümrük — 2026-11-04 — `shopify-markets-yurt-disi-satis`
 - [x] WhatsApp Business API ile satış — 2026-10-17 — `whatsapp-business-api-satis`
